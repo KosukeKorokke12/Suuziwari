@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang='ja'>
 <head>
 	<meta charset="utf-8">
@@ -279,12 +280,14 @@
 		<p id="clearmode"></p><font id="listed">??</font> <font id="Suuzicopy">??</font> <font id="zanki" size="6px"></font>
 	</div>
 	<script type="text/javascript">
-	  if('serviceWorker' in navigator) {
-		navigator.serviceWorker
-				 .register('/sw.js')
-				 .then(function() { console.log("Service Worker Registered"); })
-				 .catch(function() { console.log("Service Worker Not Registered"); });
-	  }
-	</script>
+		// ServiceWorker登録：https://developers.google.com/web/fundamentals/primers/service-workers/?hl=ja
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('sw.js').then(function(registration) {
+				console.log('ServiceWorker registration successful with scope: ', registration.scope);
+			}).catch(function(err) {
+				console.log('ServiceWorker registration failed: ', err);
+			});
+		}
+		</script>
 </body>
 </html>
