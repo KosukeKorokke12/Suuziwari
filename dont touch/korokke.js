@@ -493,14 +493,13 @@ if (event.ctrlKey && e.code == 'KeyR' || e.keyCode == 116) {
 	};
 	if (e.code === 'Space') {
 		event.preventDefault();
+		event.returnValue = false;
 		if (started.textContent == 0) {
 			bgm4.play();
 			start(timer_sec.textContent)
-			event.preventDefault();
 		} //スペースキーで開始する設定(event.preventDefaultでスペースによるページスクロールを止めている。)
 		else {
 			p2();
-			event.preventDefault();
 		};
 	}; //上記と同様
 }); //Spacekeyの入力されたときの動作
