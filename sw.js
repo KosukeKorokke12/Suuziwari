@@ -1,10 +1,10 @@
 // キャッシュ名とキャッシュファイルの指定
 var CACHE_NAME = 'pwa-sample-caches';
 var urlsToCache = [
-    '/Suuziwari/index.htm',
-    '/Suuziwari/index.min.htm',
+    '/Suuziwari/index.html',
+    '/Suuziwari/index.min.html',
     '/Suuziwari/BGM.mp3',
-    '/Suuziwari/dont touch/tyuui.htm',
+    '/Suuziwari/dont touch/tyuui.html',
     '/Suuziwari/dont touch/korokke.js',
     '/Suuziwari/dont touch/jquery-3.6.0.min.js',
     '/Suuziwari/dont touch/ress.min.js',
