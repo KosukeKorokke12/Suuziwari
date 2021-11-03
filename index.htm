@@ -22,17 +22,6 @@
 	</script>
 	<script defer language="JavaScript" src="dont%20touch/korokke.js">
 	</script><!-- ウェブアプリマニフェストの読み込み -->
-	<script language="JavaScript">
-	if ('serviceWorker' in navigator) {
-		console.log('Found serviceWorker');
-		navigator.serviceWorker.register('/sw.js')
-			.then((reg) => {
-				console.log('Service Worker Registered', reg);
-			});
-	} else {
-		console.log('Not Found serviceWorker');
-	}
-	</script>
 <link rel="manifest" href="manifest.json">
 </head>
 <body bgcolor="#333">
@@ -289,5 +278,13 @@
 		<font id="started">??</font> <font id="lists">??</font>
 		<p id="clearmode"></p><font id="listed">??</font> <font id="Suuzicopy">??</font> <font id="zanki" size="6px"></font>
 	</div>
+	<script type="text/javascript">
+	  if('serviceWorker' in navigator) {
+		navigator.serviceWorker
+				 .register('/sw.js')
+				 .then(function() { console.log("Service Worker Registered"); })
+				 .catch(function() { console.log("Service Worker Not Registered"); });
+	  }
+	</script>
 </body>
 </html>
