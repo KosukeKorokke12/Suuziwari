@@ -1,10 +1,6 @@
-if('serviceWorker' in navigator) {
-    navigator.serviceWorker
-             .register('/sw.js')
-             .then(function() { console.log("Service Worker Registered"); })
-             .catch(function() { console.log("Service Worker Not Registered"); });
-  }
-  const STATIC_DATA = [
+// キャッシュ名とキャッシュファイルの指定
+var CACHE_NAME = 'pwa-sample-caches';
+var urlsToCache = [
     'index.htm',
     'index.min.htm',
     'BGM.mp3',
@@ -22,22 +18,26 @@ if('serviceWorker' in navigator) {
     '/dont touch/buzzer.mp3',
     '/dont touch/suuziwari.png',
     '/dont touch/Suuziwari.png',
-  ];
+];
 
-  self.addEventListener('install', function(e) {
-   e.waitUntil(
-     caches.open('cache_v1').then(function(cache) {
-       return cache.addAll(STATIC_DATA);
-     })
-   );
-  });
+// インストール処理
+self.addEventListener('install', function(event) {
+    event.waitUntil(
+        caches
+            .open(CACHE_NAME)
+            .then(function(cache) {
+                return cache.addAll(urlsToCache);
+            })
+    );
+});
 
-  self.addEventListener('fetch', function(event) {
-   console.log(event.request.url);
-
-   event.respondWith(
-     caches.match(event.request).then(function(response) {
-       return response || fetch(event.request);
-     })
-   );
-  });
+// リソースフェッチ時のキャッシュロード処理
+self.addEventListener('fetch', function(event) {
+    event.respondWith(
+        caches
+            .match(event.request)
+            .then(function(response) {
+                return response ? response : fetch(event.request);
+            })
+    );
+});
