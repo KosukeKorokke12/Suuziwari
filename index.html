@@ -274,14 +274,13 @@
 		<p id="clearmode"></p><font id="listed">??</font> <font id="Suuzicopy">??</font> <font id="zanki" size="6px"></font>
 	</div>
 	<script type="text/javascript">
-		// ServiceWorker登録：https://developers.google.com/web/fundamentals/primers/service-workers/?hl=ja
-		if ('serviceWorker' in navigator) {
-			navigator.serviceWorker.register('sw.js').then(function(registration) {
-				console.log('ServiceWorker registration successful with scope: ', registration.scope);
-			}).catch(function(err) {
-				console.log('ServiceWorker registration failed: ', err);
-			});
-		}
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js').then(registration => {
+      console.log('ServiceWorker registration successful.');
+    }).catch(err => {
+      console.log('ServiceWorker registration failed.');
+    });
+  }
 		</script>
 </body>
 </html>
