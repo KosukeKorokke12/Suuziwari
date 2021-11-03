@@ -274,27 +274,13 @@
 		<p id="clearmode"></p><font id="listed">??</font> <font id="Suuzicopy">??</font> <font id="zanki" size="6px"></font>
 	</div>
 	<script> 
-		window.addEventListener('load', function () {
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(function (registration) {
-                        return registration.pushManager.getSubscription().then(function (subscription) {
-                            console.log("subscription", subscription)
-                            if (subscription) {
-                                return subscription
-                            }
-                            return registration.pushManager.subscribe({
-                                userVisibleOnly: true
-                            })
-                        })
-                    }).then(function (subscription) {
-                        var endpoint = subscription.endpoint
-                        console.log("pushManager endpoint:", endpoint)
-                    }).catch(function (error) {
-                        console.log("serviceWorker error:", error)
-                    })
-            }
-        })
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js').then(registration => {
+      console.log('ServiceWorker registration successful.');
+    }).catch(err => {
+      console.log('ServiceWorker registration failed.');
+    });
+  }
 		</script>
 </body>
 </html>
