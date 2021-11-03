@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<link href="https://fonts.googleapis.com" media="print" onload="this.media='all'" rel="preconnect">
+	<link href="https://fonts.gstatic.com" media="print" onload="this.media='all'" rel="preconnect">
+	<link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" media="print" onload="this.media='all'" rel="stylesheet">
+	<title>注意点・作者から</title>
+	<style>
+    * {
+	scrollbar-width: 7px;
+	/*細さ*/
+	scrollbar-color: #fff #333;
+	/*つまみの色 軌道の色*/
+	font-family: "Comic Sans MS", 'Kosugi Maru', sans-serif;
+	color: #FFF
+}
+
+html {
+	box-sizing: border-box;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	touch-action: manipulation;
+}
+
+::-webkit-scrollbar {
+	width: 7px;
+	height: 0px
+}
+
+::-webkit-scrollbar-thumb {
+	background: #fff;
+	border-radius: 5px
+}
+
+::-webkit-scrollbar-track {
+	background: #333
+}
+
+body{background: -moz-linear-gradient(245deg, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%);background: -webkit-linear-gradient(245deg, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%);background: linear-gradient(245deg, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%);}button{background-color: rgba(0, 0, 0, 0); border-radius: 10px 10px 10px 10px; border: 2px solid #FFF;}a{color: #FFF}
+	</style>
+</head>
+<body>
+	<h1>注意点</h1>
+	<p><b>＊ブラウザが自動再生機能を停止しているため<br>
+	一部音が鳴らない可能性があります。<br>
+	＊このゲームはHTML・JavaScript・CSSを使用しています。<br>
+	＊JavaScriptですがjQueryとLocalStorageを使用しており、<br>
+	LocalStorageはテスト中の機能のデータと最高記録を保存しています。<br>
+	＊スマホ用に作っていません（少し使いやすくはしていますが・・・）一部の表示が崩れやすいので、<br>
+	パソコンや大型のタブレットで使用することをおすすめします。<br>
+	＊リスタートですがブラウザに表示されている「再読み込み」ボタン、ではなくできれば<br>
+	リセットボタンまたはアラートのボタン、Ctrl + R 、 F5でしてもらえると有り難いです。<br>
+	システム上背景や文字の表示が崩れるためです。<br>
+	(無理やり直したよ、もし表示が崩れたら上記の再読み込みをすれば治ると思うよ ^^b)<br>
+	＊zipファイル内にあるファイルは削除しないでください殆どのものは使用しているものです。<br>
+	もし誤って削除した場合は再度ダウンロードしてください。<br>
+	*Firefoxのみ表示の倍率がおかしくなっております。<br>
+	直し方がよくわからないため大変申し訳ございませんが、ブラウザの倍率で（表示サイズを）調節して頂くとありがたいです。(133%ほど)<br>
+	<s>なんでFirefoxだけzoomが非対応なんだよ！</s></b></p><br>
+	<button onclick="window.close()" rel="noopener noreferrer"><b>戻る</b></button><br>
+	<h1>作者から</h1>
+	<p><b>今回このようなゲームを作ってみましたがどうでしたでしょうか。<br>
+	二年生のはじめの頃から作っていたんですけど、最初はHTMLとJavaScriptのみで作っていましたが、<br>
+	途中からCSSを使って外見をきれいにした結果、このようなゲームになりました。<br>
+	使用した効果音ですが、フリーの中でいいモノを選んだと思います。（＾ω＾@）<br>
+	音量バーとBGM機能ですが、自分がほしいなと思ったため、この機能を取り付けました、<br>
+	ただ操作が複雑なのでBGMを切り替えることは難しいと思います。（今後わかりやすく修正するかも）<br>
+	また、levelとかScoreとかLankとか色々数字があったため、ここも分かりづらかったと思います。<br>
+	前に、文化祭に出すと決まったとき操作についてまとめた動画を作ろうか悩んだことがあったのですが、<br>
+	時間的に文化祭に間に合わないので（動画を作ることを）諦めました。<br>
+	このゲームは本当はもっと難易度を上げていましたが、難しすぎるため、こんなふうに変更しました。<br>
+	(まあまあ簡単になったでしょ！) ^^b<br>
+	nomalmode時<br>
+	最大残基 3 → 5<br>
+	増えるために必要なのターン数　3 → 2<br><br>
+	HERDmode時<br>
+	最大残基 2 → 3<br>
+	増えるために必要なのターン数　8 → 6<br><br>
+	<br></b></p>
+	<h2><b>今回使用したソフト</b></h2><b><br>
+	Visual Studio Code for windows(web版が出るまで)<br>
+	& linux(web版が出るまでChromebookで使用していた)<br>
+	& <a href="https://vscode.dev/">web(英語のみ)</a>(早く日本語対応して!!)<br>
+	(Chromebookなどでhtmlファイル編集している人全員これ使ってほしい！)<br>
+	Text(ChromebookなどでVScodeのlinuxを入れる前に使用)<br>
+	Chrome などのブラウザ<br>
+	Canva(アイコンなどに使用)<br>
+	tinypng(アイコンの圧縮などに使用)<br>
+	最適な画像最適化 – Recompressor(上記と同様)<br>
+	HTML Minifier , CSS Minifier, JavaScript Minifier などのweb軽量化ソフト<br>
+	<br>
+	<br>
+	<button onclick="window.close()" rel="noopener noreferrer"><b><b>戻る</b></b></button></b>
+	<p></p>
+</body>
+</html>
