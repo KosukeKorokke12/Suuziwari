@@ -8,9 +8,9 @@
   "theme_color": "#333",
   "icons": [
     {
-      "src": "/dont touch/Suuziwari.svg",
-      "sizes": "375x375",
-      "type": "image/svg"
+      "src": "/dont touch/Suuziwari.png",
+      "sizes": "192x192",
+      "type": "image/png"
     }
   ]
 }
