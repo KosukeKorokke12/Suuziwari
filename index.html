@@ -273,16 +273,28 @@
 		<font id="started">??</font> <font id="lists">??</font>
 		<p id="clearmode"></p><font id="listed">??</font> <font id="Suuzicopy">??</font> <font id="zanki" size="6px"></font>
 	</div>
-	<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').then(function(registration) {
-    // 登録成功
-    console.log('ServiceWorker の登録に成功しました。スコープ: ', registration.scope);
-  }).catch(function(err) {
-    // 登録失敗
-    console.log('ServiceWorker の登録に失敗しました。', err);
-  });
-}
+	<script> 
+		window.addEventListener('load', function () {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function (registration) {
+                        return registration.pushManager.getSubscription().then(function (subscription) {
+                            console.log("subscription", subscription)
+                            if (subscription) {
+                                return subscription
+                            }
+                            return registration.pushManager.subscribe({
+                                userVisibleOnly: true
+                            })
+                        })
+                    }).then(function (subscription) {
+                        var endpoint = subscription.endpoint
+                        console.log("pushManager endpoint:", endpoint)
+                    }).catch(function (error) {
+                        console.log("serviceWorker error:", error)
+                    })
+            }
+        })
 		</script>
 </body>
 </html>
