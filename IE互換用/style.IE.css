@@ -1,0 +1,103 @@
+* {
+	scrollbar-width: 7px;
+	/*細さ*/
+	scrollbar-color: #fff #333;
+	/*つまみの色 軌道の色*/
+	font-family: "Comic Sans MS", 'Kosugi Maru', sans-serif;
+	color: #FFF
+}
+
+html {
+	box-sizing: border-box;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	touch-action: manipulation;
+}
+
+	body {
+		width: 99%;
+		background: -moz-linear-gradient(245deg, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%);
+		background: -webkit-linear-gradient(245deg, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%);
+		background: linear-gradient(245deg, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%);
+		overflow-y: scroll;
+		overflow: hidden scroll
+	}
+
+a {
+	color: #ffffff;
+	font: 15px;
+	cursor: pointer
+}
+
+font, h1, h3, h4, h5, h6, p {
+	color: #ffffff
+}
+
+button {
+	background-color: rgba(0, 0, 0, 0);
+	border-radius: 10px 10px 10px 10px;
+	border: 2px solid #FFF;
+}
+
+h1 {
+	top: 60px;
+	position: relative
+}
+
+
+/*スタート・リセットボタン*/
+
+.buttons1, .buttons2 {
+	cursor: pointer
+}
+
+.buttons1 {
+	width: 165px;
+	height: 105px;
+	border: 3px solid #FFF
+}
+
+.buttons2 {
+	width: 180px;
+	height: 110px;
+	border: 3px solid #FFF
+}
+
+.buttons2::after {
+	margin-left: 125px
+}
+
+.buttonfont {
+	font-size: 30px;
+	color: #FFF
+}
+
+/*入力ボタンに関して*/
+
+.button1 {
+	width: 120px;
+	height: 90px;
+	cursor: pointer;
+	border: 3px solid #FFF;
+}
+
+.button2 {
+	width: 80px;
+	height: 105px;
+	cursor: pointer;
+	border: 3px solid #FFF;
+}
+
+/*.bugはバグ防止用*/
+
+.bug {
+	color: #333333;
+	font-size: 0px;
+	display: none
+}
+
+#korokke{
+	font-size: 60px;
+}
