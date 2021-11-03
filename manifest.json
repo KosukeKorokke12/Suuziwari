@@ -11,6 +11,6 @@
     ],
     "start_url": "/Suuziwari/index.html",
     "display": "standalone",
-    "theme_color": "#333",
-    "background_color": "#333"
+    "theme_color": "linear-gradient(90deg, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%)",
+    "background_color": "linear-gradient(90deg, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%)"
 }
