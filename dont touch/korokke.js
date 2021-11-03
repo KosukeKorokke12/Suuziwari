@@ -527,6 +527,10 @@ function start(time) {
 	color()
 	if (localStorage.zisseki1 == 0) {
 		localStorage.zisseki1 = 1;
+                    if (Notification.permission === 'granted') {
+                        navigator.serviceWorker.ready.then(registration => {
+                        registration.active.postMessage('初めてのプレイ');
+                    });
 	}
 	started.textContent = 1;
 	const p1 = document.getElementById("p1");
@@ -647,6 +651,11 @@ function timmer(time) {
 		if (time > 120000) {
 			if (localStorage.zisseki2 == 0) {
 				localStorage.zisseki2 = 1;
+                    if (Notification.permission === 'granted') {
+                        navigator.serviceWorker.ready.then(registration => {
+                        registration.active.postMessage('時間の亡者');
+                    });
+            }
 			}
 			timer_obj.className = 'god';
 			korokke.className = 'god';
@@ -782,6 +791,10 @@ function a(mozi) {
 				.textContent = "clear";
 			if (number == 10 && humans_number.textContent == 3 && localStorage.zisseki3 == 0) {
 				localStorage.zisseki3 = 1;
+                    if (Notification.permission === 'granted') {
+                        navigator.serviceWorker.ready.then(registration => {
+                        registration.active.postMessage('初心者脱却');
+                    });
 			}
 			if (zanki > 1) {
 				zanki--
