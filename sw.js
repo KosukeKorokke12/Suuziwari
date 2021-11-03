@@ -1,40 +1,39 @@
+// ServiceWorker処理：https://developers.google.com/web/fundamentals/primers/service-workers/?hl=ja
+
 // キャッシュ名とキャッシュファイルの指定
 var CACHE_NAME = 'pwa-sample-caches';
 var urlsToCache = [
     '/Suuziwari/',
-    '/Suuziwari/index.min.html',
     '/Suuziwari/BGM.mp3',
-    '/Suuziwari/dont touch/tyuui.html',
-    '/Suuziwari/dont touch/korokke.js',
-    '/Suuziwari/dont touch/jquery-3.6.0.min.js',
-    '/Suuziwari/dont touch/ress.min.js',
-    '/Suuziwari/dont touch/korokke.min.js',
-    '/Suuziwari/dont touch/style.css',
-    '/Suuziwari/dont touch/style.min.css',
-    '/Suuziwari/dont touch/Answer.mp3',
-    '/Suuziwari/dont touch/buzzer.mp3',
-    '/Suuziwari/dont touch/suuziwari.png',
-    '/Suuziwari/dont touch/Suuziwari.png',
+    '/Suuziwari/dont%20touch/tyuui.html',
+    '/Suuziwari/dont%20touch/korokke.js',
+    '/Suuziwari/dont%20touch/jquery-3.6.0.min.js',
+    '/Suuziwari/dont%20touch/ress.min.js',
+    '/Suuziwari/dont%20touch/style.css',
+    '/Suuziwari/dont%20touch/Answer.mp3',
+    '/Suuziwari/dont%20touch/buzzer.mp3',
+    '/Suuziwari/dont%20touch/suuziwari.png',
+    '/Suuziwari/dont%20touch/Suuziwari.png',
 ];
 
 // インストール処理
 self.addEventListener('install', function(event) {
-    event.waitUntil(
-        caches
-            .open(CACHE_NAME)
-            .then(function(cache) {
-                return cache.addAll(urlsToCache);
-            })
-    );
+	event.waitUntil(
+		caches
+			.open(CACHE_NAME)
+			.then(function(cache) {
+				return cache.addAll(urlsToCache);
+			})
+	);
 });
 
 // リソースフェッチ時のキャッシュロード処理
 self.addEventListener('fetch', function(event) {
-    event.respondWith(
-        caches
-            .match(event.request)
-            .then(function(response) {
-                return response ? response : fetch(event.request);
-            })
-    );
+	event.respondWith(
+		caches
+			.match(event.request)
+			.then(function(response) {
+				return response ? response : fetch(event.request);
+			})
+	);
 });
