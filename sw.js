@@ -1,5 +1,7 @@
-var CACHE_NAME = 'pwa-sample-caches';
-var urlsToCache = [
+// Cache name
+const CACHE_NAME = 'pwa-sample-caches-v1';
+// Cache targets
+const urlsToCache = [
     '/Suuziwari/',
     '/Suuziwari/BGM.mp3',
     '/Suuziwari/dont%20touch/tyuui.html',
@@ -13,24 +15,22 @@ var urlsToCache = [
     '/Suuziwari/dont%20touch/Suuziwari.png',
 ];
 
-// インストール処理
-self.addEventListener('install', function(event) {
-	event.waitUntil(
-		caches
-			.open(CACHE_NAME)
-			.then(function(cache) {
-				return cache.addAll(urlsToCache);
-			})
-	);
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches
+      .open(CACHE_NAME)
+      .then((cache) => {
+        return cache.addAll(urlsToCache);
+      })
+  );
 });
 
-// リソースフェッチ時のキャッシュロード処理
-self.addEventListener('fetch', function(event) {
-	event.respondWith(
-		caches
-			.match(event.request)
-			.then(function(response) {
-				return response ? response : fetch(event.request);
-			})
-	);
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches
+      .match(event.request)
+      .then((response) => {
+        return response ? response : fetch(event.request);
+      })
+  );
 });
