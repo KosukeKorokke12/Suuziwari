@@ -1,6 +1,7 @@
 // キャッシュ名とキャッシュファイルの指定
 var CACHE_NAME = 'pwa-sample-caches';
 var urlsToCache = [
+    '/Suuziwari/',
     '/Suuziwari/index.html',
     '/Suuziwari/index.min.html',
     '/Suuziwari/BGM.mp3',
