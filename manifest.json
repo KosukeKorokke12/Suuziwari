@@ -1,7 +1,7 @@
 {
-    "name": "ウェブアプリの正式名称",
-    "short_name": "ホーム画面に表示する省略名称",
-    "description": "ウェブアプリの説明文",
+    "name": "数字割りゲーム",
+    "short_name": "SWG",
+    "description": "Game",
     "icons": [
         {
             "src": "Suuziwari.png",
