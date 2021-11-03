@@ -1,0 +1,16 @@
+{
+  "name": "数字割りゲーム",
+  "short_name": "SWG",
+  "start_url": "/?utm_source=web_app_manifest",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#333",
+  "theme_color": "#333",
+  "icons": [
+    {
+      "src": "/dont touch/Suuziwari.svg",
+      "sizes": "375x375",
+      "type": "image/svg"
+    }
+  ]
+}

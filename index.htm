@@ -1,0 +1,293 @@
+<html lang='ja'>
+<head>
+	<meta charset="utf-8">
+	<!-- アドレスバー等のブラウザのUIを非表示 -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<!-- default（Safariと同じ） / black（黒） / black-translucent（ステータスバーをコンテンツに含める） -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<!-- ホーム画面に表示されるアプリ名 -->
+	<meta name="apple-mobile-web-app-title" content="TAP10">
+	<!-- ホーム画面に表示されるアプリアイコン -->
+	<link rel="apple-touch-icon" href="dont touch/Suuziwari.svg">
+	<link href="dont touch/Suuziwari.svg" rel="icon" type="image/svg">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible"><!--以下googlefont&外部cssファイル-->
+	<link href="https://fonts.googleapis.com" media="print" onload="this.media='all'" rel="preconnect">
+	<link href="https://fonts.gstatic.com" media="print" onload="this.media='all'" rel="preconnect">
+	<link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" media="print" onload="this.media='all'" rel="stylesheet">
+	<link href="https://use.fontawesome.com/releases/v5.6.4/css/all.css" rel="stylesheet">
+	<title>数字割りゲーム var1.0</title>
+	<link href="dont touch/ress.min.css" media="print" onload="this.media='all'" rel="stylesheet">
+	<link href="dont touch/style.css" media="print" onload="this.media='all'" rel="stylesheet">
+	<script defer src="dont%20touch/jquery-3.6.0.min.js">
+	</script>
+	<script defer language="JavaScript" src="dont%20touch/korokke.js">
+	</script><!-- ウェブアプリマニフェストの読み込み -->
+	<script language="JavaScript">
+	if ('serviceWorker' in navigator) {
+		console.log('Found serviceWorker');
+		navigator.serviceWorker.register('/sw.js')
+			.then((reg) => {
+				console.log('Service Worker Registered', reg);
+			});
+	} else {
+		console.log('Not Found serviceWorker');
+	}
+	</script>
+<link rel="manifest" href="manifest.json">
+</head>
+<body bgcolor="#333">
+	<!--オーディオ設定（自動再生機能停止中のため機能していません。）-->
+	<!--デバック用に設定しています-->
+	<center>
+		<br>
+		<br>
+		<div class="kihonn">
+			<font id="korokke">??</font><br>
+			<br>
+			<br>
+			<div class="LEVELs">
+				<font>LEVEL:</font>&thinsp;<font id="number_number">??</font>
+				<font>残機:</font>&thinsp;<font id="humans_number">??</font><font id="humans_maxs">/</font><font id="humans_max">5</font>
+				<font id="human"></font>
+			</div><br>
+			<br>
+			<!--押す用のbutton設定-->
+			<button class="button1" id="buttonid1" onclick="a(2)"><font class="buttonfont">÷2 W</font></button>&thinsp;&thinsp;&thinsp;
+			<button class="button1" id="buttonid2" onclick="a(3)"><font class="buttonfont">÷3 E</font></button><br>
+			<button class="button2" id="buttonid3" onclick="a(5)"><font class="buttonfont">÷5<br>A</font></button>&thinsp;
+			<button class="button2" id="buttonid4" onclick="a(7)"><font class="buttonfont">÷7<br>S</font></button>&thinsp;
+			<button class="button2" id="buttonid5" onclick="a(11)"><font class="buttonfont">÷11<br>D</font></button><br>
+			<font id="remainingtime" size="6px">残り時間:</font><font id="time" size="6px">0.20.00</font><br>
+			<font id="cleartime" size="6px">+0.00</font>
+			<button class="buttons1" id="p1" onclick="start(time)"><font size="5.5px">START<br>Space</font></button>
+			<button class="buttons2" id="reset" onclick="p2()"><font size="5px">リセット<br>
+			Space</font></button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+			<br>
+			<br>
+			<font id="list" size="4px">??</font><br>
+			<font id="debugmodetext" size="4px">ね！この隠し機能、簡単に見つけられたでしょ!</font><br>
+		</div>
+	</center>
+	<center>
+		<br>
+		<br>
+		<div class="OR">
+			<h4>Score = LEVEL * 1000 + time(0.01秒単位) * 0.4 + 残機 * 10000</h4><br>
+			<!--ゲームに関して-->
+			<div class="list">
+				<!--ランクの計算方法など-->
+				<br>
+				<table>
+					<tr>
+						<th colspan="3">&nbsp;&nbsp;Lankの計算方式とその結果から換算する時のデータ&nbsp;&nbsp;</th>
+					</tr>
+					<tr>
+						<td>
+							<center>
+								LANK名
+							</center>
+						</td>
+						<td>
+							<center>
+								Score/100
+							</center>
+						</td>
+						<td>
+							<center>
+								補足
+							</center>
+						</td>
+					</tr>
+					<tr>
+						<td>E</td>
+						<td>0~149</td>
+						<td>初めての人</td>
+					</tr>
+					<tr>
+						<td class="blue">D</td>
+						<td class="blue">150~199</td>
+						<td class="blue">初心者</td>
+					</tr>
+					<tr>
+						<td class="lime">C</td>
+						<td class="lime">200~249</td>
+						<td class="lime">初心者・中級者？</td>
+					</tr>
+					<tr>
+						<td class="yellow">B</td>
+						<td class="yellow">250~274</td>
+						<td class="yellow">中級者</td>
+					</tr>
+					<tr>
+						<td class="red">A</td>
+						<td class="red">275~299</td>
+						<td class="red">中級者・上級者</td>
+					</tr>
+					<tr>
+						<td class="aqua">S</td>
+						<td class="aqua">300~349</td>
+						<td class="aqua">ほとんどの人はたどりつけない</td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<center>
+								この先のLANKを取ると<br>
+								HERDMODEが使えるようになります。
+							</center>
+						</td>
+					</tr>
+					<tr>
+						<td class="aqua">S+</td>
+						<td class="aqua">350~449</td>
+						<td class="aqua">…</td>
+					</tr>
+					<tr>
+						<td class="colorful">Master</td>
+						<td class="colorful">450~</td>
+						<td class="colorful">You are Master to This Game!!</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div id="debugmodes2">
+			<font>テスト中の実績機能</font><button onclick="f()"><font>実績リセット</font></button>
+			<table>
+				<tr>
+					<th>実績</th>
+					<th>詳細内容</th>
+				</tr>
+				<tr>
+					<td>初めての挑戦</td>
+					<td>
+						<p id="zisseki1"></p>
+					</td>
+				</tr>
+				<tr>
+					<td>時間の富裕層</td>
+					<td>
+						<p id="zisseki2"></p>
+					</td>
+				</tr>
+				<tr>
+					<td>初心者脱却！！</td>
+					<td>
+						<p id="zisseki3"></p>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="debugmodes3">
+			<table class="game">
+				<tr>
+					<th>このゲームの説明</th>
+				</tr>
+				<tr>
+					<td class="table">
+						<b>＊このゲームの目的（<span>重要</span>）</b><br>
+						<div class="hidden">
+							画面真ん中に大きく出ている数字を分解していき、時間以内にまたは残機<br>を減らさずに
+							1にして、そうすると難易度(LEVEL)が一つ上がりほかの数字が出てきます、<br>
+							あなたは時間または残機が、なくなるまでにどこまでLEVELを伸ばせるかというものです。
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="table">
+						<b>＊操作方法（<span>重要</span>）</b><br>
+						<div class="hidden">
+							マウス：ボタンを押して操作する。<br>
+							タッチパネル：ボタンをタッチして操作する。<br>
+							キーボード：Wキーで2、Dキーで3、Aキーで5、Sキーで7、Dキーで11、SPACEキーでスタートとリセットという操作です。<br>
+							（キーボードはほかにも操作方法はありますがテスト用なのでとても難しいため、上記の方法を使うことをお勧めします）
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="table">
+						<b>＊残機について</b><br>
+						<div class="hidden">
+							スタートをした際標準で残機が2つあり、一度回答を間違えると残機が減ります。<br>
+							残機が0より少なくなると、GAMEOVERとなります。<br>
+							この残機は、ミスったあと2回、問題を正解した場合、一つ増えます。
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="table">
+						<b>＊残り時間に関して</b><br>
+						<div class="hidden">
+							スタートした際標準で20秒あり、残り時間がなくなるとGAMEOVERとなります。<br>
+							この残り時間は問題を正解した際に(LEVEL*1.1)秒増えます。<br>
+							残機がある場合は残機を減らす代わりに10秒追加されます。
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="table">
+						<b>＊GAMEOVER画面とその他</b><br>
+						<div class="hidden">
+							alertが動かないブラウザの場合、残機があっても強制的に<br>
+							リセットされてしまいます。できれば動作確認したブラウザを推奨します。<br>
+							残機がなくなった時、時間切れになった時、残機があっても初めからを指定した際に、<br>
+							その時のLEVELとLANKとその答えが表示されます。<br>
+							LANKは8種類あり、LANKの決め方はそのときのLEVELと時間と残機から換算されます、<br>
+							それについては右記で表にしてまとめておりますのでそちらをご覧ください。<br>
+							回答に関してですが、都合上「乗」を表現することができないため<br>
+							2<sup>3</sup>は(2^3)のように表現します。<br>
+							<s>(本当は、ただ面倒くさかっただけです。)</s><br>
+							<br>
+							BESTLEVELですがLEVELの自己ベストを保存してくれます
+						</div>
+					</td>
+				</tr>
+			</table><br>
+			<br>
+			<div class="backgroundcolor">
+				<font id="test" size="4px"></font> <button id="lost" onclick="s()"><font>リセット</font></button> <label class="herd"><input id="herd" name="HERD" type="checkbox" value="ok">&nbsp;<b>challenge to 「<span>hard mode</span>」<i>!</i></b></label>
+				<input id="volume" max="100" min="0" name="volume" step="1" type="range" value="50">
+				<p id="volumetext">Volume:50%</p><br>
+				<p id="Score">Score:0</p>
+			</div><!-- ローディング画面 -->
+			<div id="loading">
+				<div class="spinner"></div>
+				<center>
+					<img alt="SuuziwariGame" class="fit-picture" src="dont%20touch/suuziwari.png">
+				</center>
+				<h4 class="load">Loading...</h4>
+			</div>
+			<div id="debugmodes1">
+				<font id="mozi">Lank:E</font><br>
+				<font id="debugmode">??</font> <font id="timedebug">時間</font> <input id="example1" type="number" value="20"><br>
+				<font id="humansdebug">残機</font> <input id="example2" type="number" value="3"><br>
+				<button id="tekiyou" onclick="debug()"><font>適用</font></button>
+			</div>
+			<footer>
+				<h1><b>数字割りゲーム var1.0</b></h1><br>
+				<h4 class="Title">Suuziwarigame</h4><br>
+				<p class="name">make&nbsp;By&nbsp;Korokke347<br>
+				テストプレイに協力してくれた人<br>
+				Newton、Bamboo、Novecooler、Apple...etc</p>
+				<h5>動作確認済み: Chrome var 94.0.4606.104,Vivaldi var 4.3.2439.63,<br>
+				(chromiumベースの)MicrosoftEdge var 93.0.961.52,firefox var 93.0<br>
+				動作不可: ~IE11<br>
+				動作環境：Windows10 Home 64bit 20H2 & Windows11 Home 64bit 21H2<br>
+				& ChromeOS 94.0.4606.104(Official Build)(64bit)</h5>
+				<h5 id="use">Javasciptを正常に読み込めていません</h5><br>
+				<a onclick="var w = ( screen.width-1000 ) / 2; var h = ( screen.height-400 ) / 2; window.open('dont%20touch/tyuui.htm','subwin',`width=1000px,height=400px,left=${w},top=${h}`); return false;"><u>注意点・作者から</u></a>&nbsp;&nbsp;
+				<a onclick="var w = ( screen.width-700 ) / 2; var h = ( screen.height-1000 ) / 2; window.open('https://forms.gle/RRvsLLiLPkrz4fme8/','subwin',`width=700px,height=1000px,left=${w},top=${h}`); return false;"><u>フィードバック（Googleform）</u></a><br>
+				<a href="https://fonts.google.com/specimen/Kosugi+Maru/" target="_blank">使用したwebフォントのリンク先</a>&nbsp;&nbsp;
+				<a href="https://bit.ly/2YBMM4V/" target="_blank">お借りした音楽1</a>&nbsp;&nbsp;
+				<a href="https://bit.ly/3FxZF0o/" target="_blank">お借りした音楽2</a>&nbsp;&nbsp;
+				<div id="page_top">
+					<a href="#"></a>
+				</div>
+			</footer>
+		</div>
+	</center><font id="area1" onmouseout="mouseout();" onmouseover="mouseover();" size="0px">(-_-)見つかった!!</font>
+	<div class="bug">
+		<p id="timer_sec"></p><!--バグ防止用の書き加え（本来必要ない設定）-->
+		<font id="started">??</font> <font id="lists">??</font>
+		<p id="clearmode"></p><font id="listed">??</font> <font id="Suuzicopy">??</font> <font id="zanki" size="6px"></font>
+	</div>
+</body>
+</html>
