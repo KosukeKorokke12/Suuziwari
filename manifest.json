@@ -5,7 +5,7 @@
 	"start_url": "index.htm",
 	"icons": [
 		{
-			"src": "dont%20touch/Suuziwari.png",
+			"src": "dont touch/Suuziwari.png",
 			"sizes": "192x192",
 			"type": "image/png"
 		}
