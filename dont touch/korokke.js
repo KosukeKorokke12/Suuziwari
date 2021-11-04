@@ -494,7 +494,7 @@ if (event.ctrlKey && e.code == 'KeyR' || e.keyCode == 116) {
 	if (e.code === 'Space') {
 		event.preventDefault();
 		event.returnValue = false;
-		scrollTo(0, 0);
+		scrollTo(screen.height/2, 0);
 		if (started.textContent == 0) {
 			bgm4.play();
 			start(timer_sec.textContent)
@@ -531,6 +531,7 @@ function start(time) {
                         navigator.serviceWorker.ready.then(registration => {
                         registration.active.postMessage('初めてのプレイ');
                     });
+					}
 	}
 	started.textContent = 1;
 	const p1 = document.getElementById("p1");
@@ -796,6 +797,7 @@ function a(mozi) {
                         registration.active.postMessage('初心者脱却');
                     });
 			}
+			}
 			if (zanki > 1) {
 				zanki--
 				human.textContent = `残り:${zanki}turn`;
@@ -972,13 +974,11 @@ function color() {
 	}
 	if (humans_number.textContent >= 4) {
 		humans_number.style.color = 'rgb(95, 207, 128)';
-	} else {
+	} else
 		if (humans_number.textContent <= 3 && humans_number.textContent >= 2) {
 			humans_number.style.color = 'hsl(51, 94%, 52%)';
-		} else {
+		} else
 			if (humans_number.textContent <= 1) {
 				humans_number.style.color = 'red';
 			}
-		};
-	};
-};
+	}
