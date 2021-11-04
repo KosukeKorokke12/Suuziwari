@@ -494,7 +494,7 @@ if (event.ctrlKey && e.code == 'KeyR' || e.keyCode == 116) {
 	if (e.code === 'Space') {
 		event.preventDefault();
 		event.returnValue = false;
-		scrollTo(screen.height/2, 0);
+		scrollTo(0, 0);
 		if (started.textContent == 0) {
 			bgm4.play();
 			start(timer_sec.textContent)
