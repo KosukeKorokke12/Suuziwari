@@ -300,6 +300,8 @@ html {
 		font-size: 55px
 	}
 	.LEVELs1,.LEVELs2{
+		bottom: 10px;
+		position: relative;
 		font-size: 30px
 	}
 	#remainingtime,#time{
