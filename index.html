@@ -31,19 +31,17 @@
 			<font id="korokke">??</font><br>
 			<br>
 			<br>
-			<div class="LEVELs">
-				<font>LEVEL:</font>&thinsp;<font id="number_number">??</font>
-				<font>残機:</font>&thinsp;<font id="humans_number">??</font><font id="humans_maxs">/</font><font id="humans_max">5</font>
-				<font id="human"></font>
-			</div><br>
+			<div class="LEVELs1"><font>LEVEL:</font>&thinsp;<font id="number_number">??</font></div><div class="LEVELs2"><font>残機:</font>&thinsp;<font id="humans_number">??</font><font id="humans_maxs">/</font><font id="humans_max">5</font><font id="human"></font></div><br>
 			<br>
 			<!--押す用のbutton設定-->
+			<div class="buttoner">
 			<button class="button1" id="buttonid1" onclick="a(2)"><font class="buttonfont">÷2 W</font></button>&thinsp;&thinsp;&thinsp;
 			<button class="button1" id="buttonid2" onclick="a(3)"><font class="buttonfont">÷3 E</font></button><br>
 			<button class="button2" id="buttonid3" onclick="a(5)"><font class="buttonfont">÷5<br>A</font></button>&thinsp;
 			<button class="button2" id="buttonid4" onclick="a(7)"><font class="buttonfont">÷7<br>S</font></button>&thinsp;
 			<button class="button2" id="buttonid5" onclick="a(11)"><font class="buttonfont">÷11<br>D</font></button><br>
-			<font id="remainingtime" size="6px">残り時間:</font><font id="time" size="6px">0.20.00</font><br>
+			</div>
+			<font id="remainingtime">残り時間:</font><font id="time">0.20.00</font><br>
 			<font id="cleartime" size="6px">+0.00</font>
 			<button class="buttons1" id="p1" onclick="start(time)"><font size="5.5px">START<br>Space</font></button>
 			<button class="buttons2" id="reset" onclick="p2()"><font size="5px">リセット<br>
@@ -275,7 +273,7 @@
 		<font id="started">??</font> <font id="lists">??</font>
 		<p id="clearmode"></p><font id="listed">??</font> <font id="Suuzicopy">??</font> <font id="zanki" size="6px"></font>
 	</div>
-	<script> 
+	<script>
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./sw.js').then(registration => {
       console.log('ServiceWorker registration successful.');
