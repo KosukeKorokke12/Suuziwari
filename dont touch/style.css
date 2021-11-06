@@ -523,14 +523,6 @@ h1 {
 	position: fixed
 }
 
-input {
-  position: absolute;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-}
-
 .herd {
 	top: 93px;
 	left: 30px;
@@ -540,14 +532,50 @@ input {
   	padding-left: 25px
 }
 
-input:checked , .herd:before {
+input {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+label:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  top: 1px;
+  border: solid 2px #ccc;
+  border-radius: 3px;
+  transition: all ease-in-out 0.125s;
+}
+
+label:after {
+  content: "";
+  position: absolute;
+  top: 11px;
+  left: 5px;
+  transform: rotate(-45deg) scaleX(0);
+  transform-origin: left;
+  width: 12px;
+  height: 5px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transition: transform 0.125s ease-in-out;
+}
+
+input:checked + label:before {
   background-color: #999;
   border-color: #333;
 }
 
-input:checked + .herd:after {
+input:checked + label:after {
   transform: rotate(-45deg) scaleX(1);
 }
+
 
 .setting {
 	top: 20px;
