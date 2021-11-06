@@ -531,7 +531,7 @@ h1 {
 	cursor: pointer
 }
 
-input:checked + label:before {
+input:checked , .herd:before {
   background-color: #999;
   border-color: #333;
 }
