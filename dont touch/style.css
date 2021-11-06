@@ -536,6 +536,9 @@ input:checked , .herd:before {
   border-color: #333;
 }
 
+input:checked + .herd:after {
+  transform: rotate(-45deg) scaleX(1);
+}
 
 .setting {
 	top: 20px;
