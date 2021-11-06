@@ -531,6 +531,12 @@ h1 {
 	cursor: pointer
 }
 
+input:checked + label:before {
+  background-color: #999;
+  border-color: #333;
+}
+
+
 .setting {
 	top: 20px;
 	left: 150px;
