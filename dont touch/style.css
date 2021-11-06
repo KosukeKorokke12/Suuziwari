@@ -523,12 +523,21 @@ h1 {
 	position: fixed
 }
 
+input {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
 .herd {
 	top: 93px;
 	left: 30px;
 	position: fixed;
 	user-select: none;
-	cursor: pointer
+	cursor: pointer;
+  	padding-left: 25px
 }
 
 input:checked , .herd:before {
