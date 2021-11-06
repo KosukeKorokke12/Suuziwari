@@ -532,7 +532,7 @@ h1 {
   	padding-left: 25px
 }
 
-input {
+#herd {
   position: absolute;
   height: 1px;
   width: 1px;
@@ -540,7 +540,7 @@ input {
   clip: rect(1px, 1px, 1px, 1px);
 }
 
-label:before {
+.herd:before {
   content: "";
   display: block;
   position: absolute;
@@ -553,7 +553,7 @@ label:before {
   transition: all ease-in-out 0.125s;
 }
 
-label:after {
+.herd:after {
   content: "";
   position: absolute;
   top: 11px;
@@ -567,12 +567,12 @@ label:after {
   transition: transform 0.125s ease-in-out;
 }
 
-input:checked + label:before {
+#herd:checked + #herd:before {
   background-color: #999;
   border-color: #333;
 }
 
-input:checked + label:after {
+#herd:checked + .herd:after {
   transform: rotate(-45deg) scaleX(1);
 }
 
