@@ -576,7 +576,7 @@ h1 {
   transform: rotate(-45deg) scaleX(1);
 }
 
-box {
+.box {
   margin: 5px 0;
 }
 
