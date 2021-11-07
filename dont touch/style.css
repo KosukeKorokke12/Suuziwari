@@ -379,42 +379,42 @@ h1 {
 /*表示色*/
 
 .blue {
-	text-shadow: 4px 4px 4px blue, -4px 4px 4px blue, 4px -4px 4px blue, -4px -4px 4px blue, 4px 0px 4px blue, 0px 4px 4px blue, -4px 0px 4px blue, 0px -4px 4px blue
+	text-shadow: 4px 4px 4px blue, -4px 4px 4px blue, 4px -4px 4px blue, -4px -4px 4px blue, 4px 0px 4px blue, 0px 4px 4px blue, -4px 0px 4px blue, 0px -4px 4px blue;-webkit-transition: all 0.3s ease;-moz-transition: all 0.3s ease;-o-transition: all 0.3s ease;transition: all  0.3s ease;
 }
 
 .aqua {
-	text-shadow: 4px 4px 4px aqua, -4px 4px 4px aqua, 4px -4px 4px aqua, -4px -4px 4px aqua, 4px 0px 4px aqua, 0px 4px 4px aqua, -4px 0px 4px aqua, 0px -4px 4px aqua
+	text-shadow: 4px 4px 4px aqua, -4px 4px 4px aqua, 4px -4px 4px aqua, -4px -4px 4px aqua, 4px 0px 4px aqua, 0px 4px 4px aqua, -4px 0px 4px aqua, 0px -4px 4px aqua;-webkit-transition: all 0.3s ease;-moz-transition: all 0.3s ease;-o-transition: all 0.3s ease;transition: all  0.3s ease;
 }
 
 .lime {
-	text-shadow: 4px 4px 4px lime, -4px 4px 4px lime, 4px -4px 4px lime, -4px -4px 4px lime, 4px 0px 4px lime, 0px 4px 4px lime, -4px 0px 4px lime, 0px -4px 4px lime
+	text-shadow: 4px 4px 4px lime, -4px 4px 4px lime, 4px -4px 4px lime, -4px -4px 4px lime, 4px 0px 4px lime, 0px 4px 4px lime, -4px 0px 4px lime, 0px -4px 4px lime;-webkit-transition: all 0.3s ease;-moz-transition: all 0.3s ease;-o-transition: all 0.3s ease;transition: all  0.3s ease;
 }
 
 .yellow {
-	text-shadow: 4px 4px 4px hsl(51, 94%, 52%), -4px 4px 4px hsl(51, 94%, 52%), 4px -4px 4px hsl(51, 94%, 52%), -4px -4px 4px hsl(51, 94%, 52%), 4px 0px 4px hsl(51, 94%, 52%), 0px 4px 4px hsl(51, 94%, 52%), -4px 0px 4px hsl(51, 94%, 52%), 0px -4px 4px hsl(51, 94%, 52%)
+	text-shadow: 4px 4px 4px hsl(51, 94%, 52%), -4px 4px 4px hsl(51, 94%, 52%), 4px -4px 4px hsl(51, 94%, 52%), -4px -4px 4px hsl(51, 94%, 52%), 4px 0px 4px hsl(51, 94%, 52%), 0px 4px 4px hsl(51, 94%, 52%), -4px 0px 4px hsl(51, 94%, 52%), 0px -4px 4px hsl(51, 94%, 52%);-webkit-transition: all 0.3s ease;-moz-transition: all 0.3s ease;-o-transition: all 0.3s ease;transition: all  0.3s ease;
 }
 
 .red {
-	text-shadow: 4px 4px 4px red, -4px 4px 4px red, 4px -4px 4px red, -4px -4px 4px red, 4px 0px 4px red, 0px 4px 4px red, -4px 0px 4px red, 0px -4px 4px red
+	text-shadow: 4px 4px 4px red, -4px 4px 4px red, 4px -4px 4px red, -4px -4px 4px red, 4px 0px 4px red, 0px 4px 4px red, -4px 0px 4px red, 0px -4px 4px red;-webkit-transition: all 0.3s ease;-moz-transition: all 0.3s ease;-o-transition: all 0.3s ease;transition: all  0.3s ease;
 }
 
 .god {
 	color: #DA8E00;
 	background: -webkit-linear-gradient(-45deg, #F7DE05, #DA8E00, #EDAC06, #F7DE05, #ECB802, #DAAF08, #B67B03, #DA8E00, #EDAC06, #F7DE05, #ECB802, #EDAC06);
 	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent
+	-webkit-text-fill-color: transparent;-webkit-transition: all 0.3s ease;-moz-transition: all 0.3s ease;-o-transition: all 0.3s ease;transition: all  0.3s ease;
 }
 
 .colorful {
 	color: #ACB6E5;
-	background: -webkit-linear-gradient(0deg, #40E0D0, #FF8C00, #FF0080);
+	background: -webkit-linear-gradient(0deg, #40E0D0, #FF8C00, #FF0080);;-webkit-transition: all 0.3s ease;-moz-transition: all 0.3s ease;-o-transition: all 0.3s ease;transition: all  0.3s ease;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent
 }
 
 .white {
 	color: #FFF;
-	background-color: 'transparent'
+	background-color: 'transparent';-webkit-transition: all 0.3s ease;-moz-transition: all 0.3s ease;-o-transition: all 0.3s ease;transition: all  0.3s ease;
 }
 
 /*.bugはバグ防止用*/
