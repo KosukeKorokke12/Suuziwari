@@ -576,6 +576,9 @@ h1 {
   transform: rotate(-45deg) scaleX(1);
 }
 
+box {
+  margin: 5px 0;
+}
 
 .setting {
 	top: 20px;
