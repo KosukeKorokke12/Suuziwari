@@ -528,55 +528,6 @@ h1 {
 	position: fixed;
 	user-select: none;
 	cursor: pointer;
-  	padding-left: 25px
-}
-
-#herd {
-  position: absolute;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-}
-
-.herd:before {
-  content: "";
-  display: block;
-  position: absolute;
-  left: 0;
-  width: 16px;
-  height: 16px;
-  top: 1px;
-  border: solid 2px #ccc;
-  border-radius: 3px;
-  transition: all ease-in-out 0.125s;
-}
-
-.herd:after {
-  content: "";
-  position: absolute;
-  top: 11px;
-  left: 5px;
-  transform: rotate(-45deg) scaleX(0);
-  transform-origin: left;
-  width: 12px;
-  height: 5px;
-  border-left: 2px solid #fff;
-  border-bottom: 2px solid #fff;
-  transition: transform 0.125s ease-in-out;
-}
-
-#herd:checked + #herd:before {
-  background-color: #999;
-  border-color: #333;
-}
-
-#herd:checked + .herd:after {
-  transform: rotate(-45deg) scaleX(1);
-}
-
-.box {
-  margin: 5px 0;
 }
 
 .setting {
