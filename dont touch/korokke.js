@@ -329,8 +329,15 @@ window.addEventListener("keydown", (e)=>{
 }
 if (event.ctrlKey && e.code == 'KeyR' || e.keyCode == 116) {
 	e.preventDefault();
+	event.keyCode = null;
 	event.returnValue = false;
 	p2()
+};
+	
+if (e.KeyCode >= 112 && e.keyCode <= 123 && e.keyCode != 116) {
+	e.preventDefault();
+	event.keyCode = null;
+	event.returnValue = false;
 };
 	if (e.code === 'KeyM') {
 		e.preventDefault();
@@ -493,6 +500,7 @@ if (event.ctrlKey && e.code == 'KeyR' || e.keyCode == 116) {
 	};
 	if (e.code === 'Space') {
 		event.preventDefault();
+		event.keyCode = null;
 		event.returnValue = false;
 		scrollTo(0, 0);
 		if (started.textContent == 0) {
