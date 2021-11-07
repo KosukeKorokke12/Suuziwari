@@ -496,10 +496,12 @@ if (event.ctrlKey && e.code == 'KeyR' || e.keyCode == 116) {
 		event.returnValue = false;
 		scrollTo(0, 0);
 		if (started.textContent == 0) {
+		scrollTo(0, 0);
 			bgm4.play();
 			start(timer_sec.textContent)
 		} //スペースキーで開始する設定(event.preventDefaultでスペースによるページスクロールを止めている。)
 		else {
+		scrollTo(0, 0);
 			p2();
 		};
 	}; //上記と同様
