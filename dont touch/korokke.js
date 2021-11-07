@@ -509,6 +509,7 @@ if (event.ctrlKey && e.code == 'KeyR' || e.keyCode == 116) {
 
 //開始ボタン設定
 function start(time) {
+		scrollTo(0, 0);
 	if (herd.checked) {
 		humans_number.style.color = 'red';
 		document.getElementById("timer_sec")
