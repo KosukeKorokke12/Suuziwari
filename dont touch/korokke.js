@@ -501,7 +501,6 @@ if (e.KeyCode >= 112 && e.keyCode <= 123 && e.keyCode != 116 && e.keyCode != 122
 	};
 	if (e.code === 'Space') {
 		event.preventDefault();
-		event.keyCode = null;
 		event.returnValue = false;
 		scrollTo(0, 0);
 		if (started.textContent == 0) {
