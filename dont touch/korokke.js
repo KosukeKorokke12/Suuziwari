@@ -919,12 +919,7 @@ function future2() {
 				.textContent = `BESTLEVEL:+99`
 			}
 	}else{
-	alert(
-		`GAMEOVER 時間切れ
-		\n記録 LEVEL: ${number_number.textContent} Lank: ${levelCount}
-		\nこの問題の答え  ${listed.textContent}
-		\n再挑戦しますか`
-	);
+	alert(`GAMEOVER 時間切れ\n記録 LEVEL: ${number_number.textContent} Lank: ${levelCount}\nこの問題の答え  ${listed.textContent}\n再挑戦しますか`);
 	};
 	p2();
 };
