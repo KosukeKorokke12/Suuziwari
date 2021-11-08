@@ -647,6 +647,7 @@ function timmer(time) {
 					.textContent = 3;
 				time = 100;
 			} else {
+				console.log("test")
 				var level = number_number.textContent
 				if (level > Number(localStorage.test)) {
 				future2();
