@@ -645,7 +645,7 @@ function timmer(time) {
 				color();
 				document.getElementById("zanki")
 					.textContent = 3;
-				time = 1000;
+				time = 100;
 			} else {
 				var level = number_number.textContent
 				if (level > Number(localStorage.test)) {
@@ -714,7 +714,7 @@ function timmer(time) {
 				.textContent = `Lank: ${levels}`;
 		}
 		return time;
-	}, 10);
+	}, 1);
 	setInterval(function() {
 		if (clearmode.textContent == "clear") {
 			time = time + Math.floor(number_number.textContent * timeup * Math.pow(10, 2)) / Math.pow(10, 2); //追加時間計算部分+追加時間適用のもの
