@@ -261,6 +261,7 @@ function debug() {
 
 //リセットボタン機構
 function p2() {
+		scrollTo(0, 0);
 	korokke.textContent = "??";
 	document.getElementById("time")
 		.textContent = "0.20.0";
