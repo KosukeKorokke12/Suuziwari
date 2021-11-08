@@ -638,7 +638,7 @@ function timmer(time) {
 		}
 		timer_obj.innerHTML += Math.floor((time % 6000) / 100);
 		timer_obj.innerHTML += ".";
-		timer_obj.innerHTML += (time % 100)/ 10;
+		timer_obj.innerHTML += Math.floor((time % 100)/ 10);
 		if (time < 0) {
 			if (humans_number.textContent > 1) {
 				humans_number.textContent--;
