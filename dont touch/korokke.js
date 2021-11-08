@@ -714,7 +714,7 @@ function timmer(time) {
 				.textContent = `Lank: ${levels}`;
 		}
 		return time;
-	}, 1);
+	}, 100);
 	setInterval(function() {
 		if (clearmode.textContent == "clear") {
 			time = time + Math.floor(number_number.textContent * timeup * Math.pow(10, 2)) / Math.pow(10, 2); //追加時間計算部分+追加時間適用のもの
