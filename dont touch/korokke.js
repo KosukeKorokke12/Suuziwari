@@ -265,8 +265,8 @@ function p2() {
 	korokke.textContent = "??";
 	document.getElementById("time")
 		.textContent = "0.20.0";
-	number_number.textContent = 1;
-	humans_number.textContent = 3;
+	number_number.textContent = ??;
+	humans_number.textContent = 4;
 	location.reload();
 };
 
