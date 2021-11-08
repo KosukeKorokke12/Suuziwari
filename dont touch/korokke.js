@@ -75,7 +75,7 @@ window.onload = function() {
 		return false;
 	} //右クリック制限(開発者モードによるコード変換の妨害用)
 	document.getElementById("timer_sec")
-		.textContent = 20 * 100; //時間設定
+		.textContent = 20 * 10; //時間設定
 	var time = timer_sec.textContent //上記と同様
 	document.getElementById("area1")
 		.style.opacity = '0';
@@ -521,7 +521,7 @@ function start(time) {
 	if (herd.checked) {
 		humans_number.style.color = 'red';
 		document.getElementById("timer_sec")
-			.textContent = 10 * 100; //時間設定
+			.textContent = 10 * 10; //時間設定
 		var time = timer_sec.textContent //上記と同様
 		document.getElementById("humans_number")
 			.textContent = 1; //残機設定
@@ -625,20 +625,20 @@ function timmer(time) {
 		.textContent)
 	var timer_obj = document.getElementById("time");
 	if (localStorage.HERD == 1) {
-		var timeup = 40
+		var timeup = 4
 	} else {
-		var timeup = 80
+		var timeup = 8
 	}
 	var timer = setInterval(function() {
 		//var time = document.getElementById("timer_sec").textContent
-		timer_obj.innerHTML = Math.floor(time / 6000); //時間を切り捨て（Math.round→Math.floorと書き換えました。）
+		timer_obj.innerHTML = Math.floor(time / 600); //時間を切り捨て（Math.round→Math.floorと書き換えました。）
 		timer_obj.innerHTML += ".";
-		if ((time % 6000) < 1000) {
+		if ((time % 600) < 100) {
 			timer_obj.innerHTML += 0
 		}
-		timer_obj.innerHTML += Math.floor((time % 6000) / 100);
+		timer_obj.innerHTML += Math.floor((time % 600) / 10);
 		timer_obj.innerHTML += ".";
-		timer_obj.innerHTML += Math.floor((time % 100)/ 10);
+		timer_obj.innerHTML += time % 10;
 		if (time < 0) {
 			if (humans_number.textContent > 1) {
 				humans_number.textContent--;
@@ -657,7 +657,7 @@ function timmer(time) {
 		time--;
 		document.getElementById("timer_sec")
 			.textContent = time;
-		if (time > 120000) {
+		if (time > 12000) {
 			if (localStorage.zisseki2 == 0) {
 				localStorage.zisseki2 = 1;
                     if (Notification.permission === 'granted') {
@@ -670,32 +670,32 @@ function timmer(time) {
 			korokke.className = 'god';
 			remainingtime.className = 'god';
 		} else {
-			if (time > 1599 && time <= 12000) {
+			if (time > 159 && time <= 1200) {
 				timer_obj.className = 'white';
 				korokke.className = 'white';
 				remainingtime.className = 'white';
 			} else {
-				if (time <= 1599 && time > 1299) {
+				if (time <= 159 && time > 129) {
 					korokke.className = 'blue';
 					timer_obj.className = 'blue';
 					remainingtime.className = 'blue';
 				} else {
-					if (time <= 1299 && time > 999) {
+					if (time <= 129 && time > 99) {
 						korokke.className = 'aqua';
 						timer_obj.className = 'aqua';
 						remainingtime.className = 'aqua';
 					} else {
-						if (time <= 999 && time > 699) {
+						if (time <= 99 && time > 69) {
 							korokke.className = 'lime';
 							timer_obj.className = 'lime';
 							remainingtime.className = 'lime';
 						} else {
-							if (time <= 699 && time > 399) {
+							if (time <= 69 && time > 39) {
 								korokke.className = 'yellow';
 								timer_obj.className = 'yellow';
 								remainingtime.className = 'yellow';
 							} else {
-								if (time <= 399) {
+								if (time <= 39) {
 									korokke.className = 'red';
 									timer_obj.className = 'red';
 									remainingtime.className = 'red';
