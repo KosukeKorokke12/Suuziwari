@@ -649,10 +649,8 @@ function timmer(time) {
 			} else {
 				console.log("test")
 				var level = number_number.textContent
-				if (level > Number(localStorage.test)) {
 				future2();
 				clearInterval(timer);
-			};
 		};
 	}
 		time--;
