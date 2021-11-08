@@ -335,7 +335,7 @@ if (event.ctrlKey && e.code == 'KeyR' || e.keyCode == 116) {
 	p2()
 };
 	
-if (e.KeyCode >= 112 && e.keyCode <= 123 && e.keyCode !== 116 && e.keyCode !== 122) {
+if (e.KeyCode >= 112 && e.KeyCode == 113 && e.KeyCode == 114 && e.KeyCode == 115 && e.KeyCode == 117 && e.KeyCode == 118 && e.KeyCode == 119 && e.KeyCode == 120 && e.KeyCode == 121 && e.keyCode <= 123) {
 	e.preventDefault();
 	event.keyCode = null;
 	event.returnValue = false;
