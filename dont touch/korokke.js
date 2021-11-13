@@ -105,7 +105,6 @@ window.onload = function() {
 		.textContent = 4; //残機設定
 		document.getElementById("humans_max")
 			.textContent = 4
-	localStorage.HERD = 0;
 	color(); //残基による文字色適用
 	//実績関連
 	document.getElementById("zisseki1")
@@ -125,6 +124,7 @@ window.onload = function() {
 		.textContent = 0;
 	const spinner = document.getElementById('loading');
 	spinner.classList.add('loaded');
+	if(localStorage.HERD == 1 && localStorage.Play == 1){herd.checked = true}else{localStorage.HERD = 0;localStorage.Play == 1}
 
 	//ボリューム設定（ミュートあり）
 	var hoge = document.getElementById("volume");
@@ -141,15 +141,18 @@ function c(value) {
 	if (value == 0) {
 		bgm1.muted = true;
 		bgm2.muted = true;
+		bgm3.muted = true;
 		bgm4.muted = true;
 		document.getElementById("volumetext")
 			.textContent = "Volume:" + "ミュート";
 	} else {
 		bgm1.muted = false;
 		bgm2.muted = false;
+		bgm3.muted = false;
 		bgm4.muted = false;
 		bgm1.volume = Math.ceil(value) / 100;
 		bgm2.volume = Math.ceil(value) / 100;
+		bgm3.volume = Math.ceil(value) / 100;
 		bgm4.volume = Math.ceil(value) / 100;
 		document.getElementById("volumetext")
 			.textContent = `Volume: ${value} %`;
@@ -217,12 +220,15 @@ if (typeof localStorage.Volume === 'undefined') {
 const btn = document.querySelector("#p1");
 const bgm1 = new Audio("dont touch/buzzer.mp3");
 const bgm2 = new Audio("dont touch/Answer.mp3");
+const bgm3 = new Audio("dont touch/start.mp3");
 const bgm4 = new Audio("BGM.mp3"); // bgm
 bgm1.volume = 1;
 bgm2.volume = 1;
+bgm3.volume = 1;
 bgm4.volume = 1;
 //再生終了後の処理（すべての音声に関して）
 btn.addEventListener("click", () => {
+	bgm3.play();
 	bgm4.play();
 });
 bgm1.addEventListener("ended", () => {
@@ -232,6 +238,10 @@ bgm1.addEventListener("ended", () => {
 bgm2.addEventListener("ended", () => {
 	bgm2.pause();
 	bgm2.currentTime = 0;
+});
+bgm3.addEventListener("ended", () => {
+	bgm3.pause();
+	bgm3.currentTime = 0;
 });
 //BGM今使っていないため動いていません↓
 bgm4.addEventListener("ended", () => {
@@ -301,30 +311,35 @@ window.addEventListener("keydown", (e)=>{
 		e.preventDefault();
 		g();
 		buttonid1.style.backgroundColor = "#999";
+		buttonid1.classList.add("active")
 		a(2);
 	};
 	if (e.code === 'KeyE') {
 		e.preventDefault();
 		g();
 		buttonid2.style.backgroundColor = "#999";
+		buttonid2.classList.add("active")
 		a(3);
 	};
 	if (e.code === 'KeyA') {
 		e.preventDefault();
 		g();
 		buttonid3.style.backgroundColor = "#999";
+		buttonid3.classList.add("active")
 		a(5);
 	};
 	if (e.code === 'KeyS') {
 		e.preventDefault();
 		g();
 		buttonid4.style.backgroundColor = "#999";
+		buttonid4.classList.add("active")
 		a(7);
 	};
 	if (e.code === 'KeyD') {
 		e.preventDefault();
 		g();
 		buttonid5.style.backgroundColor = "#999";
+		buttonid5.classList.add("active")
 		a(11);
 	};
 }
@@ -334,7 +349,7 @@ if (event.ctrlKey && e.code == 'KeyR' || e.keyCode == 116) {
 	event.returnValue = false;
 	p2()
 };
-	
+
 if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115 || e.KeyCode == 117 || e.KeyCode == 118 || e.KeyCode == 119 || e.KeyCode == 120 || e.KeyCode == 121 || e.keyCode == 123) {
 	e.preventDefault();
 	event.keyCode = null;
@@ -345,6 +360,7 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 		if (bgm1.muted == false) {
 			bgm1.muted = true;
 			bgm2.muted = true;
+			bgm3.muted = true;
 			bgm4.muted = true;
 			document.getElementById("volumetext")
 				.textContent = "Volume:ミュート";
@@ -353,6 +369,7 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 		} else {
 			bgm1.muted = false;
 			bgm2.muted = false;
+			bgm3.muted = false;
 			bgm4.muted = false;
 			document.getElementById("volumetext")
 				.textContent = "Volume:50%";
@@ -365,6 +382,7 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 	if (e.code === 'ArrowUp' || e.code === 'ArrowRight') {
 		bgm1.muted = false;
 		bgm2.muted = false;
+		bgm3.muted = false;
 		bgm4.muted = false;
 		document.getElementById("volume")
 			.value++;
@@ -377,18 +395,21 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 			.textContent = `Volume: ${volume.value}%`;
 		bgm1.volume = Math.ceil(volume.value) / 100;
 		bgm2.volume = Math.ceil(volume.value) / 100;
+		bgm3.volume = Math.ceil(volume.value) / 100;
 		bgm4.volume = Math.ceil(volume.value) / 100;
 		event.preventDefault();
 	};
 	if (e.code === 'ArrowDown' || e.code === 'ArrowLeft') {
 		bgm1.muted = false;
 		bgm2.muted = false;
+		bgm3.muted = false;
 		bgm4.muted = false;
 		document.getElementById("volume")
 			.value--;
 		if (volume.value < 1) {;
 			bgm1.muted = true;
 			bgm2.muted = true;
+			bgm3.muted = true;
 			bgm4.muted = true;
 			document.getElementById("volumetext")
 				.textContent = "Volume:ミュート";
@@ -399,6 +420,7 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 				.textContent = `Volume: ${volume.value}%`;
 			bgm1.volume = Math.ceil(volume.value) / 100;
 			bgm2.volume = Math.ceil(volume.value) / 100;
+			bgm3.volume = Math.ceil(volume.value) / 100;
 			bgm4.volume = Math.ceil(volume.value) / 100;
 		}
 		localStorage.Volume = document.getElementById("volume")
@@ -505,6 +527,7 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 		scrollTo(0, 0);
 		if (started.textContent == 0) {
 		scrollTo(0, 0);
+			bgm3.play();
 			bgm4.play();
 			start(timer_sec.textContent)
 		} //スペースキーで開始する設定(event.preventDefaultでスペースによるページスクロールを止めている。)
@@ -514,6 +537,16 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 		};
 	}; //上記と同様
 }); //Spacekeyの入力されたときの動作
+
+window.addEventListener("keyup", (e)=>{
+	if (e.code === 'KeyW' || e.code === 'KeyE' || e.code === 'KeyA' || e.code === 'KeyS' || e.code === 'KeyD') {
+		buttonid1.classList.remove("active");
+		buttonid2.classList.remove("active");
+		buttonid3.classList.remove("active");
+		buttonid4.classList.remove("active");
+		buttonid5.classList.remove("active");
+	}
+})
 
 //開始ボタン設定
 function start(time) {
@@ -625,9 +658,9 @@ function timmer(time) {
 		.textContent)
 	var timer_obj = document.getElementById("time");
 	if (localStorage.HERD == 1) {
-		var timeup = 4
+		var timeup = 40
 	} else {
-		var timeup = 8
+		var timeup = 80
 	}
 	var timer = setInterval(function() {
 		//var time = document.getElementById("timer_sec").textContent
@@ -716,7 +749,7 @@ function timmer(time) {
 	}, 100);
 	setInterval(function() {
 		if (clearmode.textContent == "clear") {
-			time = time + Math.floor(number_number.textContent * timeup * Math.pow(10, 2)) / Math.pow(10, 2); //追加時間計算部分+追加時間適用のもの
+			time = time + Math.floor(number_number.textContent * timeup / 10* Math.pow(10, 2)) / Math.pow(10, 2); //追加時間計算部分+追加時間適用のもの
 			document.getElementById("timer_sec")
 				.textContent = time;
 			document.getElementById("clearmode")
@@ -750,7 +783,8 @@ function a(mozi) {
 		var number = document.getElementById("number_number")
 			.textContent;
 		//難易度取得
-		var Suuzi = korokke.textContent / mozi;
+		if(korokke.textContent !== 1){var Suuzi = korokke.textContent / mozi;}
+		else{var Suuzi = korokke.textContent;}
 		//korokke引数を取得（kazu変数に代入）
 		document.getElementById("Suuzicopy")
 			.textContent = korokke.textContent;
