@@ -380,6 +380,8 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 			.value;
 	};
 	if (e.code === 'ArrowUp' || e.code === 'ArrowRight') {
+		event.preventDefault();
+		event.returnValue = false;
 		bgm1.muted = false;
 		bgm2.muted = false;
 		bgm3.muted = false;
@@ -400,6 +402,8 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 		event.preventDefault();
 	};
 	if (e.code === 'ArrowDown' || e.code === 'ArrowLeft') {
+		event.preventDefault();
+		event.returnValue = false;
 		bgm1.muted = false;
 		bgm2.muted = false;
 		bgm3.muted = false;
@@ -550,7 +554,6 @@ window.addEventListener("keyup", (e)=>{
 
 //開始ボタン設定
 function start(time) {
-		scrollTo(0, 0);
 	if (herd.checked) {
 		humans_number.style.color = 'red';
 		document.getElementById("timer_sec")
@@ -596,6 +599,7 @@ function start(time) {
 	};
 	timmer(time);
 	kihonn(1);
+		scrollTo(0, 0);
 };
 
 //数字決め機構
