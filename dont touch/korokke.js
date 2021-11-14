@@ -155,7 +155,7 @@ function c(value) {
 		bgm3.volume = Math.ceil(value) / 100;
 		bgm4.volume = Math.ceil(value) / 100;
 		document.getElementById("volumetext")
-			.textContent = `Volume: ${value} %`;
+			.textContent = `Volume:${value} %`;
 	}
 }
 
@@ -394,7 +394,7 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 				.value = 100;
 		}
 		document.getElementById("volumetext")
-			.textContent = `Volume: ${volume.value}%`;
+			.textContent = `Volume:${volume.value}%`;
 		bgm1.volume = Math.ceil(volume.value) / 100;
 		bgm2.volume = Math.ceil(volume.value) / 100;
 		bgm3.volume = Math.ceil(volume.value) / 100;
@@ -421,7 +421,7 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 				.value = 0
 		} else {
 			document.getElementById("volumetext")
-				.textContent = `Volume: ${volume.value}%`;
+				.textContent = `Volume:${volume.value}%`;
 			bgm1.volume = Math.ceil(volume.value) / 100;
 			bgm2.volume = Math.ceil(volume.value) / 100;
 			bgm3.volume = Math.ceil(volume.value) / 100;
