@@ -195,7 +195,7 @@ html {
 	#volume[type="range"] {
 		zoom: 160%;
 		top: 80px;
-		left: 30px;
+		left: 37px;
 		position: fixed;
 		-webkit-appearance: none;
 		height: 2px;
@@ -239,8 +239,12 @@ html {
 	#volume[type="range"]:active::-webkit-slider-thumb {
 		box-shadow: 0px 5px 10px -2px black
 	}
-	#volume::before {
-  		content: "🔊";
+	#volumepng{
+		width: 20px;
+		height: 20px;
+		top: 120px;
+		left: 35px;
+		position: fixed
 	}
 	#volumetext {
 		top: 140px;
