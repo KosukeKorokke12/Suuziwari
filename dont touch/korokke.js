@@ -144,7 +144,7 @@ function c(value) {
 		bgm3.muted = true;
 		bgm4.muted = true;
 		document.getElementById("volumetext")
-			.textContent = "Volume:" + "ミュート";
+			.textContent = "ミュート";
 	} else {
 		bgm1.muted = false;
 		bgm2.muted = false;
@@ -155,7 +155,7 @@ function c(value) {
 		bgm3.volume = Math.ceil(value) / 100;
 		bgm4.volume = Math.ceil(value) / 100;
 		document.getElementById("volumetext")
-			.textContent = `Volume:${value} %`;
+			.textContent = `${value} %`;
 	}
 }
 
@@ -258,7 +258,7 @@ try {
 	.value
 	c(localStorage.Volume)
 	document.getElementById("volumetext")
-	.textContent = "Volume:50%";
+	.textContent = "50%";
 }
 
 //デバックモードによる時間変更・残基変更
@@ -363,7 +363,7 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 			bgm3.muted = true;
 			bgm4.muted = true;
 			document.getElementById("volumetext")
-				.textContent = "Volume:ミュート";
+				.textContent = "ミュート";
 			document.getElementById("volume")
 				.value = 0;
 		} else {
@@ -372,7 +372,7 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 			bgm3.muted = false;
 			bgm4.muted = false;
 			document.getElementById("volumetext")
-				.textContent = "Volume:50%";
+				.textContent = "50%";
 			document.getElementById("volume")
 				.value = 50;
 		}
@@ -394,7 +394,7 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 				.value = 100;
 		}
 		document.getElementById("volumetext")
-			.textContent = `Volume:${volume.value}%`;
+			.textContent = `${volume.value}%`;
 		bgm1.volume = Math.ceil(volume.value) / 100;
 		bgm2.volume = Math.ceil(volume.value) / 100;
 		bgm3.volume = Math.ceil(volume.value) / 100;
@@ -416,12 +416,12 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 			bgm3.muted = true;
 			bgm4.muted = true;
 			document.getElementById("volumetext")
-				.textContent = "Volume:ミュート";
+				.textContent = "ミュート";
 			document.getElementById("volume")
 				.value = 0
 		} else {
 			document.getElementById("volumetext")
-				.textContent = `Volume:${volume.value}%`;
+				.textContent = `${volume.value}%`;
 			bgm1.volume = Math.ceil(volume.value) / 100;
 			bgm2.volume = Math.ceil(volume.value) / 100;
 			bgm3.volume = Math.ceil(volume.value) / 100;
