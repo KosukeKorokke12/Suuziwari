@@ -788,7 +788,7 @@ function a(mozi) {
 		var number = document.getElementById("number_number")
 			.textContent;
 		//難易度取得
-		if(korokke.textContent !== 1){var Suuzi = korokke.textContent / mozi;}
+		if(korokke.textContent != 1){var Suuzi = korokke.textContent / mozi;}
 		else{var Suuzi = korokke.textContent;}
 		//korokke引数を取得（kazu変数に代入）
 		document.getElementById("Suuzicopy")
