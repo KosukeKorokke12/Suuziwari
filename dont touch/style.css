@@ -82,7 +82,7 @@ html {
 	#volumetext {
 		zoom: 70%;
 		top: 127px;
-		left: 10px;
+		left: 0px;
 		position: fixed
 	}
 	/*スタート・リセットボタン*/
@@ -247,8 +247,8 @@ html {
 		position: fixed
 	}
 	#volumetext {
-		top: 140px;
-		left: 90px;
+		top: 130px;
+		left: 180px;
 		position: fixed
 	}/*スタート・リセットボタン*/
 
