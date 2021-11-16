@@ -239,6 +239,9 @@ html {
 	#volume[type="range"]:active::-webkit-slider-thumb {
 		box-shadow: 0px 5px 10px -2px black
 	}
+	#volume::before {
+  		content: "🔊";
+	}
 	#volumetext {
 		top: 140px;
 		left: 90px;
