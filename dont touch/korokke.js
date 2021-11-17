@@ -86,8 +86,6 @@ window.onload = function() {
 	document.getElementById("p1")
 		.style.display = "block"; //スタートボタン設定
 	debugmodetext.style.display = "none";
-	document.getElementById("debugmodes2")
-		.style.display = "none"
 	document.getElementById("debugmodes3")
 		.style.display = "block"
 	document.getElementById("reset")
