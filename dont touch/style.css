@@ -339,7 +339,7 @@ button{
 	border-radius: 10px 10px 10px 10px;
 	border: 2px solid #FFF;
 }
-button1,button2{
+.button1,.button2{
 	box-shadow: 5px 5px #000;
 }
 
