@@ -899,14 +899,14 @@ function future1() {
 	var s = level * 10 + Math.floor(timer_sec.textContent * 0.0004) + humans_number.textContent * 10;
 	levelCount = Lank(s, levelCount);
 	if (humans_number.textContent > 1) {
-		if (confirm(`GAMEOVER\nあなたは答えを間違えた。\n残り残機 ${humans_number.textContent}\n残機を消耗して一つ前に戻しますか？、またははじめから再挑戦しますか？\n戻る=OK 再挑戦する=キャンセル`))
+		if (confirm(`GAMEOVER\n答えを間違えました。\n残り残機は${humans_number.textContent}です。\n残機を消耗して一つ前に戻しますか？、またははじめから再挑戦しますか？\n戻る=OK 再挑戦する=キャンセル`))
 		{
 			humans_number.textContent--;
 			color()
 			korokke.textContent = Suuzicopy.textContent;
 		} else {
 			if (number > Number(localStorage.test)) {
-				alert(`記録 LEVEL: ${number_number.textContent}\n最高記録更新！！ ${localStorage.test} → ${number}\nLank: ${levelCount}\nこの問題の答え  ${listed.textContent}`)
+				alert(`記録は LEVEL: ${number_number.textContent}\n最高記録更新！！ ${localStorage.test} → ${number}\nLank: ${levelCount}\nこの問題の答えは  ${listed.textContent}でした。`)
 				localStorage.test = number;
 				if(localStorage.test <= 99){
 			document.getElementById("test")
@@ -916,12 +916,12 @@ function future1() {
 						.textContent = `BESTLEVEL:+99`
 					}
 			}else{
-				alert(`記録 LEVEL: ${number_number.textContent}\nLank: ${levelCount}\nこの問題の答え  ${listed.textContent}`)}
+				alert(`記録は LEVEL: ${number_number.textContent}\nLank: ${levelCount}\nこの問題の答えは  ${listed.textContent}でした。`)}
 			p2();
 		}
 	} else {
 		if (number > Number(localStorage.test)) {
-			alert(`GAMEOVER\nあなたは答えを間違えた。\n記録 LEVEL:${number_number.textContent} \n最高記録更新！！ ${localStorage.test} → ${number}\n Lank:${levelCount}\nこの問題の答え  ${listed.textContent} \nもう残機がありません、はじめから再挑戦しますか?`);
+			alert(`GAMEOVER\n答えを間違えました。\n記録は LEVEL:${number_number.textContent} \n最高記録更新！！ ${localStorage.test} → ${number}\n Lank:${levelCount}\nこの問題の答えは  ${listed.textContent}です\nもう残機がありません、はじめから再挑戦しますか?`);
 			p2();
 			localStorage.test = number;
 			if(localStorage.test <= 99){
@@ -932,7 +932,7 @@ function future1() {
 					.textContent = `BESTLEVEL:+99`
 				}
 		}else{
-			alert(`GAMEOVER\nあなたは答えを間違えた。\n記録 LEVEL:${number_number.textContent} Lank:${levelCount}\nこの問題の答え  ${listed.textContent} \nもう残機がありません、はじめから再挑戦しますか?`);
+			alert(`GAMEOVER\n答えを間違えました。\n記録は LEVEL:${number_number.textContent} Lank:${levelCount}\nこの問題の答えは  ${listed.textContent}です\nもう残機がありません、はじめから再挑戦しますか?`);
 			p2();
 		};
 	}
@@ -950,7 +950,7 @@ function future2() {
 	var s = level * 10 + Math.floor(timer_sec.textContent * 0.0004) + humans_number.textContent * 10;
 	levelCount = Lank(s, levelCount);
 	if (number > Number(localStorage.test)) {
-		alert(`GAMEOVER 時間切れ\n記録 LEVEL: ${number_number.textContent} Lank: ${levelCount}\n最高記録更新！！ ${localStorage.test} → ${number}\nこの問題の答え  ${listed.textContent}\n再挑戦しますか`);
+		alert(`GAMEOVER 時間切れです\n記録は LEVEL: ${number_number.textContent} Lank: ${levelCount}\n最高記録更新！！ ${localStorage.test} → ${number}\nこの問題の答えは  ${listed.textContent}です\n初めから再挑戦しますか`);
 		localStorage.test = number;
 		if(localStorage.test <= 99){
 	document.getElementById("test")
