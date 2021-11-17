@@ -503,7 +503,6 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 	if (e.code === 'Space') {
 		event.preventDefault();
 		event.returnValue = false;
-		scrollTo(0, 10);
 		if (started.textContent == 0) {
 			bgm3.play();
 			bgm4.play();
@@ -511,9 +510,9 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 		} //スペースキーで開始する設定(event.preventDefaultでスペースによるページスクロールを止めている。)
 		else {
 			p2();
-		};`
-	return false
+		};
 	}; //上記と同様
+	return false
 }); //Spacekeyの入力されたときの動作
 
 window.addEventListener("keyup", (e)=>{
@@ -528,6 +527,7 @@ window.addEventListener("keyup", (e)=>{
 
 //開始ボタン設定
 function start(time) {
+		scrollTo(0, 10);
 	if (herd.checked) {
 		humans_number.style.color = 'red';
 		document.getElementById("timer_sec")
