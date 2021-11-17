@@ -486,15 +486,6 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 				document.getElementById("debugmodes1")
 					.style.visibility = 'visible';
 			}; //上記と同様
-
-			if (document.getElementById("list")
-				.style.visibility == 'visible') {
-				document.getElementById("list")
-					.style.visibility = 'hidden';
-			} else {
-				document.getElementById("list")
-					.style.visibility = 'visible';
-			}; //上記と同様
 			const debugmodetext = document.getElementById("debugmodetext");
 			if (debugmodetext.style.display == "block") {
 				// noneで非表示
@@ -502,22 +493,6 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 			} else {
 				// blockで表示
 				debugmodetext.style.display = "block";
-			};
-			const debugmodes2 = document.getElementById("debugmodes2");
-			if (debugmodes2.style.display == "block") {
-				// noneで非表示
-				debugmodes2.style.display = "none";
-			} else {
-				// blockで表示
-				debugmodes2.style.display = "block";
-			};
-			const debugmodes3 = document.getElementById("debugmodes3");
-			if (debugmodes3.style.display == "block") {
-				// noneで非表示
-				debugmodes3.style.display = "none";
-			} else {
-				// blockで表示
-				debugmodes3.style.display = "block";
 			};
 		} else {
 			if (pw1 !== null && pw2 !== null) {
