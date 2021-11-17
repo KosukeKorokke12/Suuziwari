@@ -72,6 +72,8 @@ jQuery(function() {
 
 Notification.requestPermission()//通知要求
 
+
+zisseki()//実績関連
 window.onload = function() {
 	document.body.oncontextmenu = function() {
 		return false;
@@ -106,8 +108,6 @@ window.onload = function() {
 		document.getElementById("humans_max")
 			.textContent = 4
 	color(); //残基による文字色適用
-	zisseki()
-	//実績関連
 	document.getElementById("zisseki1")
 		.textContent = "未設定";
 	document.getElementById("zisseki2")
