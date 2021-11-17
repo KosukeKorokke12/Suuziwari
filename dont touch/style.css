@@ -334,7 +334,7 @@ tr, th, td {
 	font-size:12px
 }
 
-button {
+button button1,button2{
 	background-color: rgba(0, 0, 0, 0);
 	border-radius: 10px 10px 10px 10px;
 	box-shadow: 5px 5px #000;
