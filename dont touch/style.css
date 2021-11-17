@@ -334,11 +334,13 @@ tr, th, td {
 	font-size:12px
 }
 
-button button1,button2{
+button{
 	background-color: rgba(0, 0, 0, 0);
 	border-radius: 10px 10px 10px 10px;
-	box-shadow: 5px 5px #000;
 	border: 2px solid #FFF;
+}
+button1,button2{
+	box-shadow: 5px 5px #000;
 }
 
 button:active,.active {
