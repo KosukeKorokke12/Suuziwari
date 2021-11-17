@@ -217,6 +217,22 @@ if (typeof localStorage.Volume === 'undefined') {
 	localStorage.setItem("Volume", 50)
 }
 
+			if (localStorage.zisseki1 == 1) {
+				zisseki1.textContent = "クリア"
+			} else {
+				zisseki1.textContent = "未達成"
+			}
+			if (localStorage.zisseki2 == 1) {
+				zisseki2.textContent = "クリア"
+			} else {
+				zisseki2.textContent = "未達成"
+			}
+			if (localStorage.zisseki3 == 1) {
+				zisseki3.textContent = "クリア"
+			} else {
+				zisseki3.textContent = "未達成"
+			}
+
 //音声適用+再生設定
 const btn = document.querySelector("#p1");
 const bgm1 = new Audio("dont touch/buzzer.mp3");
