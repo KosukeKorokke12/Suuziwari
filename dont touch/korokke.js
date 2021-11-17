@@ -899,7 +899,7 @@ function future1() {
 	var s = level * 10 + Math.floor(timer_sec.textContent * 0.0004) + humans_number.textContent * 10;
 	levelCount = Lank(s, levelCount);
 	if (humans_number.textContent > 1) {
-		if (confirm(`GAMEOVER\n答えを間違えました。\n残り残機は${humans_number.textContent}です。\n残機を消耗して一つ前に戻しますか？、またははじめから再挑戦しますか？\n戻る=OK 再挑戦する=キャンセル`))
+		if (confirm(`GAMEOVER\n答えを間違えました。\n残り回数の数は${humans_number.textContent}です。\n残り回数を消耗して一つ前に戻しますか？、またははじめから再挑戦しますか？\n戻る=OK 再挑戦する=キャンセル`))
 		{
 			humans_number.textContent--;
 			color()
