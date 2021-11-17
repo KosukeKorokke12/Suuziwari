@@ -292,6 +292,14 @@ html {
 		cursor: pointer;
 		border: 3px solid #FFF
 	}
+	
+	button:active,.active {
+    	box-shadow: none;
+    	position: relative;
+    	left: 1.5px;
+    	top: 0.5px;
+	-webkit-transition: all 0.2s ease;-moz-transition: all 0.2s ease;-o-transition: all 0.2s ease;transition: all  0.2s ease;
+	}
 
 	.name {margin-left: 125px}
 
@@ -341,14 +349,6 @@ button{
 }
 .button1,.button2{
 	box-shadow: 5px 5px #000;
-}
-
-button:active,.active {
-    box-shadow: none;
-    position: relative;
-    left: 1.5px;
-    top: 0.5px;
-	-webkit-transition: all 0.2s ease;-moz-transition: all 0.2s ease;-o-transition: all 0.2s ease;transition: all  0.2s ease;
 }
 
 h1 {
