@@ -70,6 +70,8 @@ jQuery(function() {
 	});
 });
 
+Notification.requestPermission()
+
 window.onload = function() {
 	document.body.oncontextmenu = function() {
 		return false;
