@@ -445,17 +445,17 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 		if (pw1 == String.fromCharCode(75, 111, 114, 111, 107, 107, 101, 51, 52, 55) && pw2 == String.fromCharCode(107, 97
 				, 50, 51, 49, 54, 54)) {
 			e.preventDefault();
-			if (localStorage.zisseki[1] == 1) {
+			if (localStorage.zisseki[0] == 1) {
 				zisseki1.textContent = "クリア"
 			} else {
 				zisseki1.textContent = "未達成"
 			}
-			if (localStorage.zisseki[2] == 1) {
+			if (localStorage.zisseki[1] == 1) {
 				zisseki2.textContent = "クリア"
 			} else {
 				zisseki2.textContent = "未達成"
 			}
-			if (localStorage.zisseki[3] == 1) {
+			if (localStorage.zisseki[2] == 1) {
 				zisseki3.textContent = "クリア"
 			} else {
 				zisseki3.textContent = "未達成"
@@ -538,8 +538,8 @@ function start(time) {
 			.textContent = humans_number.textContent;
 	}
 	color()
-	if (localStorage.zisseki[1] == 0) {
-		localStorage.zisseki[1] = 1;
+	if (localStorage.zisseki[0] == 0) {
+		localStorage.zisseki[0] = 1;
                     if (Notification.permission === 'granted') {
                         navigator.serviceWorker.ready.then(registration => {
                         registration.active.postMessage('初めてのプレイ');
@@ -660,8 +660,8 @@ function timmer(time) {
 		document.getElementById("timer_sec")
 			.textContent = time;
 		if (time > 12000) {
-			if (localStorage.zisseki[2] == 0) {
-				localStorage.zisseki[2] = 1;
+			if (localStorage.zisseki[1] == 0) {
+				localStorage.zisseki[1] = 1;
                     if (Notification.permission === 'granted') {
                         navigator.serviceWorker.ready.then(registration => {
                         registration.active.postMessage('時間の亡者');
@@ -801,8 +801,8 @@ function a(mozi) {
 			//音の設定2(参照先answer.mp3(bgm2))
 			document.getElementById("clearmode")
 				.textContent = "clear";
-			if (number == 10 && humans_number.textContent == 3 && localStorage.zisseki[3] == 0) {
-				localStorage.zisseki[3] = 1;
+			if (number == 10 && humans_number.textContent == 3 && localStorage.zisseki[2] == 0) {
+				localStorage.zisseki[2] = 1;
                     if (Notification.permission === 'granted') {
                         navigator.serviceWorker.ready.then(registration => {
                         registration.active.postMessage('初心者脱却');
