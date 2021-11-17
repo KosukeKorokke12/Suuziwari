@@ -106,6 +106,7 @@ window.onload = function() {
 		document.getElementById("humans_max")
 			.textContent = 4
 	color(); //残基による文字色適用
+	zisseki()
 	//実績関連
 	document.getElementById("zisseki1")
 		.textContent = "未設定";
@@ -529,6 +530,7 @@ function zisseki(){
 //開始ボタン設定
 function start(time) {
 		scrollTo(0, 10);
+	zisseki()
 	if (herd.checked) {
 		humans_number.style.color = 'red';
 		document.getElementById("timer_sec")
