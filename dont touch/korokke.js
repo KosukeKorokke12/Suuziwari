@@ -505,15 +505,14 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 		event.returnValue = false;
 		scrollTo(0, 10);
 		if (started.textContent == 0) {
-		scrollTo(0, 0);
 			bgm3.play();
 			bgm4.play();
 			start(timer_sec.textContent)
 		} //スペースキーで開始する設定(event.preventDefaultでスペースによるページスクロールを止めている。)
 		else {
-		scrollTo(0, 0);
 			p2();
-		};
+		};`
+	return false
 	}; //上記と同様
 }); //Spacekeyの入力されたときの動作
 
