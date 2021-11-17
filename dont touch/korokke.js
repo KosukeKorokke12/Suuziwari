@@ -510,7 +510,7 @@ window.addEventListener("keyup", (e)=>{
 	}
 })
 
-function zisseki(){
+function zisseki() {
 			if (localStorage.zisseki1 == 1) {
 				zisseki1.textContent = "クリア"
 			} else {
@@ -525,7 +525,9 @@ function zisseki(){
 				zisseki3.textContent = "クリア"
 			} else {
 				zisseki3.textContent = "未達成"
-			}}
+			}
+}
+zisseki()//実績関連
 
 //開始ボタン設定
 function start(time) {
