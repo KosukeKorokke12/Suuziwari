@@ -495,6 +495,7 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 	if (e.code === 'Space') {
 		event.preventDefault();
 		event.returnValue = false;
+		scrollBy(0, -window.innerHeight);
 		if (started.textContent == 0) {
 			bgm3.play();
 			bgm4.play();
