@@ -639,3 +639,9 @@ table b {
   margin: auto;
   text-align: center;
 }
+/*cash用のベータ用のコード*/
+.cash{
+	position:fixed;
+	bottom:0px;
+	right:0px;
+}
