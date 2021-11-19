@@ -643,5 +643,5 @@ table b {
 .cash{
 	position: fixed;
 	bottom: 0px;
-	right: 0px;
+	left: 0px;
 }
