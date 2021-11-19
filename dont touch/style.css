@@ -193,7 +193,7 @@ html {
 		background: #999;
 		border-radius:66% 34% 65% 35% / 38% 57% 43% 62% ;
 		border: 3px solid #FFF;
-		box-shadow: 10px 15px 10px #FFF
+		box-shadow: 10px 15px 10px ##877f7f
 	}
 	#volume[type="range"] {
 		zoom: 160%;
