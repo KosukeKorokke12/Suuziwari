@@ -611,7 +611,7 @@ table b {
   height: 50px;
   position: fixed;
   right: 10;
-  bottom: 0;
+  top: -50;
   background: #999;
   opacity: 0.6;
   border-radius: 50%;
@@ -632,7 +632,7 @@ table b {
   position: absolute;
   width: 30px;
   height: 30px;
-  top: -5px;
+  top: -50px;
   bottom: 0;
   right: 10;
   left: 0;
