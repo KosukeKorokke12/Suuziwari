@@ -193,7 +193,7 @@ html {
 		background: #999;
 		border-radius:66% 34% 65% 35% / 38% 57% 43% 62% ;
 		border: 3px solid #FFF;
-		box-shadow: 10px 15px 10px 0px black
+		box-shadow: 10px 15px 10px #000
 	}
 	#volume[type="range"] {
 		zoom: 160%;
@@ -227,7 +227,7 @@ html {
 		width: 13px;
 		height: 15px;
 		border-radius: 100vh;
-		box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.15)
+		box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15)
 	}
 	#volume[type="range"]::-moz-range-thumb {
 		zoom: 80%;
