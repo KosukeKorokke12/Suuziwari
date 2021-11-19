@@ -296,7 +296,7 @@ html {
 		border: 3px solid #FFF
 	}
 	
-	button:active,.active {
+	.button1:active,.button2:active,#.lost:active,.active {
     	box-shadow: none;
     	position: relative;
     	left: 1.5px;
