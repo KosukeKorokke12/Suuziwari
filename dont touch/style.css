@@ -641,7 +641,7 @@ table b {
 }
 /*cash用のベータ用のコード*/
 .cash{
-	position:fixed;
-	bottom:0px;
-	right:0px;
+	position: fixed;
+	bottom: 0px;
+	right: 0px;
 }
