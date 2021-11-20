@@ -605,13 +605,12 @@ table b {
 
 .mokuteki b:hover {
 	text-decoration: underline
-}
-#page_top{
+}#page_top{
   width: 50px;
   height: 50px;
   position: fixed;
-  right: 10;
-  top: -50;
+  right: 0;
+  top: 10;
   background: #999;
   opacity: 0.6;
   border-radius: 50%;
@@ -626,15 +625,15 @@ table b {
 #page_top a::before{
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
-	content: '\f102';
-  font-size: 30px;
-  color: #000;
+  content: '\f102';
+  font-size: 25px;
+  color: #333;
   position: absolute;
-  width: 30px;
-  height: 30px;
-  top: -50px;
+  width: 25px;
+  height: 25px;
+  top: 5px;
   bottom: 0;
-  right: 10;
+  right: 0;
   left: 0;
   margin: auto;
   text-align: center;
