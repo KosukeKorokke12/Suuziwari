@@ -609,7 +609,7 @@ table b {
   width: 50px;
   height: 50px;
   position: fixed;
-  right: 0;
+  left: 10;
   top: 10;
   background: #999;
   opacity: 0.6;
@@ -634,7 +634,7 @@ table b {
   top: 5px;
   bottom: 0;
   right: 0;
-  left: 0;
+  left: 10;
   margin: auto;
   text-align: center;
 }
