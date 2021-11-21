@@ -4,10 +4,14 @@
 	/*細さ*/
 	scrollbar-color: #fff #333;
 	/*つまみの色 軌道の色*/
-	font-family: "Comic Sans MS",'Kosugi Maru','Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック','Yu Gothic','メイリオ','ＭＳ Ｐゴシック','MS PGothic',cursive;
+	font-family: "Comic Sans MS", 'Kosugi Maru', 'Avenir', 'Helvetica Neue', 'Helvetica', 'Arial', 'Hiragino Sans', 'ヒラギノ角ゴシック', 'Yu Gothic', 'メイリオ', 'ＭＳ Ｐゴシック', 'MS PGothic', cursive;
 	font-weight: bold;
 	font-style: normal;
-	color: #FFF;-webkit-transition: all 0.3s ease;-moz-transition: all 0.3s ease;-o-transition: all 0.3s ease;transition: all  0.3s ease;
+	color: #FFF;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease;
 	text-shadow: #303030 0 -1px
 }
 
@@ -89,9 +93,10 @@ html {
 		position: fixed
 	}
 	/*スタート・リセットボタン*/
-
-	.buttons1, .buttons2 {cursor: pointer}
-
+	.buttons1,
+	.buttons2 {
+		cursor: pointer
+	}
 	.buttons1 {
 		bottom: 60px;
 		position: relative;
@@ -99,7 +104,6 @@ html {
 		height: 75px;
 		border: 3px solid #FFF
 	}
-
 	.buttons2 {
 		bottom: 60px;
 		position: relative;
@@ -107,57 +111,56 @@ html {
 		height: 70px;
 		border: 3px solid #FFF
 	}
-
 	.buttons2::after {
 		margin-left: 125px
 	}
-
 	.buttonfont {
 		font-size: 15px;
 		color: #FFF
 	}
-
 	/*入力ボタンに関して*/
-
 	.button1 {
 		width: 50px;
 		height: 40px;
 		cursor: pointer;
 		border: 3px solid #FFF
 	}
-
 	.button2 {
 		width: 33px;
 		height: 50px;
 		cursor: pointer;
 		border: 3px solid #FFF
 	}
-
-	.name {margin-left: 125px}
+	.name {
+		margin-left: 125px
+	}
 	#korokke {
 		bottom: 30px;
 		position: relative;
 		font-size: 35px
 	}
-	.LEVELs1{
+	.LEVELs1 {
 		bottom: 40px;
 		position: relative;
 		font-size: 20px
 	}
-	.LEVELs2{
+	.LEVELs2 {
 		bottom: 35px;
 		position: relative;
 		font-size: 20px
 	}
-	.buttoner{
+	.buttoner {
 		bottom: 40px;
 		position: relative;
 	}
-	.kihonn {font-size: 10px}
-	#remainingtime,#time{
+	.kihonn {
+		font-size: 10px
+	}
+	#remainingtime,
+	#time {
 		bottom: 30px;
 		position: relative;
-		font-size:20px
+		font-size: 20px
 	}
 }
 
@@ -191,7 +194,7 @@ html {
 		width: 280px;
 		height: 170px;
 		background: #999;
-		border-radius:66% 34% 65% 35% / 38% 57% 43% 62% ;
+		border-radius: 66% 34% 65% 35% / 38% 57% 43% 62%;
 		border: 3px solid #FFF;
 		box-shadow: 10px 15px 10px #000
 	}
@@ -207,19 +210,20 @@ html {
 		border-radius: 10px;
 		background: #fff
 	}
-	@-moz-document url-prefix(){
-	#volume[type="range"]{
-		zoom: 160%;
-		top: 125px;
-		left: 50px;
-		position: fixed;
-		-webkit-appearance: none;
-		height: 2px;
-		cursor: pointer;
-		outline: none;
-		border-radius: 10px;
-		background: #fff
-}}
+	@-moz-document url-prefix() {
+		#volume[type="range"] {
+			zoom: 160%;
+			top: 125px;
+			left: 50px;
+			position: fixed;
+			-webkit-appearance: none;
+			height: 2px;
+			cursor: pointer;
+			outline: none;
+			border-radius: 10px;
+			background: #fff
+		}
+	}
 	#volume[type="range"]::-webkit-slider-thumb {
 		zoom: 80%;
 		-webkit-appearance: none;
@@ -238,11 +242,13 @@ html {
 		border-radius: 100vh;
 		box-shadow: 0px 3px 6px 3px black
 	}
-	#volume[type="range"]::-moz-focus-outer {border: 0}
+	#volume[type="range"]::-moz-focus-outer {
+		border: 0
+	}
 	#volume[type="range"]:active::-webkit-slider-thumb {
 		box-shadow: 0px 5px 10px -2px black
 	}
-	#volumepng{
+	#volumepng {
 		width: 20px;
 		height: 20px;
 		top: 120px;
@@ -253,33 +259,30 @@ html {
 		top: 130px;
 		left: 180px;
 		position: fixed
-	}/*スタート・リセットボタン*/
-
-	.buttons1, .buttons2 {
+	}
+	/*スタート・リセットボタン*/
+	.buttons1,
+	.buttons2 {
 		cursor: pointer
 	}
-
 	.buttons1 {
 		width: 110px;
-		height: 70px;
+		height: 80px;
 		border: 3px solid #FFF
 	}
-
 	.buttons2 {
 		width: 140px;
 		height: 90px;
 		border: 3px solid #FFF
 	}
-
-	.buttons2::after {margin-left: 125px}
-
+	.buttons2::after {
+		margin-left: 125px
+	}
 	.buttonfont {
 		font-size: 20px;
 		color: #FFF
 	}
-
 	/*入力ボタンに関して*/
-
 	.button1 {
 		width: 80px;
 		height: 60px;
@@ -288,33 +291,41 @@ html {
 		cursor: pointer;
 		border: 3px solid #FFF
 	}
-
 	.button2 {
 		width: 53px;
 		height: 70px;
 		cursor: pointer;
 		border: 3px solid #FFF
 	}
-	
-	.button1:active,.button2:active,#.lost:active,.active {
-    	box-shadow: none;
-    	position: relative;
-    	left: 1.5px;
-    	top: 0.5px;
-	-webkit-transition: all 0.2s ease;-moz-transition: all 0.2s ease;-o-transition: all 0.2s ease;transition: all  0.2s ease;
+	.button1:active,
+	.button2:active,
+	#lost:active,
+	.active {
+		box-shadow: none;
+		position: relative;
+		left: 1.5px;
+		top: 0.5px;
+		-webkit-transition: all 0.2s ease;
+		-moz-transition: all 0.2s ease;
+		-o-transition: all 0.2s ease;
+		transition: all 0.2s ease;
 	}
-
-	.name {margin-left: 125px}
-
-	#korokke {font-size: 55px}
-
-	.LEVELs1,.LEVELs2{
+	.name {
+		margin-left: 125px
+	}
+	#korokke {
+		font-size: 55px
+	}
+	.LEVELs1,
+	.LEVELs2 {
 		bottom: 10px;
 		position: relative;
 		font-size: 30px
 	}
-
-	#remainingtime,#time{font-size:30px}
+	#remainingtime,
+	#time {
+		font-size: 30px
+	}
 }
 
 a {
@@ -327,7 +338,13 @@ footer {
 	text-align: center
 }
 
-font, h1, h3, h4, h5, h6, p {
+font,
+h1,
+h3,
+h4,
+h5,
+h6,
+p {
 	color: #ffffff
 }
 
@@ -337,20 +354,25 @@ table {
 	background-color: 'transparent'
 }
 
-tr, th, td {
+tr,
+th,
+td {
 	border: solid 2px #fff
 }
 
-.game div{
-	font-size:12px
+.game div {
+	font-size: 12px
 }
 
-button{
+button {
 	background-color: rgba(0, 0, 0, 0);
 	border-radius: 10px 10px 10px 10px;
 	border: 2px solid #FFF;
 }
-.button1,.button2,#lost{
+
+.button1,
+.button2,
+#lost {
 	box-shadow: 5px 5px #000;
 }
 
@@ -383,7 +405,8 @@ h1 {
 	background: #333
 }
 
-#p1, #reset {
+#p1,
+#reset {
 	color: #000
 }
 
@@ -418,7 +441,7 @@ h1 {
 .colorful {
 	color: #ACB6E5;
 	background: -webkit-linear-gradient(0deg, #40E0D0, #FF8C00, #FF0080);
-	text-shadow: rgba(255,0,0,0) 0 -0px;
+	text-shadow: rgba(255, 0, 0, 0) 0 -0px;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent
 }
@@ -437,7 +460,6 @@ h1 {
 }
 
 /*下記はほとんど文字色変換のため*/
-
 
 .Title {
 	top: 30px;
@@ -474,12 +496,15 @@ h1 {
 	background: rgba(0, 0, 0, 0)
 }
 
-#lost:active{
-    box-shadow: none;
-    position: fixed;
-    left: 183px;
-    top: 63px;
-	-webkit-transition: all 0.1s ease;-moz-transition: all 0.1s ease;-o-transition: all 0.1s ease;transition: all  0.1s ease;
+#lost:active {
+	box-shadow: none;
+	position: fixed;
+	left: 183px;
+	top: 63px;
+	-webkit-transition: all 0.1s ease;
+	-moz-transition: all 0.1s ease;
+	-o-transition: all 0.1s ease;
+	transition: all 0.1s ease;
 }
 
 #mozi {
@@ -594,53 +619,53 @@ h1 {
 	list-style-type: none
 }
 
-table b, th {
-	font-size: 15px;
+table b,
+th {
+	font-size: 15px
 }
 
 table b {
 	cursor: pointer
 }
 
-
 .mokuteki b:hover {
 	text-decoration: underline
-}#page_top{
-  width: 50px;
-  height: 50px;
-  position: fixed;
-  right: 0;
-  top: 10;
-  background: #999;
-  opacity: 0.6;
-  border-radius: 50%;
 }
-#page_top a{
-  position: relative;
-  display: block;
-  width: 50px;
-  height: 50px;
-  text-decoration: none;
-}
-#page_top a::before{
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
-  content: '\f102';
-  font-size: 25px;
-  color: #333;
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  top: 5px;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin: auto;
-  text-align: center;
-}
-/*cash用のベータ用のコード*/
-.cash{
+
+#page_top {
+	width: 55px;
+	height: 55px;
 	position: fixed;
-	bottom: 0px;
-	left: 0px;
+	right: 10px;
+	top: 10;
+	background: #999;
+	border-radius: 50%;
+	border: 2px solid #FFF
+}
+
+#page_top a {
+	position: relative;
+	display: block;
+	position: fixed;
+	right: 10;
+	width: 55px;
+	height: 55px;
+	text-decoration: none
+}
+
+#page_top a::before {
+	font-family: 'Font Awesome 5 Free';
+	font-weight: 900;
+	content: '\f102';
+	font-size: 30px;
+	color: #333;
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	top: 0px;
+	bottom: 10px;
+	right: 5px;
+	left: 0;
+	margin: auto;
+	text-align: center
 }
