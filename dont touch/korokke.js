@@ -4,24 +4,24 @@
 //ブラウザ判定
 var base_href = $('base').attr('href');
 var userAgent = window.navigator.userAgent.toLowerCase(); //データ取得
-if(userAgent.indexOf('msie') != -1 ||
-        userAgent.indexOf('trident') != -1) {
-			window.location.href = base_href + "IE互換用/数字割りゲーム.IE.html"
-			document.getElementById("use")
-				.innerHTML = '使っているブラウザ：Internet Explorer<br>動作を保証しません IE互換のhtmlを開いてください';
-} else if(userAgent.indexOf('edge') != -1 || userAgent.indexOf('edg') != -1) {
+if (userAgent.indexOf('msie') != -1 ||
+	userAgent.indexOf('trident') != -1) {
+	window.location.href = base_href + "IE互換用/数字割りゲーム.IE.html"
+	document.getElementById("use")
+		.innerHTML = '使っているブラウザ：Internet Explorer<br>動作を保証しません IE互換のhtmlを開いてください';
+} else if (userAgent.indexOf('edge') != -1 || userAgent.indexOf('edg') != -1) {
 	document.getElementById("use")
 		.innerHTML = '使っているブラウザ：Edge<br>動作確認しているブラウザです';
-} else if(userAgent.indexOf('opr') != -1) {
+} else if (userAgent.indexOf('opr') != -1) {
 	document.getElementById("use")
 		.innerHTML = '使っているブラウザ：Opera<br>動作確認はしていませんが 使用上動くはずのブラウザです';
-} else if(userAgent.indexOf('chrome') != -1) {
+} else if (userAgent.indexOf('chrome') != -1) {
 	document.getElementById("use")
 		.innerHTML = '使っているブラウザ：Chrome or Vivaldi<br>動作確認しているブラウザです';
-} else if(userAgent.indexOf('safari') != -1) {
+} else if (userAgent.indexOf('safari') != -1) {
 	document.getElementById("use")
 		.innerHTML = '使っているブラウザ：Safari<br>動作確認はしていませんが 使用上動くはずのブラウザです';
-} else if(userAgent.indexOf('firefox') != -1) {
+} else if (userAgent.indexOf('firefox') != -1) {
 	document.getElementById("use")
 		.innerHTML = '使っているブラウザ：FireFox<br>動作確認しているブラウザです'
 } else {
@@ -70,10 +70,10 @@ jQuery(function() {
 	});
 });
 
-Notification.requestPermission()//通知要求
+Notification.requestPermission() //通知要求
 
 
-zisseki()//実績関連
+zisseki() //実績関連
 window.onload = function() {
 	document.body.oncontextmenu = function() {
 		return false;
@@ -105,36 +105,42 @@ window.onload = function() {
 	cleartime.style.opacity = 0;
 	document.getElementById("humans_number")
 		.textContent = 4; //残機設定
-		document.getElementById("humans_max")
-			.textContent = 4
+	document.getElementById("humans_max")
+		.textContent = 4
 	color(); //残基による文字色適用
-			if (localStorage.zisseki1 == 1) {
-				zisseki1.textContent = "クリア"
-			} else {
-				zisseki1.textContent = "未達成"
-			}
-			if (localStorage.zisseki2 == 1) {
-				zisseki2.textContent = "クリア"
-			} else {
-				zisseki2.textContent = "未達成"
-			}
-			if (localStorage.zisseki3 == 1) {
-				zisseki3.textContent = "クリア"
-			} else {
-				zisseki3.textContent = "未達成"
-			}
-		if(localStorage.test <= 99){
-	document.getElementById("test")
-		.textContent = `BESTLEVEL: ${localStorage.test}`}
-		else{
-			document.getElementById("test")
-				.textContent = `BESTLEVEL:+99`
-			}
+	if (localStorage.zisseki1 == 1) {
+		zisseki1.textContent = "クリア"
+	} else {
+		zisseki1.textContent = "未達成"
+	}
+	if (localStorage.zisseki2 == 1) {
+		zisseki2.textContent = "クリア"
+	} else {
+		zisseki2.textContent = "未達成"
+	}
+	if (localStorage.zisseki3 == 1) {
+		zisseki3.textContent = "クリア"
+	} else {
+		zisseki3.textContent = "未達成"
+	}
+	if (localStorage.test <= 99) {
+		document.getElementById("test")
+			.textContent = `BESTLEVEL: ${localStorage.test}`
+	} else {
+		document.getElementById("test")
+			.textContent = `BESTLEVEL:+99`
+	}
 	document.getElementById("zanki")
 		.textContent = 0;
 	const spinner = document.getElementById('loading');
 	spinner.classList.add('loaded');
-	if(localStorage.HERD == 1 && localStorage.Play == 1){herd.checked = true}else{localStorage.HERD = 0;localStorage.Play == 1}
+	document.title = '数字割りゲーム varβ1.2'
+	if (localStorage.HERD == 1 && localStorage.Play == 1) {
+		herd.checked = true
+	} else {
+		localStorage.HERD = 0;
+		localStorage.Play == 1
+	}
 
 	//ボリューム設定（ミュートあり）
 	var hoge = document.getElementById("volume");
@@ -261,14 +267,14 @@ bgm4.addEventListener("ended", () => {
 });
 try {
 	document.getElementById("volume")
-	.value = localStorage.Volume;
+		.value = localStorage.Volume;
 	c(localStorage.Volume)
-} catch(e) {
+} catch (e) {
 	localStorage.Volume = document.getElementById("volume")
-	.value
+		.value
 	c(localStorage.Volume)
 	document.getElementById("volumetext")
-	.textContent = "50%";
+		.textContent = "50%";
 }
 
 //デバックモードによる時間変更・残基変更
@@ -281,7 +287,7 @@ function debug() {
 
 //リセットボタン機構
 function p2() {
-		scrollTo(0, 0);
+	scrollTo(0, 0);
 	korokke.textContent = "??";
 	document.getElementById("time")
 		.textContent = "0.20.0";
@@ -295,10 +301,10 @@ $('#buttonid1,#buttonid2,#buttonid3,#buttonid4,#buttonid5,#p1,#reset')
 	.on('click'
 		, function() {
 			if (started.textContent == 1) {
-			g()
-			this.style.backgroundColor = "#999";
+				g()
+				this.style.backgroundColor = "#999";
+			}
 		}
-	}
 	)
 
 //変更した色をもとに戻す
@@ -315,54 +321,54 @@ function g() {
 
 
 //キー入力判定
-window.addEventListener("keydown", (e)=>{
+window.addEventListener("keydown", (e) => {
 	if (started.textContent == 1) {
-	if (e.code === 'KeyW') {
+		if (e.code === 'KeyW') {
+			e.preventDefault();
+			g();
+			buttonid1.style.backgroundColor = "#999";
+			buttonid1.classList.add("active")
+			a(2);
+		};
+		if (e.code === 'KeyE') {
+			e.preventDefault();
+			g();
+			buttonid2.style.backgroundColor = "#999";
+			buttonid2.classList.add("active")
+			a(3);
+		};
+		if (e.code === 'KeyA') {
+			e.preventDefault();
+			g();
+			buttonid3.style.backgroundColor = "#999";
+			buttonid3.classList.add("active")
+			a(5);
+		};
+		if (e.code === 'KeyS') {
+			e.preventDefault();
+			g();
+			buttonid4.style.backgroundColor = "#999";
+			buttonid4.classList.add("active")
+			a(7);
+		};
+		if (e.code === 'KeyD') {
+			e.preventDefault();
+			g();
+			buttonid5.style.backgroundColor = "#999";
+			buttonid5.classList.add("active")
+			a(11);
+		};
+	}
+	if (event.ctrlKey && e.code == 'KeyR' || e.keyCode == 116) {
 		e.preventDefault();
-		g();
-		buttonid1.style.backgroundColor = "#999";
-		buttonid1.classList.add("active")
-		a(2);
+		event.returnValue = false;
+		p2()
 	};
-	if (e.code === 'KeyE') {
-		e.preventDefault();
-		g();
-		buttonid2.style.backgroundColor = "#999";
-		buttonid2.classList.add("active")
-		a(3);
-	};
-	if (e.code === 'KeyA') {
-		e.preventDefault();
-		g();
-		buttonid3.style.backgroundColor = "#999";
-		buttonid3.classList.add("active")
-		a(5);
-	};
-	if (e.code === 'KeyS') {
-		e.preventDefault();
-		g();
-		buttonid4.style.backgroundColor = "#999";
-		buttonid4.classList.add("active")
-		a(7);
-	};
-	if (e.code === 'KeyD') {
-		e.preventDefault();
-		g();
-		buttonid5.style.backgroundColor = "#999";
-		buttonid5.classList.add("active")
-		a(11);
-	};
-}
-if (event.ctrlKey && e.code == 'KeyR' || e.keyCode == 116) {
-	e.preventDefault();
-	event.returnValue = false;
-	p2()
-};
 
-if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115 || e.KeyCode == 117 || e.KeyCode == 118 || e.KeyCode == 119 || e.KeyCode == 120 || e.KeyCode == 121 || e.keyCode == 123) {
-	e.preventDefault();
-	event.returnValue = false;
-};
+	if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115 || e.KeyCode == 117 || e.KeyCode == 118 || e.KeyCode == 119 || e.KeyCode == 120 || e.KeyCode == 121 || e.keyCode == 123) {
+		e.preventDefault();
+		event.returnValue = false;
+	};
 	if (e.code === 'KeyM') {
 		e.preventDefault();
 		if (bgm1.muted == false) {
@@ -458,7 +464,7 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 				return false;
 			}
 		}
-		if (pw1 == String.fromCharCode(75,111,114,111,107,107,101,51,52,55) && pw2 == String.fromCharCode(107,97,50,51,49,54,54)) {
+		if (pw1 == String.fromCharCode(75, 111, 114, 111, 107, 107, 101, 51, 52, 55) && pw2 == String.fromCharCode(107, 97, 50, 51, 49, 54, 54)) {
 			e.preventDefault();
 			if (debugmode.textContent == "nomalmode") {
 				document.getElementById("debugmode")
@@ -508,7 +514,7 @@ if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115
 	return false
 }); //Spacekeyの入力されたときの動作
 
-window.addEventListener("keyup", (e)=>{
+window.addEventListener("keyup", (e) => {
 	if (e.code === 'KeyW' || e.code === 'KeyE' || e.code === 'KeyA' || e.code === 'KeyS' || e.code === 'KeyD') {
 		buttonid1.classList.remove("active");
 		buttonid2.classList.remove("active");
@@ -519,27 +525,27 @@ window.addEventListener("keyup", (e)=>{
 })
 
 function zisseki() {
-			if (localStorage.zisseki1 == 1) {
-				zisseki1.textContent = "クリア"
-			} else {
-				zisseki1.textContent = "未達成"
-			}
-			if (localStorage.zisseki2 == 1) {
-				zisseki2.textContent = "クリア"
-			} else {
-				zisseki2.textContent = "未達成"
-			}
-			if (localStorage.zisseki3 == 1) {
-				zisseki3.textContent = "クリア"
-			} else {
-				zisseki3.textContent = "未達成"
-			}
+	if (localStorage.zisseki1 == 1) {
+		zisseki1.textContent = "クリア"
+	} else {
+		zisseki1.textContent = "未達成"
+	}
+	if (localStorage.zisseki2 == 1) {
+		zisseki2.textContent = "クリア"
+	} else {
+		zisseki2.textContent = "未達成"
+	}
+	if (localStorage.zisseki3 == 1) {
+		zisseki3.textContent = "クリア"
+	} else {
+		zisseki3.textContent = "未達成"
+	}
 }
-zisseki()//実績関連
+zisseki() //実績関連
 
 //開始ボタン設定
 function start(time) {
-		scrollTo(0, 10);
+	scrollTo(0, 10);
 	zisseki()
 	if (herd.checked) {
 		humans_number.style.color = 'red';
@@ -561,12 +567,12 @@ function start(time) {
 	color()
 	if (localStorage.zisseki1 == 0) {
 		localStorage.zisseki1 = 1;
-        zisseki();
-                    if (Notification.permission === 'granted') {
-                        navigator.serviceWorker.ready.then(registration => {
-                        registration.active.postMessage('初めてのプレイ');
-                    });
-					}
+		zisseki();
+		if (Notification.permission === 'granted') {
+			navigator.serviceWorker.ready.then(registration => {
+				registration.active.postMessage('初めてのプレイ');
+			});
+		}
 	}
 	started.textContent = 1;
 	const p1 = document.getElementById("p1");
@@ -586,8 +592,9 @@ function start(time) {
 		reset.style.display = "none";
 	};
 	timmer(time);
-	kihonn(1);
-		scrollTo(0, 0);
+	document.getElementById("korokke")
+		.textContent = kihonn(1);
+	scrollTo(0, 0);
 };
 
 //数字決め機構
@@ -606,7 +613,7 @@ function kihonn(number) {
 	if (number >= 35) {
 		number = 35
 	}
-	number =  Math.floor(number / 2) + 1
+	number = Math.floor(number / 2) + 1
 	for (var i = 0; i < number; i++) {
 		var rand = Math.floor(Math.random() * 5);
 		Suuzi = Suuzi * elements[rand];
@@ -640,8 +647,7 @@ function kihonn(number) {
 		.textContent = `${Suuzi} = ${selected}`;
 	document.getElementById("list")
 		.textContent = `${Suuzi}  = ${selected}`;
-	document.getElementById("korokke")
-		.textContent = Suuzi;
+	return Suuzi;
 };
 
 //時間設定
@@ -676,20 +682,20 @@ function timmer(time) {
 				var level = number_number.textContent
 				future2();
 				clearInterval(timer);
-		};
-	}
+			};
+		}
 		time--;
 		document.getElementById("timer_sec")
 			.textContent = time;
 		if (time > 12000) {
 			if (localStorage.zisseki2 == 0) {
 				localStorage.zisseki2 = 1;
-                zisseki();
-                    if (Notification.permission === 'granted') {
-                        navigator.serviceWorker.ready.then(registration => {
-                        registration.active.postMessage('時間の亡者');
-                    });
-            }
+				zisseki();
+				if (Notification.permission === 'granted') {
+					navigator.serviceWorker.ready.then(registration => {
+						registration.active.postMessage('時間の亡者');
+					});
+				}
 			}
 			timer_obj.className = 'god';
 			korokke.className = 'god';
@@ -742,7 +748,7 @@ function timmer(time) {
 	}, 100);
 	setInterval(function() {
 		if (clearmode.textContent == "clear") {
-			time = time + Math.floor(number_number.textContent * timeup / 10* Math.pow(10, 2)) / Math.pow(10, 2); //追加時間計算部分+追加時間適用のもの
+			time = time + Math.floor(number_number.textContent * timeup / 10 * Math.pow(10, 2)) / Math.pow(10, 2); //追加時間計算部分+追加時間適用のもの
 			document.getElementById("timer_sec")
 				.textContent = time;
 			document.getElementById("clearmode")
@@ -776,8 +782,11 @@ function a(mozi) {
 		var number = document.getElementById("number_number")
 			.textContent;
 		//難易度取得
-		if(korokke.textContent != 1){var Suuzi = korokke.textContent / mozi;}
-		else{var Suuzi = korokke.textContent;}
+		if (korokke.textContent != 1) {
+			var Suuzi = korokke.textContent / mozi;
+		} else {
+			var Suuzi = korokke.textContent;
+		}
 		//korokke引数を取得（kazu変数に代入）
 		document.getElementById("Suuzicopy")
 			.textContent = korokke.textContent;
@@ -786,23 +795,25 @@ function a(mozi) {
 			.textContent = Suuzi;
 		//korokke引数をSuuziに置き換える
 		if (localStorage.HERD == 1) {
-			if(number >= 20){
+			if (number >= 20) {
 				var zanki1 = 12
 				var zanki2 = 2
-			}else{
+			} else {
 				var zanki1 = 8
-				var zanki2 = 2}
+				var zanki2 = 2
+			}
 			document.getElementById("humans_max")
 				.textContent = zanki2;
 		} else {
-			if(number >= 20){
+			if (number >= 20) {
 				var zanki1 = 7
 				var zanki2 = Number(document.getElementById("humans_max")
 					.textContent)
-			}else{
+			} else {
 				var zanki1 = 4
 				var zanki2 = Number(document.getElementById("humans_max")
-					.textContent)}
+					.textContent)
+			}
 			var zanki1 = 4
 			var zanki2 = Number(document.getElementById("humans_max")
 				.textContent)
@@ -811,11 +822,14 @@ function a(mozi) {
 		if (z <= 999999) {
 			document.getElementById("Score")
 				.innerHTML = `Score:<span>${z}</span>`;
-				$("#Score span").css("fontSize","21px");
+			$("#Score span").css("fontSize", "21px");
 		} else {
 			document.getElementById("Score")
-			.innerHTML = "Score:<span>+999999</span>";
-				$("#Score span").css({"fontSize":"24px","color":"red"});
+				.innerHTML = "Score:<span>+999999</span>";
+			$("#Score span").css({
+				"fontSize": "24px"
+				, "color": "red"
+			});
 		}
 		if (Suuzi == 1) {
 			number++;
@@ -826,12 +840,12 @@ function a(mozi) {
 				.textContent = "clear";
 			if (number == 10 && humans_number.textContent == 3 && localStorage.zisseki3 == 0) {
 				localStorage.zisseki3 = 1;
-                zisseki();
-                    if (Notification.permission === 'granted') {
-                        navigator.serviceWorker.ready.then(registration => {
-                        registration.active.postMessage('初心者脱却');
-                    });
-			}
+				zisseki();
+				if (Notification.permission === 'granted') {
+					navigator.serviceWorker.ready.then(registration => {
+						registration.active.postMessage('初心者脱却');
+					});
+				}
 			}
 			if (zanki > 1) {
 				zanki--
@@ -839,8 +853,8 @@ function a(mozi) {
 			} else {
 				if (zanki == 1) {
 					zanki = 0;
-					humans_number.textContent++
-						color()
+					humans_number.textContent++;
+						color();
 
 					if (humans_number.textContent < zanki2) {
 						zanki = zanki1;
@@ -856,7 +870,8 @@ function a(mozi) {
 				}
 			}
 			//難易度(number)を増やす(上げている)
-			kihonn(number);
+	document.getElementById("korokke")
+	.textContent = kihonn(number);
 		} else {
 			if (!Number.isInteger(Suuzi)) {
 				if (humans_number.textContent >= zanki2) {
@@ -877,7 +892,7 @@ function a(mozi) {
 
 //押し間違えによるgemeover
 function future1() {
-	var number = number_number.textContent
+	var number = number_number.textContent;
 	bgm1.play();
 	document.getElementById("listed")
 		.textContent = lists.textContent;
@@ -886,8 +901,7 @@ function future1() {
 	var s = level * 10 + Math.floor(timer_sec.textContent * 0.0004) + humans_number.textContent * 10;
 	levelCount = Lank(s, levelCount);
 	if (humans_number.textContent > 1) {
-		if (confirm(`GAMEOVER\n答えを間違えました。\n残り回数の数は${humans_number.textContent}です。\n残り回数を消耗して一つ前に戻しますか？、またははじめから再挑戦しますか？\n戻る=OK 再挑戦する=キャンセル`))
-		{
+		if (confirm(`GAMEOVER\n答えを間違えました。\n残り回数の数は${humans_number.textContent}です。\n残り回数を消耗して一つ前に戻しますか？、またははじめから再挑戦しますか？\n戻る=OK 再挑戦する=キャンセル`)) {
 			humans_number.textContent--;
 			color()
 			korokke.textContent = Suuzicopy.textContent;
@@ -895,15 +909,16 @@ function future1() {
 			if (number > Number(localStorage.test)) {
 				alert(`記録は LEVEL: ${number_number.textContent}\n最高記録更新！！ ${localStorage.test} → ${number}\nLank: ${levelCount}\nこの問題の答えは  ${listed.textContent}でした。`)
 				localStorage.test = number;
-				if(localStorage.test <= 99){
-			document.getElementById("test")
-				.textContent = `BESTLEVEL: ${localStorage.test}`}
-				else{
+				if (localStorage.test <= 99) {
+					document.getElementById("test")
+						.textContent = `BESTLEVEL: ${localStorage.test}`
+				} else {
 					document.getElementById("test")
 						.textContent = `BESTLEVEL:+99`
-					}
-			}else{
-				alert(`記録は LEVEL: ${number_number.textContent}\nLank: ${levelCount}\nこの問題の答えは  ${listed.textContent}でした。`)}
+				}
+			} else {
+				alert(`記録は LEVEL: ${number_number.textContent}\nLank: ${levelCount}\nこの問題の答えは  ${listed.textContent}でした。`)
+			}
 			p2();
 		}
 	} else {
@@ -911,14 +926,14 @@ function future1() {
 			alert(`GAMEOVER\n答えを間違えました。\n記録は LEVEL:${number_number.textContent} \n最高記録更新！！ ${localStorage.test} → ${number}\n Lank:${levelCount}\nこの問題の答えは  ${listed.textContent}です\nもう残機がありません、はじめから再挑戦しますか?`);
 			p2();
 			localStorage.test = number;
-			if(localStorage.test <= 99){
-		document.getElementById("test")
-			.textContent = `BESTLEVEL: ${localStorage.test}`}
-			else{
+			if (localStorage.test <= 99) {
+				document.getElementById("test")
+					.textContent = `BESTLEVEL: ${localStorage.test}`
+			} else {
 				document.getElementById("test")
 					.textContent = `BESTLEVEL:+99`
-				}
-		}else{
+			}
+		} else {
 			alert(`GAMEOVER\n答えを間違えました。\n記録は LEVEL:${number_number.textContent} Lank:${levelCount}\nこの問題の答えは  ${listed.textContent}です\nもう残機がありません、はじめから再挑戦しますか?`);
 			p2();
 		};
@@ -939,15 +954,15 @@ function future2() {
 	if (number > Number(localStorage.test)) {
 		alert(`GAMEOVER 時間切れです\n記録は LEVEL: ${number_number.textContent} Lank: ${levelCount}\n最高記録更新！！ ${localStorage.test} → ${number}\nこの問題の答えは  ${listed.textContent}です\n初めから再挑戦しますか`);
 		localStorage.test = number;
-		if(localStorage.test <= 99){
-	document.getElementById("test")
-		.textContent = `BESTLEVEL: ${localStorage.test}`}
-		else{
+		if (localStorage.test <= 99) {
 			document.getElementById("test")
-				.textContent = `BESTLEVEL:+99`
-			}
-	}else{
-	alert(`GAMEOVER 時間切れ\n記録 LEVEL: ${number_number.textContent} Lank: ${levelCount}\nこの問題の答え  ${listed.textContent}\n再挑戦しますか`);
+				.textContent = `BESTLEVEL: ${localStorage.test}`
+		} else {
+			document.getElementById("test")
+				.textContent = `BESTLEVEL:+99`;
+		}
+	} else {
+		alert(`GAMEOVER 時間切れ\n記録 LEVEL: ${number_number.textContent} Lank: ${levelCount}\nこの問題の答え  ${listed.textContent}\n再挑戦しますか`);
 	};
 	p2();
 };
@@ -991,7 +1006,7 @@ function Lank(s, levelCount) {
 			};
 		};
 	};
-	return levelCount
+	return levelCount;
 };
 
 function color() {
@@ -1005,10 +1020,10 @@ function color() {
 	if (humans_number.textContent >= 4) {
 		humans_number.style.color = 'rgb(95, 207, 128)';
 	} else
-		if (humans_number.textContent <= 3 && humans_number.textContent >= 2) {
-			humans_number.style.color = 'hsl(51, 94%, 52%)';
-		} else
-			if (humans_number.textContent <= 1) {
-				humans_number.style.color = 'red';
-			}
+	if (humans_number.textContent <= 3 && humans_number.textContent >= 2) {
+		humans_number.style.color = 'hsl(51, 94%, 52%)';
+	} else
+	if (humans_number.textContent <= 1) {
+		humans_number.style.color = 'red';
 	}
+}
