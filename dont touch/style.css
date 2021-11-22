@@ -177,7 +177,7 @@ html {
 	.game {
 		font-size: 10px;
 		bottom: 300px;
-		right: 205px;
+		right: 220px;
 		position: relative
 	}
 	.list {
@@ -349,7 +349,7 @@ p {
 }
 
 table {
-	width: 400px;
+	width: 430px;
 	border-collapse: collapse;
 	background-color: 'transparent'
 }
