@@ -161,7 +161,10 @@ html {
 		bottom: 30px;
 		position: relative;
 		font-size: 20px
+	}.cp_hr01 {display:none;
+	}.cp_hr02 {display:none;
 	}
+
 }
 
 @media screen and (min-width:1024px) {
@@ -297,18 +300,23 @@ html {
 		cursor: pointer;
 		border: 3px solid #FFF
 	}
+	.button1,
+	.button2,
+	#lost {
+		box-shadow: 5px 5px #000;
+	}
 	.button1:active,
 	.button2:active,
 	#lost:active,
 	.active {
 		box-shadow: none;
 		position: relative;
-		left: 1.5px;
+		left: 1px;
 		top: 0.5px;
-		-webkit-transition: all 0.2s ease;
-		-moz-transition: all 0.2s ease;
-		-o-transition: all 0.2s ease;
-		transition: all 0.2s ease;
+		-webkit-transition: all 0.1s ease;
+		-moz-transition: all 0.1s ease;
+		-o-transition: all 0.1s ease;
+		transition: all 0.1s ease;
 	}
 	.name {
 		margin-left: 125px
@@ -325,6 +333,34 @@ html {
 	#remainingtime,
 	#time {
 		font-size: 30px
+	}.cp_hr01 {
+		top: 80px;
+		left: 0px;
+		position: relative;
+		width: 260px;
+		border-width: 1px 0 0 0;
+		border-style: dashed;
+		border-color: #FFF;
+	}.cp_hr02 {
+		top: 105px;
+		left: 2px;
+		position: relative;
+		width: 250px;
+		border-width: 1px 0 0 0;
+		border-style: dashed;
+		border-color: #FFF;
+	}
+	#debugmodes2{
+		zoom: 100%;
+		position: fixed;
+		top: 10px;
+		right: 10px;
+		width: 330px;
+		height: 180px;
+		background: #000;
+		border-radius: 38% 57% 43% 62% / 66% 34% 65% 35%;
+		border: 3px solid #FFF;
+		box-shadow: 10px 15px 10px #000
 	}
 }
 
@@ -348,8 +384,16 @@ p {
 	color: #ffffff
 }
 
-table {
+#debugmodes2 .font,.button,.debugmodes2{
+	top: 25px;
+	position: relative
+}
+
+table:not(.debugmodes2){
 	width: 430px;
+}
+
+table{
 	border-collapse: collapse;
 	background-color: 'transparent'
 }
@@ -368,12 +412,6 @@ button {
 	background-color: rgba(0, 0, 0, 0);
 	border-radius: 10px 10px 10px 10px;
 	border: 2px solid #FFF;
-}
-
-.button1,
-.button2,
-#lost {
-	box-shadow: 5px 5px #000;
 }
 
 h1 {
