@@ -842,7 +842,7 @@ function a(mozi) {
 			//音の設定2(参照先answer.mp3(bgm2))
 			document.getElementById("clearmode")
 				.textContent = "clear";
-			if (number == 10 && humans_number.textContent == 3 && localStorage.zisseki3 == 0) {
+			if (number == 10 && humans_number.textContent >= 4 && localStorage.zisseki3 == 0) {
 				localStorage.zisseki3 = 1;
 				zisseki();
 				if (Notification.permission === 'granted') {
