@@ -56,7 +56,7 @@ jQuery(function() {
 					appear = false;
 					pagetop.stop()
 						.animate({
-							'bottom': '-50px' //下から-50pxの位置に
+							'bottom': '-70px' //下から-50pxの位置に
 						}, 300); //0.3秒かけて隠れる
 				}
 			}
@@ -70,7 +70,7 @@ jQuery(function() {
 	});
 });
 
-Notification.requestPermission() //通知要求
+if(location.protocol != "file:"){Notification.requestPermission()};
 
 
 zisseki() //実績関連
@@ -171,7 +171,7 @@ function c(value) {
 		bgm3.volume = Math.ceil(value) / 100;
 		bgm4.volume = Math.ceil(value) / 100;
 		document.getElementById("volumetext")
-			.textContent = `${value} %`;
+			.textContent = `${value}%`;
 	}
 }
 
@@ -502,6 +502,10 @@ window.addEventListener("keydown", (e) => {
 		event.preventDefault();
 		event.returnValue = false;
 		scrollBy(0, -window.innerHeight);
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth'
+		  });
 		if (started.textContent == 0) {
 			bgm3.play();
 			bgm4.play();
