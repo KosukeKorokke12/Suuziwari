@@ -14,7 +14,7 @@
 	text-shadow: #303030 0 -1px
 }
 *:not(.kihonn){
-	font-weight: bold
+	font-weight: bold;
 }
 
 html {
