@@ -5,7 +5,6 @@
 	scrollbar-color: #fff #333;
 	/*つまみの色 軌道の色*/
 	font-family: "Comic Sans MS", 'Kosugi Maru', 'Avenir', 'Helvetica Neue', 'Helvetica', 'Arial', 'Hiragino Sans', 'ヒラギノ角ゴシック', 'Yu Gothic', 'メイリオ', 'ＭＳ Ｐゴシック', 'MS PGothic', cursive;
-	font-weight: bold;
 	font-style: normal;
 	color: #FFF;
 	-webkit-transition: all 0.3s ease;
@@ -13,6 +12,9 @@
 	-o-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 	text-shadow: #303030 0 -1px
+}
+*:not(.kihonn){
+	font-weight: bold
 }
 
 html {
