@@ -13,7 +13,8 @@
 	transition: all 0.3s ease;
 	text-shadow: #303030 0 -1px
 }
-*:not(.kihonn){
+
+div:not(.kihonn),#remainingtime,#time{
 	font-weight: bold;
 }
 
