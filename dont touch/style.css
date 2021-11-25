@@ -98,7 +98,7 @@ html {
 	/*スタート・リセットボタン*/
 	.buttons1,
 	.buttons2 {
-		cursor: pointer
+		cursor: pointer;
 	}
 	.buttons1 {
 		bottom: 60px;
@@ -119,19 +119,20 @@ html {
 	}
 	.buttonfont {
 		font-size: 15px;
-		color: #FFF
 	}
 	/*入力ボタンに関して*/
 	.button1 {
 		width: 50px;
 		height: 40px;
 		cursor: pointer;
+		color: rgba(0, 0, 0, 0);
 		border: 3px solid #FFF
 	}
 	.button2 {
 		width: 33px;
 		height: 50px;
 		cursor: pointer;
+		color: rgba(0, 0, 0, 0);
 		border: 3px solid #FFF
 	}
 	.name {
@@ -267,9 +268,8 @@ html {
 		position: fixed
 	}
 	/*スタート・リセットボタン*/
-	.buttons1,
-	.buttons2 {
-		cursor: pointer
+	.buttons1,.buttons2 {
+		cursor: pointer;
 	}
 	.buttons1 {
 		width: 110px;
@@ -286,7 +286,6 @@ html {
 	}
 	.buttonfont {
 		font-size: 20px;
-		color: #FFF
 	}
 	/*入力ボタンに関して*/
 	.button1 {
@@ -368,23 +367,12 @@ html {
 }
 
 a {
-	color: #ffffff;
 	font: 15px;
-	cursor: pointer
+	cursor: pointer;
 }
 
 footer {
 	text-align: center
-}
-
-font,
-h1,
-h3,
-h4,
-h5,
-h6,
-p {
-	color: #ffffff
 }
 
 #debugmodes2 .font,.button,.debugmodes2{
@@ -549,7 +537,6 @@ h1 {
 }
 
 #mozi {
-	color: #FFF;
 	top: 185px;
 	left: 15px;
 	position: fixed
@@ -563,7 +550,6 @@ h1 {
 }
 
 #debugmode {
-	color: #FFF;
 	top: 165px;
 	left: 15px;
 	position: fixed
@@ -571,14 +557,12 @@ h1 {
 
 #timedebug {
 	background-color: #FFF;
-	color: #FFF;
 	top: 20px;
 	right: 2px;
 	position: fixed
 }
 
 #example1 {
-	color: #FFF;
 	top: 40px;
 	right: 2px;
 	position: fixed;
@@ -587,14 +571,12 @@ h1 {
 
 #humansdebug {
 	background-color: #FFF;
-	color: #FFF;
 	top: 60px;
 	right: 2px;
 	position: fixed
 }
 
 #example2 {
-	color: #FFF;
 	top: 80px;
 	right: 2px;
 	position: fixed;
@@ -602,7 +584,6 @@ h1 {
 }
 
 #tekiyou {
-	color: #FFF;
 	top: 100px;
 	right: 2px;
 	position: fixed
@@ -666,7 +647,7 @@ th {
 }
 
 table b {
-	cursor: pointer
+	cursor: pointer;
 }
 
 .mokuteki b:hover {
