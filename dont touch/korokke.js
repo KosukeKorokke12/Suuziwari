@@ -51,14 +51,12 @@ jQuery(function() {
 							'bottom': '10px' //下から10pxの位置に
 						}, 300); //0.3秒かけて現れる
 				}
-			} else {
-				if (appear) {
-					appear = false;
-					pagetop.stop()
-						.animate({
-							'bottom': '-70px' //下から-50pxの位置に
-						}, 300); //0.3秒かけて隠れる
-				}
+			} else if (appear) {
+				appear = false;
+				pagetop.stop()
+					.animate({
+						'bottom': '-70px' //下から-50pxの位置に
+					}, 300); //0.3秒かけて隠れる
 			}
 		});
 	pagetop.click(function() {
@@ -70,7 +68,9 @@ jQuery(function() {
 	});
 });
 
-if(location.protocol != "file:"){Notification.requestPermission()};
+if (location.protocol != "file:") {
+	Notification.requestPermission()
+};
 
 
 zisseki() //実績関連
@@ -106,7 +106,7 @@ window.onload = function() {
 	document.getElementById("humans_number")
 		.textContent = 4; //残機設定
 	document.getElementById("humans_max")
-		.textContent = 4
+		.textContent = 4;
 	color(); //残基による文字色適用
 	if (localStorage.zisseki1 == 1) {
 		zisseki1.textContent = "クリア"
@@ -161,6 +161,7 @@ function c(value) {
 		bgm4.muted = true;
 		document.getElementById("volumetext")
 			.textContent = "ミュート";
+		volumepng.className = 'fa fa-volume-off';
 	} else {
 		bgm1.muted = false;
 		bgm2.muted = false;
@@ -172,6 +173,11 @@ function c(value) {
 		bgm4.volume = Math.ceil(value) / 100;
 		document.getElementById("volumetext")
 			.textContent = `${value}%`;
+		if (value < 50) {
+			volumepng.className = 'fa fa-volume-down';
+		} else {
+			volumepng.className = 'fa fa-volume-up';
+		}
 	}
 }
 
@@ -221,12 +227,10 @@ if (typeof localStorage.HERD === 'undefined') {
 }
 if (typeof localStorage.Play === 'undefined') {
 	localStorage.setItem("Play", 0)
+} else if (localStorage.Play == 0) {
+	herd.disabled = true;
 } else {
-	if (localStorage.Play == 0) {
-		herd.disabled = true;
-	} else {
-		herd.disabled = false;
-	}
+	herd.disabled = false;
 }
 if (typeof localStorage.Volume === 'undefined') {
 	localStorage.setItem("Volume", 50)
@@ -275,6 +279,7 @@ try {
 	c(localStorage.Volume)
 	document.getElementById("volumetext")
 		.textContent = "50%";
+	volumepng.className = 'fa fa-volume-up';
 }
 
 //デバックモードによる時間変更・残基変更
@@ -293,6 +298,7 @@ function p2() {
 		.textContent = "0.20.0";
 	number_number.textContent = "??";
 	humans_number.textContent = 4;
+	humans_max.textContent = 4;
 	location.reload();
 };
 
@@ -380,6 +386,7 @@ window.addEventListener("keydown", (e) => {
 				.textContent = "ミュート";
 			document.getElementById("volume")
 				.value = 0;
+			volumepng.className = 'fa fa-volume-off';
 		} else {
 			bgm1.muted = false;
 			bgm2.muted = false;
@@ -389,6 +396,7 @@ window.addEventListener("keydown", (e) => {
 				.textContent = "50%";
 			document.getElementById("volume")
 				.value = 50;
+			volumepng.className = 'fa fa-volume-up';
 		}
 		localStorage.Volume = document.getElementById("volume")
 			.value;
@@ -406,6 +414,11 @@ window.addEventListener("keydown", (e) => {
 			.value > 100) {
 			document.getElementById("volume")
 				.value = 100;
+			volumepng.className = 'fa fa-volume-up';
+		} else if (document.getElementById("volume").value > 50) {
+			volumepng.className = 'fa fa-volume-up';
+		} else {
+			volumepng.className = 'fa fa-volume-down';
 		}
 		document.getElementById("volumetext")
 			.textContent = `${volume.value}%`;
@@ -433,6 +446,7 @@ window.addEventListener("keydown", (e) => {
 				.textContent = "ミュート";
 			document.getElementById("volume")
 				.value = 0
+			volumepng.className = 'fa fa-volume-off';
 		} else {
 			document.getElementById("volumetext")
 				.textContent = `${volume.value}%`;
@@ -440,6 +454,11 @@ window.addEventListener("keydown", (e) => {
 			bgm2.volume = Math.ceil(volume.value) / 100;
 			bgm3.volume = Math.ceil(volume.value) / 100;
 			bgm4.volume = Math.ceil(volume.value) / 100;
+			if (document.getElementById("volume").value > 50) {
+				volumepng.className = 'fa fa-volume-up';
+			} else {
+				volumepng.className = 'fa fa-volume-down';
+			}
 		}
 		localStorage.Volume = document.getElementById("volume")
 			.value;
@@ -503,9 +522,9 @@ window.addEventListener("keydown", (e) => {
 		event.returnValue = false;
 		scrollBy(0, -window.innerHeight);
 		window.scrollTo({
-			top: 0,
-			behavior: 'smooth'
-		  });
+			top: 0
+			, behavior: 'smooth'
+		});
 		if (started.textContent == 0) {
 			bgm3.play();
 			bgm4.play();
@@ -627,25 +646,16 @@ function kihonn(number) {
 	for (var z = 0; z < note.length; z++) {
 		if (note[z] == 0) {
 			two++
-		} else {
-			if (note[z] == 1) {
-				three++
-			} else {
-				if (note[z] == 2) {
-					five++
-				} else {
-					if (note[z] == 3) {
-						seven++
-					} else {
-						if (note[z] == 4) {
-							eleven++
-						};
-					};
-				};
-			};
+		} else if (note[z] == 1) {
+			three++
+		} else if (note[z] == 2) {
+			five++
+		} else if (note[z] == 3) {
+			seven++
+		} else if (note[z] == 4) {
+			eleven++
 		};
-	};
-	//乗の一時的な代役(例 2^3 == 2の3乗)
+	} //乗の一時的な代役(例 2^3 == 2の3乗)
 	var selected = `(2^${two})*(3^${three})*(5^${five})*(7^${seven})*(11^${eleven})`
 	document.getElementById("lists")
 		.textContent = `${Suuzi} = ${selected}`;
@@ -691,55 +701,56 @@ function timmer(time) {
 		time--;
 		document.getElementById("timer_sec")
 			.textContent = time;
-		if (time > 12000) {
-			if (localStorage.zisseki2 == 0) {
-				localStorage.zisseki2 = 1;
-				zisseki();
-				if (Notification.permission === 'granted') {
-					navigator.serviceWorker.ready.then(registration => {
-						registration.active.postMessage('時間の亡者');
-					});
+			if(time > 2400){
+				if (localStorage.zisseki2 == 0) {
+					localStorage.zisseki2 = 1;
+					zisseki();
+					if (Notification.permission === 'granted') {
+						navigator.serviceWorker.ready.then(registration => {
+							registration.active.postMessage('時間の亡者');
+						});
+					}
 				}
-			}
-			timer_obj.className = 'god';
-			korokke.className = 'god';
-			remainingtime.className = 'god';
-		} else {
-			if (time > 159 && time <= 1200) {
-				timer_obj.className = 'white';
-				korokke.className = 'white';
-				remainingtime.className = 'white';
-			} else {
-				if (time <= 159 && time > 129) {
-					korokke.className = 'blue';
-					timer_obj.className = 'blue';
-					remainingtime.className = 'blue';
-				} else {
-					if (time <= 129 && time > 99) {
-						korokke.className = 'aqua';
-						timer_obj.className = 'aqua';
-						remainingtime.className = 'aqua';
-					} else {
-						if (time <= 99 && time > 69) {
-							korokke.className = 'lime';
-							timer_obj.className = 'lime';
-							remainingtime.className = 'lime';
-						} else {
-							if (time <= 69 && time > 39) {
-								korokke.className = 'yellow';
-								timer_obj.className = 'yellow';
-								remainingtime.className = 'yellow';
-							} else {
-								if (time <= 39) {
-									korokke.className = 'red';
-									timer_obj.className = 'red';
-									remainingtime.className = 'red';
-								}
-							};
-						};
-					};
-				};
-			};
+				korokke.className = 'colorful';
+				timer_obj.className = 'colorful';
+				remainingtime.className = 'colorful';
+			}else if (time > 1200 && time <= 2400) {
+				if (localStorage.zisseki2 == 0) {
+					localStorage.zisseki2 = 1;
+					zisseki();
+					if (Notification.permission === 'granted') {
+						navigator.serviceWorker.ready.then(registration => {
+							registration.active.postMessage('時間の亡者');
+						});
+					}
+				}
+				timer_obj.className = 'god';
+				korokke.className = 'god';
+				remainingtime.className = 'god';
+			} else if (time > 159 && time <= 1200) {
+					timer_obj.className = 'white';
+					korokke.className = 'white';
+					remainingtime.className = 'white';
+				} else if (time <= 159 && time > 129) {
+						korokke.className = 'blue';
+						timer_obj.className = 'blue';
+						remainingtime.className = 'blue';
+					} else if (time <= 129 && time > 99) {
+							korokke.className = 'aqua';
+							timer_obj.className = 'aqua';
+							remainingtime.className = 'aqua';
+						} else if (time <= 99 && time > 69) {
+								korokke.className = 'lime';
+								timer_obj.className = 'lime';
+								remainingtime.className = 'lime';
+							} else if (time <= 69 && time > 39) {
+									korokke.className = 'yellow';
+									timer_obj.className = 'yellow';
+									remainingtime.className = 'yellow';
+								} else if (time <= 39) {
+										korokke.className = 'red';
+										timer_obj.className = 'red';
+										remainingtime.className = 'red';
 		}; //時間ごとに文字の色を変える設定
 		if (debugmode.textContent == "debugmode") {
 			var level = number_number.textContent
@@ -806,8 +817,6 @@ function a(mozi) {
 				var zanki1 = 8
 				var zanki2 = 2
 			}
-			document.getElementById("humans_max")
-				.textContent = zanki2;
 		} else {
 			if (number >= 20) {
 				var zanki1 = 7
@@ -818,9 +827,6 @@ function a(mozi) {
 				var zanki2 = Number(document.getElementById("humans_max")
 					.textContent)
 			}
-			var zanki1 = 4
-			var zanki2 = Number(document.getElementById("humans_max")
-				.textContent)
 		}
 		var z = number * 1000 + Math.floor(timer_sec.textContent * 0.04) + humans_number.textContent * 1000
 		if (z <= 999999) {
@@ -851,6 +857,10 @@ function a(mozi) {
 					});
 				}
 			}
+			if (number % 15 == 0) {
+				humans_max.textContent = Number(humans_max.textContent) + 1;
+				humans_number.textContent = Number(humans_number.textContent) + 1;
+			}
 			if (zanki > 1) {
 				zanki--
 				human.textContent = `残り:${zanki}turn`;
@@ -858,7 +868,7 @@ function a(mozi) {
 				if (zanki == 1) {
 					zanki = 0;
 					humans_number.textContent++;
-						color();
+					color();
 
 					if (humans_number.textContent < zanki2) {
 						zanki = zanki1;
@@ -874,8 +884,8 @@ function a(mozi) {
 				}
 			}
 			//難易度(number)を増やす(上げている)
-	document.getElementById("korokke")
-	.textContent = kihonn(number);
+			document.getElementById("korokke")
+				.textContent = kihonn(number);
 		} else {
 			if (!Number.isInteger(Suuzi)) {
 				if (humans_number.textContent >= zanki2) {
@@ -975,59 +985,36 @@ function future2() {
 function Lank(s, levelCount) {
 	if (s < 0) {
 		levelCount = "ERROR";
-	} else {
-		if (s >= 0 && s <= 150) {
-			levelCount = "E";
-		} else {
-			if (s > 150 && s <= 200) {
-				levelCount = "D";
-			} else {
-				if (s > 200 && s <= 250) {
-					levelCount = "C";
-				} else {
-					if (s > 250 && s <= 275) {
-						levelCount = "B";
-					} else {
-						if (s > 275 && s <= 300) {
-							levelCount = "A";
-						} else {
-							if (s > 300 && s <= 350) {
-								levelCount = "S";
-							} else {
-								if (s > 350 && s <= 450) {
-									levelCount = "S+";
-									localStorage.Play = 1;
-								} else {
-									if (s > 450) {
-										levelCount = "Master   you are Master to This Game!!";
-										localStorage.Play = 1;
-									}
-								};
-							};
-						};
-					};
-				};
-			};
-		};
+	} else if (s >= 0 && s <= 150) {
+		levelCount = "E";
+	} else if (s > 150 && s <= 200) {
+		levelCount = "D";
+	} else if (s > 200 && s <= 250) {
+		levelCount = "C";
+	} else if (s > 250 && s <= 275) {
+		levelCount = "B";
+	} else if (s > 275 && s <= 300) {
+		levelCount = "A";
+	} else if (s > 300 && s <= 350) {
+		levelCount = "S";
+	} else if (s > 350 && s <= 450) {
+		levelCount = "S+";
+		localStorage.Play = 1;
+	} else if (s > 450) {
+		levelCount = "Master   you are Master to This Game!!";
+		localStorage.Play = 1;
 	};
 	return levelCount;
 };
 
 function color() {
-	if (localStorage.HERD == 1) {
-		humans_max.style.color = 'hsl(51, 94%, 52%)';
-		humans_maxs.style.color = 'hsl(51, 94%, 52%)';
-	} else {
-		humans_max.style.color = 'rgb(95, 207, 128)';
-		humans_maxs.style.color = 'rgb(95, 207, 128)';
-	}
-	if (humans_number.textContent >= 4) {
+	humans_max.style.color = 'rgb(95, 207, 128)';
+	humans_maxs.style.color = 'rgb(95, 207, 128)';
+	if (humans_number.textContent >= Number(humans_max.textContent)) {
 		humans_number.style.color = 'rgb(95, 207, 128)';
-	} else
-	if (humans_number.textContent <= 3 && humans_number.textContent >= 2) {
+	} else if (humans_number.textContent <= Number(humans_max.textContent) - 1 && humans_number.textContent >= 2) {
 		humans_number.style.color = 'hsl(51, 94%, 52%)';
-	} else
-	if (humans_number.textContent <= 1) {
+	} else if (humans_number.textContent <= 1) {
 		humans_number.style.color = 'red';
 	}
 }
