@@ -14,7 +14,9 @@
 	text-shadow: #303030 0 -1px
 }
 
-div:not(.kihonn),#remainingtime,#time{
+div:not(.kihonn),
+#remainingtime,
+#time {
 	font-weight: bold;
 }
 
@@ -165,10 +167,13 @@ html {
 		bottom: 30px;
 		position: relative;
 		font-size: 20px
-	}.cp_hr01 {display:none;
-	}.cp_hr02 {display:none;
 	}
-
+	.cp_hr01 {
+		display: none;
+	}
+	.cp_hr02 {
+		display: none;
+	}
 }
 
 @media screen and (min-width:1024px) {
@@ -256,9 +261,9 @@ html {
 		box-shadow: 0px 5px 10px -2px black
 	}
 	#volumepng {
-		width: 20px;
-		height: 20px;
-		top: 120px;
+		font-size: 18px;
+		color: #000;
+		top: 123px;
 		left: 35px;
 		position: fixed
 	}
@@ -268,7 +273,8 @@ html {
 		position: fixed
 	}
 	/*スタート・リセットボタン*/
-	.buttons1,.buttons2 {
+	.buttons1,
+	.buttons2 {
 		cursor: pointer;
 	}
 	.buttons1 {
@@ -335,7 +341,8 @@ html {
 	#remainingtime,
 	#time {
 		font-size: 30px
-	}.cp_hr01 {
+	}
+	.cp_hr01 {
 		top: 80px;
 		left: 0px;
 		position: relative;
@@ -343,7 +350,8 @@ html {
 		border-width: 1px 0 0 0;
 		border-style: dashed;
 		border-color: #FFF;
-	}.cp_hr02 {
+	}
+	.cp_hr02 {
 		top: 105px;
 		left: 2px;
 		position: relative;
@@ -352,7 +360,7 @@ html {
 		border-style: dashed;
 		border-color: #FFF;
 	}
-	#debugmodes2{
+	#debugmodes2 {
 		zoom: 100%;
 		position: fixed;
 		top: 10px;
@@ -375,16 +383,18 @@ footer {
 	text-align: center
 }
 
-#debugmodes2 .font,.button,.debugmodes2{
+#debugmodes2 .font,
+.button,
+.debugmodes2 {
 	top: 25px;
 	position: relative
 }
 
-table:not(.debugmodes2){
+table:not(.debugmodes2) {
 	width: 430px;
 }
 
-table{
+table {
 	border-collapse: collapse;
 	background-color: 'transparent'
 }
