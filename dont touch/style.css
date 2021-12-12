@@ -1,3 +1,4 @@
+@charset "utf-8";
 @import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');
 * {
 	scrollbar-width: 7px;
@@ -34,8 +35,8 @@ html {
 @media screen and (max-width:1023px) {
 	body {
 		width: 99%;
-		background: -moz-linear-gradient(245deg, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%);
-		background: -webkit-linear-gradient(245deg, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%);
+		background: -moz-linear-gradient(top, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%);
+		background: -webkit-linear-gradient(top, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%);
 		background: linear-gradient(245deg, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%);
 		zoom: 200%;
 		overflow-y: scroll;
@@ -100,7 +101,7 @@ html {
 	/*スタート・リセットボタン*/
 	.buttons1,
 	.buttons2 {
-		cursor: pointer;
+		cursor: pointer
 	}
 	.buttons1 {
 		bottom: 60px;
@@ -121,21 +122,27 @@ html {
 	}
 	.buttonfont {
 		font-size: 15px;
+		color: #FFF
 	}
 	/*入力ボタンに関して*/
 	.button1 {
 		width: 50px;
 		height: 40px;
 		cursor: pointer;
-		color: rgba(0, 0, 0, 0);
 		border: 3px solid #FFF
 	}
 	.button2 {
 		width: 33px;
 		height: 50px;
 		cursor: pointer;
-		color: rgba(0, 0, 0, 0);
 		border: 3px solid #FFF
+	}
+	#InstallBtn{
+		width: 100%;
+		height: 30px;
+		bottom: 1px;
+		left: 1px;
+		position: fixed
 	}
 	.name {
 		margin-left: 125px
@@ -167,20 +174,17 @@ html {
 		bottom: 30px;
 		position: relative;
 		font-size: 20px
+	}.cp_hr01 {display:none;
+	}.cp_hr02 {display:none;
 	}
-	.cp_hr01 {
-		display: none;
-	}
-	.cp_hr02 {
-		display: none;
-	}
+
 }
 
 @media screen and (min-width:1024px) {
 	body {
 		width: 99%;
-		background: -moz-linear-gradient(245deg, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%);
-		background: -webkit-linear-gradient(245deg, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%);
+		background: -moz-linear-gradient(top, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%);
+		background: -webkit-linear-gradient(top, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%);
 		background: linear-gradient(245deg, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%);
 		zoom: 130%;
 		overflow-y: scroll;
@@ -254,6 +258,19 @@ html {
 		border-radius: 100vh;
 		box-shadow: 0px 3px 6px 3px black
 	}
+	#volume[type="range"]::before{
+		content: '-';
+		font-size:15px;
+		top: 75px;
+		position: fixed;
+	}
+	#volume[type="range"]::after{
+		content: '+';
+		font-size:15px;
+		top: 75px;
+		left: 150px;
+		position: fixed;
+	}
 	#volume[type="range"]::-moz-focus-outer {
 		border: 0
 	}
@@ -262,20 +279,19 @@ html {
 	}
 	#volumepng {
 		font-size: 18px;
-		color: #000;
 		top: 123px;
 		left: 35px;
 		position: fixed
 	}
 	#volumetext {
 		top: 130px;
-		left: 180px;
+		left: 175px;
 		position: fixed
 	}
 	/*スタート・リセットボタン*/
 	.buttons1,
 	.buttons2 {
-		cursor: pointer;
+		cursor: pointer
 	}
 	.buttons1 {
 		width: 110px;
@@ -292,6 +308,7 @@ html {
 	}
 	.buttonfont {
 		font-size: 20px;
+		color: #FFF
 	}
 	/*入力ボタンに関して*/
 	.button1 {
@@ -326,6 +343,11 @@ html {
 		-o-transition: all 0.1s ease;
 		transition: all 0.1s ease;
 	}
+	#InstallBtn{
+		bottom: 1px;
+		left: 1px;
+		position: fixed
+	}
 	.name {
 		margin-left: 125px
 	}
@@ -341,8 +363,7 @@ html {
 	#remainingtime,
 	#time {
 		font-size: 30px
-	}
-	.cp_hr01 {
+	}.cp_hr01 {
 		top: 80px;
 		left: 0px;
 		position: relative;
@@ -350,8 +371,7 @@ html {
 		border-width: 1px 0 0 0;
 		border-style: dashed;
 		border-color: #FFF;
-	}
-	.cp_hr02 {
+	}.cp_hr02 {
 		top: 105px;
 		left: 2px;
 		position: relative;
@@ -360,7 +380,7 @@ html {
 		border-style: dashed;
 		border-color: #FFF;
 	}
-	#debugmodes2 {
+	#debugmodes2{
 		zoom: 100%;
 		position: fixed;
 		top: 10px;
@@ -374,27 +394,40 @@ html {
 	}
 }
 
+i:not(#volumepng) {
+	color:#FFF;
+}
+
 a {
+	color: #ffffff;
 	font: 15px;
-	cursor: pointer;
+	cursor: pointer
 }
 
 footer {
 	text-align: center
 }
 
-#debugmodes2 .font,
-.button,
-.debugmodes2 {
+font,
+h1,
+h3,
+h4,
+h5,
+h6,
+p {
+	color: #ffffff
+}
+
+#debugmodes2 .font,.button,.debugmodes2{
 	top: 25px;
 	position: relative
 }
 
-table:not(.debugmodes2) {
+table:not(.debugmodes2){
 	width: 430px;
 }
 
-table {
+table{
 	border-collapse: collapse;
 	background-color: 'transparent'
 }
@@ -547,6 +580,7 @@ h1 {
 }
 
 #mozi {
+	color: #FFF;
 	top: 185px;
 	left: 15px;
 	position: fixed
@@ -560,6 +594,7 @@ h1 {
 }
 
 #debugmode {
+	color: #FFF;
 	top: 165px;
 	left: 15px;
 	position: fixed
@@ -567,12 +602,14 @@ h1 {
 
 #timedebug {
 	background-color: #FFF;
+	color: #FFF;
 	top: 20px;
 	right: 2px;
 	position: fixed
 }
 
 #example1 {
+	color: #FFF;
 	top: 40px;
 	right: 2px;
 	position: fixed;
@@ -581,12 +618,14 @@ h1 {
 
 #humansdebug {
 	background-color: #FFF;
+	color: #FFF;
 	top: 60px;
 	right: 2px;
 	position: fixed
 }
 
 #example2 {
+	color: #FFF;
 	top: 80px;
 	right: 2px;
 	position: fixed;
@@ -594,6 +633,7 @@ h1 {
 }
 
 #tekiyou {
+	color: #FFF;
 	top: 100px;
 	right: 2px;
 	position: fixed
@@ -657,7 +697,7 @@ th {
 }
 
 table b {
-	cursor: pointer;
+	cursor: pointer
 }
 
 .mokuteki b:hover {
