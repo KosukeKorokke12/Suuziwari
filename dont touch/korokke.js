@@ -1,1054 +1,745 @@
-'use strict';
-//数字割りゲーム var1.0
-
-//ブラウザ判定
-var base_href = $('base').attr('href');
-var userAgent = window.navigator.userAgent.toLowerCase(); //データ取得
-if (userAgent.indexOf('msie') != -1 ||
-	userAgent.indexOf('trident') != -1) {
-	window.location.href = base_href + "IE互換用/数字割りゲーム.IE.html"
-	document.getElementById("use")
-		.innerHTML = '使っているブラウザ：<i class="fab fa-internet-explorer"></i>Internet Explorer<br>動作を保証しません IE互換のhtmlを開いてください';
-} else if (userAgent.indexOf('edge') != -1 || userAgent.indexOf('edg') != -1) {
-	document.getElementById("use")
-		.innerHTML = '使っているブラウザ：<i class="fab fa-edge"></i>Edge<br>動作確認しているブラウザです';
-} else if (userAgent.indexOf('opr') != -1) {
-	document.getElementById("use")
-		.innerHTML = '使っているブラウザ：<i class="fab fa-opera"></i>Opera<br>動作確認はしていませんが 使用上動くはずのブラウザです';
-} else if (userAgent.indexOf('chrome') != -1) {
-	document.getElementById("use")
-		.innerHTML = '使っているブラウザ：<i class="fab fa-chrome"></i>Chrome or Vivaldi<br>動作確認しているブラウザです';
-} else if (userAgent.indexOf('safari') != -1) {
-	document.getElementById("use")
-		.innerHTML = '使っているブラウザ：<i class="fab fa-safari"></i>Safari<br>動作確認はしていませんが 使用上動くはずのブラウザです';
-} else if (userAgent.indexOf('firefox') != -1) {
-	document.getElementById("use")
-		.innerHTML = '使っているブラウザ：<i class="fab fa-firefox-browser"></i>FireFox<br>動作確認しているブラウザです'
-} else {
-	document.getElementById("use")
-		.innerHTML = '使っているブラウザ：<i class="fab fa-js-square"></i>動作未確認のブラウザ<br>動作は保証されません';
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');
+* {
+	scrollbar-width: 7px;
+	/*細さ*/
+	scrollbar-color: #fff #333;
+	/*つまみの色 軌道の色*/
+	font-family: "Comic Sans MS", 'Kosugi Maru', 'Avenir', 'Helvetica Neue', 'Helvetica', 'Arial', 'Hiragino Sans', 'ヒラギノ角ゴシック', 'Yu Gothic', 'メイリオ', 'ＭＳ Ｐゴシック', 'MS PGothic', cursive;
+	font-style: normal;
+	color: #FFF;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	text-shadow: #303030 0 -1px
 }
 
-registerInstallAppEvent(document.getElementById("InstallBtn"));
-function registerInstallAppEvent(elem){
-  window.addEventListener('beforeinstallprompt', function(event){
-	console.log("beforeinstallprompt: ", event);
-	event.preventDefault();
-	elem.promptEvent = event;
-	elem.style.display = "block";
-	return false;
-  });
-  function installApp() {
-	if(elem.promptEvent){
-	  elem.promptEvent.prompt();
-	  elem.promptEvent.userChoice.then(function(choice){
-		elem.style.display = "none";
-		elem.promptEvent = null;
-	  });
+div:not(.kihonn),
+#remainingtime1,
+#remainingtime2,
+#time {
+	font-weight: bold;
+}
+
+html {
+	box-sizing: border-box;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	touch-action: manipulation;
+}
+
+/*レスポンス関連*/
+
+@media screen and (max-width:1023px) {
+	body {
+		width: 99%;
+		background: -moz-linear-gradient(top, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%);
+		background: -webkit-linear-gradient(top, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%);
+		background: linear-gradient(245deg, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%);
+		zoom: 200%;
+		overflow-y: scroll;
+		overflow: hidden scroll;
 	}
-  }
-  elem.addEventListener("click", installApp);
-}/*インストール用のボタン*/
-
-$('.table b')
-	.on('click', function() {
-		$(this)
-			.next()
-			.next()
-			.toggleClass('hidden');
-	})
-
-jQuery(function() {
-	var appear = false;
-	var pagetop = $('#page_top');
-	$(window)
-		.scroll(function() {
-			if ($(this)
-				.scrollTop() > 150) { //100pxスクロールしたら
-				if (appear == false) {
-					appear = true;
-					pagetop.stop()
-						.animate({
-							'bottom': '10px' //下から10pxの位置に
-						}, 300); //0.3秒かけて現れる
-				}
-			} else if (appear) {
-				appear = false;
-				pagetop.stop()
-					.animate({
-						'bottom': '-70px' //下から-50pxの位置に
-					}, 300); //0.3秒かけて隠れる
-			}
-		});
-	pagetop.click(function() {
-		$('body, html')
-			.animate({
-				scrollTop: 0
-			}, 250); //0.25秒かけてトップへ戻る
-		return false;
-	});
-});
-
-if (location.protocol != "file:") {
-	Notification.requestPermission()
-};
-
-
-zisseki() //実績関連
-window.onload = function() {
-	document.body.oncontextmenu = function() {
-		return false;
-	} //右クリック制限(開発者モードによるコード変換の妨害用)
-	document.getElementById("timer_sec")
-		.textContent = 20 * 10; //時間設定
-	var time = timer_sec.textContent //上記と同様
-	document.getElementById("area1")
-		.style.opacity = '0';
-	document.getElementById("debugmodes1")
-		.style.visibility = 'hidden' //デバックモード時に表示する文字
-	document.getElementById("p1")
-		.style.display = "block"; //スタートボタン設定
-	debugmodetext.style.display = "none";
-	document.getElementById("debugmodes3")
-		.style.display = "block"
-	document.getElementById("reset")
-		.style.display = "none"; //リセット設定
-	document.getElementById("debugmode")
-		.textContent = "nomalmode";
-	document.getElementById("list")
-		.style.visibility = 'hidden'
-	document.getElementById("started")
-		.textContent = 0;
-	document.getElementById("clearmode")
-		.textContent = "notclear"; //クリア判定
-	document.getElementById("cleartime1")
-		.textContent = " +0.00"; //追加時間設定
-	cleartime1.style.opacity = 0;
-	cleartime2.style.opacity = 0;
-	document.getElementById("humans_number")
-		.textContent = 4; //残機設定
-	document.getElementById("humans_max")
-		.textContent = 4;
-	color(); //残基による文字色適用
-	if (localStorage.zisseki1 == 1) {
-		zisseki1.textContent = "クリア"
-	} else {
-		zisseki1.textContent = "未達成"
+	.OR {
+		zoom: 90%;
+		left: 50px;
+		position: relative
 	}
-	if (localStorage.zisseki2 == 1) {
-		zisseki2.textContent = "クリア"
-	} else {
-		zisseki2.textContent = "未達成"
+	.game {
+		zoom: 100%;
+		font-size: 6px
 	}
-	if (localStorage.zisseki3 == 1) {
-		zisseki3.textContent = "クリア"
-	} else {
-		zisseki3.textContent = "未達成"
+	.list {
+		zoom: 110%
 	}
-	if (localStorage.test <= 99) {
-		document.getElementById("test")
-			.textContent = `BESTLEVEL: ${localStorage.test}`
-	} else {
-		document.getElementById("test")
-			.textContent = `BESTLEVEL:+99`
+	/*画面追従関連*/
+	.backgroundcolor {
+		display: none
 	}
-	document.getElementById("zanki")
-		.textContent = 0;
-	const spinner = document.getElementById('loading');
-	spinner.classList.add('loaded');
-	document.title = '数字割りゲーム varβ1.2'
-	if (localStorage.HERD == 1 && localStorage.Play == 1) {
-		herd.checked = true
-	} else {
-		localStorage.HERD = 0;
-		localStorage.Play == 1
+	#volume[type="range"] {
+		zoom: 70%;
+		top: 105px;
+		left: 10px;
+		position: fixed;
+		-webkit-appearance: none;
+		height: 2px;
+		cursor: pointer;
+		outline: none;
+		border-radius: 10px;
+		background: #fff
 	}
+	#volume[type="range"]::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		background: #C0C0C0;
+		width: 15px;
+		height: 15px;
+		border-radius: 50%;
+		box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0)
+	}
+	#volume[type="range"]::-moz-range-thumb {
+		-webkit-appearance: none;
+		background: #C0C0C0;
+		width: 15px;
+		height: 15px;
+		border-radius: 50%;
+		box-shadow: 0px 3px 6px 0px black
+	}
+	#volume[type="range"]::-moz-focus-outer {
+		border: 0
+	}
+	#volume[type="range"]:active::-webkit-slider-thumb {
+		box-shadow: 0px 5px 10px -2px black
+	}
+	#volumetext {
+		zoom: 70%;
+		top: 127px;
+		left: 0px;
+		position: fixed
+	}
+	/*スタート・リセットボタン*/
+	.buttons1 {
+		bottom: 60px;
+		position: relative;
+		width: px;
+		height: 75px;
+		border: 3px solid #FFF
+	}
+	.buttons2 {
+		bottom: 60px;
+		position: relative;
+		width: 120px;
+		height: 70px;
+		border: 3px solid #FFF
+	}
+	.buttons2::after {
+		margin-left: 125px
+	}
+	.buttonfont {
+		font-size: 15px;
+		color: #FFF
+	}
+	/*入力ボタンに関して*/
+	.button1 {
+		width: 50px;
+		height: 40px;
+		;
+		border: 3px solid #FFF
+	}
+	.button2 {
+		width: 33px;
+		height: 50px;
+		;
+		border: 3px solid #FFF
+	}
+	#InstallBtn{
+		width: 100%;
+		height: 30px;
+		bottom: 1px;
+		left: 1px;
+		position: fixed
+	}
+	.name {
+		margin-left: 125px
+	}
+	#korokke {
+		bottom: 30px;
+		position: relative;
+		font-size: 35px
+	}
+	.LEVELs1 {
+		bottom: 40px;
+		position: relative;
+		font-size: 20px
+	}
+	.LEVELs2 {
+		bottom: 35px;
+		position: relative;
+		font-size: 20px
+	}
+	.buttoner {
+		bottom: 40px;
+		position: relative;
+	}
+	.kihonn {font-size: 10px}
+	#remainingtime1,
+	#remainingtime2,
+	#time {
+		bottom: 30px;
+		position: relative;
+		font-size: 20px
+	}
+	.cp_hr01,.cp_hr02 {display:none}
 
-	//ボリューム設定（ミュートあり）
-	var hoge = document.getElementById("volume");
-	// 選択した際のイベント取得
-	hoge.addEventListener('input', () => {
-		var value = document.getElementById("volume")
-			.value
-		c(value)
-		localStorage.Volume = value;
-	});
-};
+}
 
-function c(value) {
-	if (value == 0) {
-		bgm1.muted = true;
-		bgm2.muted = true;
-		bgm3.muted = true;
-		bgm4.muted = true;
-		document.getElementById("volumetext")
-			.textContent = "ミュート";
-		volumepng.className = 'fas fa-volume-mute';
-	} else {
-		bgm1.muted = false;
-		bgm2.muted = false;
-		bgm3.muted = false;
-		bgm4.muted = false;
-		bgm1.volume = Math.ceil(value) / 100;
-		bgm2.volume = Math.ceil(value) / 100;
-		bgm3.volume = Math.ceil(value) / 100;
-		bgm4.volume = Math.ceil(value) / 100;
-		document.getElementById("volumetext")
-			.textContent = `${value}%`;
-		if (value < 50) {
-			volumepng.className = 'fas fa-volume-down';
-		} else {
-			volumepng.className = 'fas fa-volume-up';
+@media screen and (min-width:1024px) {
+	body {
+		width: 99%;
+		background: -moz-linear-gradient(top, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%);
+		background: -webkit-linear-gradient(top, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%);
+		background: linear-gradient(245deg, #000 10%, #999 10% 12%, #333 12% 55%, #999 55% 60%, #000 60% 90%, #333 90%);
+		zoom: 130%;
+		overflow-y: scroll;
+		overflow: hidden scroll
+	}
+	.game {
+		font-size: 10px;
+		bottom: 300px;
+		right: 220px;
+		position: relative
+	}
+	.list {
+		top: 0px;
+		left: 225px;
+		position: relative
+	}
+	/*画面追従関連*/
+	.backgroundcolor {
+		zoom: 100%;
+		position: fixed;
+		top: 10px;
+		left: 10px;
+		width: 280px;
+		height: 170px;
+		background: #999;
+		border-radius: 66% 34% 65% 35% / 38% 57% 43% 62%;
+		border: 3px solid #FFF;
+		box-shadow: 10px 15px 10px #000
+	}
+	#volume[type="range"] {
+		zoom: 160%;
+		top: 80px;
+		left: 37px;
+		position: fixed;
+		-webkit-appearance: none;
+		height: 2px;
+		cursor: pointer;
+		outline: none;
+		border-radius: 10px;
+		background: #fff
+	}
+	@-moz-document url-prefix() {
+		#volume[type="range"] {
+			zoom: 160%;
+			top: 125px;
+			left: 50px;
+			position: fixed;
+			-webkit-appearance: none;
+			height: 2px;
+			cursor: pointer;
+			outline: none;
+			border-radius: 10px;
+			background: #fff
 		}
+	}
+	#volume[type="range"]::-webkit-slider-thumb {
+		zoom: 80%;
+		-webkit-appearance: none;
+		background: #333;
+		width: 13px;
+		height: 15px;
+		border-radius: 100vh;
+		box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15)
+	}
+	#volume[type="range"]::-moz-range-thumb {
+		zoom: 80%;
+		-webkit-appearance: none;
+		background: #333;
+		width: 15px;
+		height: 15px;
+		border-radius: 100vh;
+		box-shadow: 0px 3px 6px 3px black
+	}
+	#volume[type="range"]::before{
+		content: '-';
+		font-size:15px;
+		top: 78px;
+		position: fixed;
+	}
+	#volume[type="range"]::after{
+		content: '+';
+		font-size:15px;
+		top: 78px;
+		left: 150px;
+		position: fixed;
+	}
+	#volume[type="range"]::-moz-focus-outer {
+		border: 0
+	}
+	#volume[type="range"]:active::-webkit-slider-thumb {
+		box-shadow: 0px 5px 10px -2px black
+	}
+	#volumepng {
+		font-size: 18px;
+		top: 123px;
+		left: 35px;
+		position: fixed
+	}
+	#volumetext {
+		top: 133px;
+		left: 175px;
+		position: fixed
+	}
+	/*スタート・リセットボタン*/
+	.buttons1 {
+		width: 110px;
+		height: 80px;
+		border: 3px solid #FFF
+	}
+	.buttons2 {
+		width: 140px;
+		height: 90px;
+		border: 3px solid #FFF
+	}
+	.buttons2::after {
+		margin-left: 125px
+	}
+	.buttonfont {
+		font-size: 20px;
+		color: #FFF
+	}
+	/*入力ボタンに関して*/
+	.button1 {
+		width: 80px;
+		height: 60px;
+		bottom: 5px;
+		position: relative;
+		;
+		border: 3px solid #FFF
+	}
+	.button2 {
+		width: 53px;
+		height: 70px;
+		;
+		border: 3px solid #FFF
+	}
+	.button1,
+	.button2,
+	#lost {
+		box-shadow: 5px 5px #000;
+	}
+	.button1:active,
+	.button2:active,
+	#lost:active,
+	.active {
+		box-shadow: none;
+		position: relative;
+		left: 1px;
+		top: 0.5px;
+		-webkit-transition: all 0.1s ease;
+		-moz-transition: all 0.1s ease;
+		-o-transition: all 0.1s ease;
+		transition: all 0.1s ease;
+	}
+	#InstallBtn{
+		bottom: 1px;
+		left: 1px;
+		position: fixed
+	}
+	.name {
+		margin-left: 125px
+	}
+	#korokke {
+		font-size: 55px
+	}
+	.LEVELs1,
+	.LEVELs2 {
+		bottom: 10px;
+		position: relative;
+		font-size: 30px
+	}
+	#remainingtime1,
+	#remainingtime2,
+	#time {
+		font-size: 30px
+	}.cp_hr01 {
+		top: 80px;
+		left: 0px;
+		position: relative;
+		width: 260px;
+		border-width: 1px 0 0 0;
+		border-style: dashed;
+		border-color: #FFF;
+	}.cp_hr02 {
+		top: 105px;
+		left: 2px;
+		position: relative;
+		width: 250px;
+		border-width: 1px 0 0 0;
+		border-style: dashed;
+		border-color: #FFF;
+	}
+	#debugmodes2{
+		zoom: 100%;
+		position: fixed;
+		top: 10px;
+		right: 10px;
+		width: 330px;
+		height: 180px;
+		background: #000;
+		border-radius: 38% 57% 43% 62% / 66% 34% 65% 35%;
+		border: 3px solid #FFF;
+		box-shadow: 10px 15px 10px #000
 	}
 }
 
-//小ネタ関係
-function mouseover() {
-	document.getElementById("area1")
-		.style.opacity = '1';
-};
-
-function mouseout() {
-	document.getElementById("area1")
-		.style.opacity = '0';
-};
-
-//debugの記録を残すtestのリセットボタンの動作
-function s() {
-	localStorage.test = 0;
-	document.getElementById("test")
-		.textContent = `BESTLEVEL: ${localStorage.test}`;
-}
-//テスト中の実績機能
-function f() {
-	localStorage.setItem("zisseki1", "0")
-	localStorage.setItem("zisseki2", "0")
-	localStorage.setItem("zisseki3", "0")
-	zisseki1.textContent = "未達成"
-	zisseki2.textContent = "未達成"
-	zisseki3.textContent = "未達成"
+i{
+	color:#FFF;
 }
 
-//「bestlevel」、テスト中の動作
-if (typeof localStorage.test === 'undefined') {
-	localStorage.setItem("test", 1)
-}
-//実績、テスト中の動作
-if (typeof localStorage.zisseki1 === 'undefined') {
-	localStorage.setItem("zisseki1", 0)
-}
-if (typeof localStorage.zisseki2 === 'undefined') {
-	localStorage.setItem("zisseki2", 0)
-}
-if (typeof localStorage.zisseki3 === 'undefined') {
-	localStorage.setItem("zisseki3", 0)
-}
-if (typeof localStorage.HERD === 'undefined') {
-	localStorage.setItem("HERD", 0)
-}
-if (typeof localStorage.Play === 'undefined') {
-	localStorage.setItem("Play", 0)
-} else if (localStorage.Play == 0) {
-	herd.disabled = true;
-} else {
-	herd.disabled = false;
-}
-if (typeof localStorage.Volume === 'undefined') {
-	localStorage.setItem("Volume", 50)
+a {
+	color: #ffffff;
+	font: 15px;
+	cursor: pointer
 }
 
-//音声適用+再生設定
-const btn = document.querySelector("#p1");
-const bgm1 = new Audio("dont touch/buzzer.mp3");
-const bgm2 = new Audio("dont touch/Answer.mp3");
-const bgm3 = new Audio("dont touch/start.mp3");
-const bgm4 = new Audio("BGM.mp3"); // bgm
-bgm1.volume = 1;
-bgm2.volume = 1;
-bgm3.volume = 1;
-bgm4.volume = 1;
-//再生終了後の処理（すべての音声に関して）
-btn.addEventListener("click", () => {
-	bgm3.play();
-	bgm4.play();
-});
-bgm1.addEventListener("ended", () => {
-	bgm1.pause();
-	bgm1.currentTime = 0;
-});
-bgm2.addEventListener("ended", () => {
-	bgm2.pause();
-	bgm2.currentTime = 0;
-});
-bgm3.addEventListener("ended", () => {
-	bgm3.pause();
-	bgm3.currentTime = 0;
-});
-//BGM今使っていないため動いていません↓
-bgm4.addEventListener("ended", () => {
-	bgm4.pause();
-	bgm4.currentTime = 0;
-	bgm4.play();
-});
-try {
-	document.getElementById("volume")
-		.value = localStorage.Volume;
-	c(localStorage.Volume)
-} catch (e) {
-	localStorage.Volume = document.getElementById("volume")
-		.value
-	c(localStorage.Volume)
-	document.getElementById("volumetext")
-		.textContent = "50%";
-	volumepng.className = 'fas fa-volume-up';
+footer {
+	text-align: center
 }
 
-//デバックモードによる時間変更・残基変更
-function debug() {
-	document.getElementById("timer_sec")
-		.textContent = +example1.value * 100
-	document.getElementById("humans_number")
-		.textContent = +example2.value
+font,
+h1,
+h3,
+h4,
+h5,
+h6,
+p {
+	color: #ffffff
 }
 
-//リセットボタン機構
-function p2() {
-	scrollTo(0, 0);
-	korokke.textContent = "??";
-	document.getElementById("time")
-		.textContent = "0.20.0";
-	number_number.textContent = "??";
-	humans_number.textContent = 4;
-	humans_max.textContent = 4;
-	location.reload();
-};
-
-//keyboard入力時に色変更
-$('#buttonid1,#buttonid2,#buttonid3,#buttonid4,#buttonid5,#p1,#reset')
-	.on('click'
-		, function() {
-			if (started.textContent == 1) {
-				g()
-				this.style.backgroundColor = "#999";
-			}
-		}
-	)
-
-//変更した色をもとに戻す
-
-function g() {
-	buttonid1.style.backgroundColor = "#333";
-	buttonid2.style.backgroundColor = "#333";
-	buttonid3.style.backgroundColor = "#333";
-	buttonid4.style.backgroundColor = "#333";
-	buttonid5.style.backgroundColor = "#333";
-	p1.style.backgroundColor = "#333";
-	reset.style.backgroundColor = "#333";
+#debugmodes2 .font,.button,.debugmodes2{
+	top: 25px;
+	position: relative
 }
 
-
-//キー入力判定
-window.addEventListener("keydown", (e) => {
-	if (started.textContent == 1) {
-		if (e.code === 'KeyW') {
-			e.preventDefault();
-			g();
-			buttonid1.style.backgroundColor = "#999";
-			buttonid1.classList.add("active")
-			a(2);
-		};
-		if (e.code === 'KeyE') {
-			e.preventDefault();
-			g();
-			buttonid2.style.backgroundColor = "#999";
-			buttonid2.classList.add("active")
-			a(3);
-		};
-		if (e.code === 'KeyA') {
-			e.preventDefault();
-			g();
-			buttonid3.style.backgroundColor = "#999";
-			buttonid3.classList.add("active")
-			a(5);
-		};
-		if (e.code === 'KeyS') {
-			e.preventDefault();
-			g();
-			buttonid4.style.backgroundColor = "#999";
-			buttonid4.classList.add("active")
-			a(7);
-		};
-		if (e.code === 'KeyD') {
-			e.preventDefault();
-			g();
-			buttonid5.style.backgroundColor = "#999";
-			buttonid5.classList.add("active")
-			a(11);
-		};
-	}
-	if (event.ctrlKey && e.code == 'KeyR' || e.keyCode == 116) {
-		e.preventDefault();
-		event.returnValue = false;
-		p2()
-	};
-
-	if (e.KeyCode == 112 || e.KeyCode == 113 || e.KeyCode == 114 || e.KeyCode == 115 || e.KeyCode == 117 || e.KeyCode == 118 || e.KeyCode == 119 || e.KeyCode == 120 || e.KeyCode == 121 || e.keyCode == 123) {
-		e.preventDefault();
-		event.returnValue = false;
-	};
-	if (e.code === 'KeyM') {
-		e.preventDefault();
-		if (bgm1.muted == false) {
-			bgm1.muted = true;
-			bgm2.muted = true;
-			bgm3.muted = true;
-			bgm4.muted = true;
-			document.getElementById("volumetext")
-				.textContent = "ミュート";
-			document.getElementById("volume")
-				.value = 0;
-			volumepng.className = 'fas fa-volume-mute';
-		} else {
-			bgm1.muted = false;
-			bgm2.muted = false;
-			bgm3.muted = false;
-			bgm4.muted = false;
-			document.getElementById("volumetext")
-				.textContent = "50%";
-			document.getElementById("volume")
-				.value = 50;
-			volumepng.className = 'fas fa-volume-up';
-		}
-		localStorage.Volume = document.getElementById("volume")
-			.value;
-	};
-	if (e.code === 'ArrowUp' || e.code === 'ArrowRight') {
-		event.preventDefault();
-		event.returnValue = false;
-		bgm1.muted = false;
-		bgm2.muted = false;
-		bgm3.muted = false;
-		bgm4.muted = false;
-		document.getElementById("volume")
-			.value++;
-		if (document.getElementById("volume")
-			.value > 100) {
-			document.getElementById("volume")
-				.value = 100;
-			volumepng.className = 'fas fa-volume-up';
-		} else if (document.getElementById("volume").value > 50) {
-			volumepng.className = 'fas fa-volume-up';
-		} else {
-			volumepng.className = 'fas fa-volume-down';
-		}
-		document.getElementById("volumetext")
-			.textContent = `${volume.value}%`;
-		bgm1.volume = Math.ceil(volume.value) / 100;
-		bgm2.volume = Math.ceil(volume.value) / 100;
-		bgm3.volume = Math.ceil(volume.value) / 100;
-		bgm4.volume = Math.ceil(volume.value) / 100;
-		event.preventDefault();
-	};
-	if (e.code === 'ArrowDown' || e.code === 'ArrowLeft') {
-		event.preventDefault();
-		event.returnValue = false;
-		bgm1.muted = false;
-		bgm2.muted = false;
-		bgm3.muted = false;
-		bgm4.muted = false;
-		document.getElementById("volume")
-			.value--;
-		if (volume.value < 1) {;
-			bgm1.muted = true;
-			bgm2.muted = true;
-			bgm3.muted = true;
-			bgm4.muted = true;
-			document.getElementById("volumetext")
-				.textContent = "ミュート";
-			document.getElementById("volume")
-				.value = 0
-			volumepng.className = 'fas fa-volume-mute';
-		} else {
-			document.getElementById("volumetext")
-				.textContent = `${volume.value}%`;
-			bgm1.volume = Math.ceil(volume.value) / 100;
-			bgm2.volume = Math.ceil(volume.value) / 100;
-			bgm3.volume = Math.ceil(volume.value) / 100;
-			bgm4.volume = Math.ceil(volume.value) / 100;
-			if (document.getElementById("volume").value > 50) {
-				volumepng.className = 'fas fa-volume-up';
-			} else {
-				volumepng.className = 'fas fa-volume-down';
-			}
-		}
-		localStorage.Volume = document.getElementById("volume")
-			.value;
-		event.preventDefault();
-	};
-	//以下デバックモードON,OFF表示設定
-	if (event.ctrlKey && event.altKey && e.code == 'KeyB') {
-		if (debugmode.textContent == "nomalmode") {
-			var pw1;
-			var pw2;
-			pw1 = prompt("1つ目のパスワードを入力して下さい。", "");
-			if (pw1 != null) {
-				pw2 = prompt("入力完了\n2つ目のパスワードを入力して下さい。", "");
-			}
-			document.body.oncontextmenu = function() {
-				return true;
-			}
-		} else {
-			var pw1 = String.fromCharCode(75, 111, 114, 111, 107, 107, 101, 51, 52, 55);
-			var pw2 = String.fromCharCode(107, 97, 50, 51, 49, 54, 54);
-			document.body.oncontextmenu = function() {
-				return false;
-			}
-		}
-		if (pw1 == String.fromCharCode(75, 111, 114, 111, 107, 107, 101, 51, 52, 55) && pw2 == String.fromCharCode(107, 97, 50, 51, 49, 54, 54)) {
-			e.preventDefault();
-			if (debugmode.textContent == "nomalmode") {
-				document.getElementById("debugmode")
-					.textContent = "debugmode"
-			} else {
-				document.getElementById("debugmode")
-					.textContent = "nomalmode"
-			} //デバックモードの文字表示
-
-			if (document.getElementById("debugmodes1")
-				.style.visibility == 'visible') {
-				document.getElementById("debugmodes1")
-					.style.visibility = 'hidden';
-			} else {
-				document.getElementById("debugmodes1")
-					.style.visibility = 'visible';
-			}; //上記と同様
-			const debugmodetext = document.getElementById("debugmodetext");
-			if (debugmodetext.style.display == "block") {
-				// noneで非表示
-				debugmodetext.style.display = "none";
-			} else {
-				// blockで表示
-				debugmodetext.style.display = "block";
-			};
-		} else {
-			if (pw1 !== null && pw2 !== null) {
-				alert("1 or 2 password is incorrect")
-			} else {
-				alert("1 or 2 password is not null")
-			}
-		};
-	};
-	if (e.code === 'Space') {
-		event.preventDefault();
-		event.returnValue = false;
-		scrollBy(0, -window.innerHeight);
-		window.scrollTo({
-			top: 0
-			, behavior: 'smooth'
-		});
-		if (started.textContent == 0) {
-			bgm3.play();
-			bgm4.play();
-			start(timer_sec.textContent)
-		} //スペースキーで開始する設定(event.preventDefaultでスペースによるページスクロールを止めている。)
-		else {
-			p2();
-		};
-	}; //上記と同様
-	return false
-}); //Spacekeyの入力されたときの動作
-
-window.addEventListener("keyup", (e) => {
-	if (e.code === 'KeyW' || e.code === 'KeyE' || e.code === 'KeyA' || e.code === 'KeyS' || e.code === 'KeyD') {
-		buttonid1.classList.remove("active");
-		buttonid2.classList.remove("active");
-		buttonid3.classList.remove("active");
-		buttonid4.classList.remove("active");
-		buttonid5.classList.remove("active");
-	}
-})
-
-function zisseki() {
-	if (localStorage.zisseki1 == 1) {
-		zisseki1.textContent = "クリア"
-	} else {
-		zisseki1.textContent = "未達成"
-	}
-	if (localStorage.zisseki2 == 1) {
-		zisseki2.textContent = "クリア"
-	} else {
-		zisseki2.textContent = "未達成"
-	}
-	if (localStorage.zisseki3 == 1) {
-		zisseki3.textContent = "クリア"
-	} else {
-		zisseki3.textContent = "未達成"
-	}
+table:not(.debugmodes2){
+	width: 430px;
 }
-zisseki() //実績関連
 
-//開始ボタン設定
-function start(time) {
-	scrollTo(0, 10);
-	zisseki()
-	if (herd.checked) {
-		humans_number.style.color = 'red';
-		document.getElementById("timer_sec")
-			.textContent = 10 * 10; //時間設定
-		var time = timer_sec.textContent //上記と同様
-		document.getElementById("humans_number")
-			.textContent = 1; //残機設定
-		document.getElementById("humans_max")
-			.textContent = 2
-		localStorage.HERD = 1;
-		herd.disabled = true;
-	} else {
-		localStorage.HERD = 0;
-		herd.disabled = true;
-		document.getElementById("humans_max")
-			.textContent = humans_number.textContent;
-	}
-	color()
-	if (localStorage.zisseki1 == 0) {
-		localStorage.zisseki1 = 1;
-		zisseki();
-		if (Notification.permission === 'granted') {
-			navigator.serviceWorker.ready.then(registration => {
-				registration.active.postMessage('初めてのプレイ');
-			});
-		}
-	}
-	started.textContent = 1;
-	const p1 = document.getElementById("p1");
-	if (p1.style.display == "block") {
-		// noneで非表示
-		p1.style.display = "none";
-	} else {
-		// blockで表示
-		p1.style.display = "block";
-	};
-	const reset = document.getElementById("reset");
-	if (reset.style.display == "none") {
-		// noneで非表示
-		reset.style.display = "block";
-	} else {
-		// blockで表示
-		reset.style.display = "none";
-	};
-	timmer(time);
-	document.getElementById("korokke")
-		.textContent = kihonn(1);
-	scrollTo(0, 0);
-};
+table{
+	border-collapse: collapse;
+	background-color: 'transparent'
+}
 
-//数字決め機構
-function kihonn(number) {
-	var note = [];
-	var two = 0;
-	var three = 0;
-	var five = 0;
-	var seven = 0;
-	var eleven = 0;
-	const elements = [2, 3, 5, 7, 11]; //element変数=掛け合わせる元
-	var Suuzi = 1;
-	document.getElementById("number_number")
-		.textContent = number;
-	//elements変数同士で掛け合わせている
-	if (number >= 35) {
-		number = 35
-	}
-	number = Math.floor(number / 2) + 1
-	for (var i = 0; i < number; i++) {
-		var rand = Math.floor(Math.random() * 5);
-		Suuzi = Suuzi * elements[rand];
-		note[i] = rand
-	};
-	//答えの確認用
-	for (var z = 0; z < note.length; z++) {
-		if (note[z] == 0) {
-			two++
-		} else if (note[z] == 1) {
-			three++
-		} else if (note[z] == 2) {
-			five++
-		} else if (note[z] == 3) {
-			seven++
-		} else if (note[z] == 4) {
-			eleven++
-		};
-	} //乗の一時的な代役(例 2^3 == 2の3乗)
-	var selected = `(2^${two})*(3^${three})*(5^${five})*(7^${seven})*(11^${eleven})`
-	document.getElementById("lists")
-		.textContent = `${Suuzi} = ${selected}`;
-	document.getElementById("list")
-		.textContent = `${Suuzi}  = ${selected}`;
-	return Suuzi;
-};
+tr,
+th,
+td {
+	border: solid 2px #fff
+}
 
-//時間設定
-function timmer(time) {
-	var time = Number(document.getElementById("timer_sec")
-		.textContent)
-	var timer_obj = document.getElementById("time");
-	if (localStorage.HERD == 1) {
-		var timeup = 40
-	} else {
-		var timeup = 80
-	}
-	var timer = setInterval(function() {
-		//var time = document.getElementById("timer_sec").textContent
-		timer_obj.innerHTML = Math.floor(time / 600); //時間を切り捨て（Math.round→Math.floorと書き換えました。）
-		timer_obj.innerHTML += ".";
-		if ((time % 600) < 100) {
-			timer_obj.innerHTML += 0
-		}
-		timer_obj.innerHTML += Math.floor((time % 600) / 10);
-		timer_obj.innerHTML += ".";
-		timer_obj.innerHTML += time % 10;
-		if (time < 0) {
-			if (humans_number.textContent > 1) {
-				humans_number.textContent--;
-				color();
-				document.getElementById("zanki")
-					.textContent = 3;
-				time = 100;
-			} else {
-				console.log("test")
-				var level = number_number.textContent
-				future2();
-				clearInterval(timer);
-			};
-		}
-		time--;
-		document.getElementById("timer_sec")
-			.textContent = time;
-			$("#remainingtime2").removeClass("god");
-			$("#remainingtime2").removeClass("red");
-			$("#remainingtime2").removeClass("yellow");
-			$("#remainingtime2").removeClass("lime");
-			$("#remainingtime2").removeClass("aqua");
-			$("#remainingtime2").removeClass("blue");
-			$("#remainingtime2").removeClass("white");
-			$("#remainingtime2").removeClass("colorful");
-			if(time > 2400){
-				if (localStorage.zisseki2 == 0) {
-					localStorage.zisseki2 = 1;
-					zisseki();
-					if (Notification.permission === 'granted') {
-						navigator.serviceWorker.ready.then(registration => {
-							registration.active.postMessage('時間の亡者');
-						});
-					}
-				}
-				korokke.className = 'colorful';
-				timer_obj.className = 'colorful';
-				remainingtime1.className = 'colorful';
-				$("#remainingtime2").addClass("colorful");
+.game div {
+	font-size: 12px
+}
 
-			}else if (time > 1200 && time <= 2400) {
-				if (localStorage.zisseki2 == 0) {
-					localStorage.zisseki2 = 1;
-					zisseki();
-					if (Notification.permission === 'granted') {
-						navigator.serviceWorker.ready.then(registration => {
-							registration.active.postMessage('時間の亡者');
-						});
-					}
-				}
-				timer_obj.className = 'god';
-				korokke.className = 'god';
-				remainingtime1.className = 'god';
-				$("#remainingtime2").addClass("god");
-			} else if (time > 159 && time <= 1200) {
-					timer_obj.className = 'white';
-					korokke.className = 'white';
-					remainingtime1.className = 'white';
-					$("#remainingtime2").addClass("white");
-				} else if (time <= 159 && time > 129) {
-						korokke.className = 'blue';
-						timer_obj.className = 'blue';
-						remainingtime1.className = 'blue';
-						$("#remainingtime2").addClass("blue");
-					} else if (time <= 129 && time > 99) {
-							korokke.className = 'aqua';
-							timer_obj.className = 'aqua';
-							remainingtime1.className = 'aqua';
-							$("#remainingtime2").addClass("aqua");
-						} else if (time <= 99 && time > 69) {
-								korokke.className = 'lime';
-								timer_obj.className = 'lime';
-								remainingtime1.className = 'lime';
-								$("#remainingtime2").addClass("lime");
-							} else if (time <= 69 && time > 39) {
-									korokke.className = 'yellow';
-									timer_obj.className = 'yellow';
-									remainingtime1.className = 'yellow';
-									$("#remainingtime2").addClass("yellow");
-								} else if (time <= 39) {
-										korokke.className = 'red';
-										timer_obj.className = 'red';
-										remainingtime1.className = 'red';
-										$("#remainingtime2").addClass("red");
-		}; //時間ごとに文字の色を変える設定
-		if (debugmode.textContent == "debugmode") {
-			var level = number_number.textContent
-			var s = level * 10 + Math.floor(timer_sec.textContent * 0.004) + humans_number.textContent * 10;
-			var levels = Lank(s, 0)
-			document.getElementById("mozi")
-				.textContent = `Lank: ${levels}`;
-		}
-		return time;
-	}, 100);
-	setInterval(function() {
-		if (clearmode.textContent == "clear") {
-			time = time + Math.floor(number_number.textContent * timeup / 10 * Math.pow(10, 2)) / Math.pow(10, 2); //追加時間計算部分+追加時間適用のもの
-			document.getElementById("timer_sec")
-				.textContent = time;
-			document.getElementById("clearmode")
-				.textContent = "notclear";
-			cleartime1.style.opacity = 1;
-			cleartime2.style.opacity = 1;
-			cleartime1.textContent = " +" + Math.floor(number_number.textContent * timeup / 100 * Math.pow(10, 2)) / Math.pow(10
-				, 2); //描画用の設定
-			if (typeof toumei !== 'undefined') {
-				clearInterval(toumei)
-			}
-			setTimeout(function() {
-					cleartime1.style.opacity = 0;
-					cleartime2.style.opacity = 0;
-			}, 1000)
-			//タイマー時間追加機能{level(関数number_number)*1.2を小数点第2位で切り捨てした数字を追加}
-		}
-	}, 20);
-};
+button {
+	background-color: rgba(0, 0, 0, 0);
+	border-radius: 10px 10px 10px 10px;
+	border: 2px solid #FFF;
+	cursor: pointer
+}
 
-//Suuziを割る&buttonの設定
-function a(mozi) {
-	if (started.textContent == 1) {
-		var zanki = document.getElementById("zanki")
-			.textContent
-		var number = document.getElementById("number_number")
-			.textContent;
-		//難易度取得
-		if (korokke.textContent != 1) {
-			var Suuzi = korokke.textContent / mozi;
-		} else {
-			var Suuzi = korokke.textContent;
-		}
-		//korokke引数を取得（kazu変数に代入）
-		document.getElementById("Suuzicopy")
-			.textContent = korokke.textContent;
-		//kazu変数をmozi変数で割る
-		document.getElementById("korokke")
-			.textContent = Suuzi;
-		//korokke引数をSuuziに置き換える
-		if (localStorage.HERD == 1) {
-			if (number >= 20) {
-				var zanki1 = 12
-				var zanki2 = 2
-			} else {
-				var zanki1 = 8
-				var zanki2 = 2
-			}
-		} else {
-			if (number >= 20) {
-				var zanki1 = 7
-				var zanki2 = Number(document.getElementById("humans_max")
-					.textContent)
-			} else {
-				var zanki1 = 4
-				var zanki2 = Number(document.getElementById("humans_max")
-					.textContent)
-			}
-		}
-		var z = number * 1000 + Math.floor(timer_sec.textContent * 0.04) + humans_number.textContent * 1000
-		if (z <= 999999) {
-			document.getElementById("Score")
-				.innerHTML = `Score:<span>${z}</span>`;
-			$("#Score span").css("fontSize", "21px");
-		} else {
-			document.getElementById("Score")
-				.innerHTML = "Score:<span>+999999</span>";
-			$("#Score span").css({
-				"fontSize": "24px"
-				, "color": "red"
-			});
-		}
-		if (Suuzi == 1) {
-			number++;
-			color()
-			bgm2.play();
-			//音の設定2(参照先answer.mp3(bgm2))
-			document.getElementById("clearmode")
-				.textContent = "clear";
-			if (number == 10 && humans_number.textContent >= 4 && localStorage.zisseki3 == 0) {
-				localStorage.zisseki3 = 1;
-				zisseki();
-				if (Notification.permission === 'granted') {
-					navigator.serviceWorker.ready.then(registration => {
-						registration.active.postMessage('初心者脱却');
-					});
-				}
-			}
-			if (number % 15 == 0) {
-				humans_max.textContent = Number(humans_max.textContent) + 1;
-				humans_number.textContent = Number(humans_number.textContent) + 1;
-			}
-			if (zanki > 1) {
-				zanki--
-				human.textContent = `残り:${zanki}turn`;
-			} else {
-				if (zanki == 1) {
-					zanki = 0;
-					humans_number.textContent++;
-					color();
+h1 {
+	top: 60px;
+	position: relative
+}
 
-					if (humans_number.textContent < zanki2) {
-						zanki = zanki1;
-						human.textContent = `残り:${zanki}turn`;
-					} else {
-						human.textContent = "";
-					}
-				} else {
-					if (humans_number.textContent < zanki2) {
-						zanki = zanki1--;
-						human.textContent = `残り:${zanki}turn`;
-					}
-				}
-			}
-			//難易度(number)を増やす(上げている)
-			document.getElementById("korokke")
-				.textContent = kihonn(number);
-		} else {
-			if (!Number.isInteger(Suuzi)) {
-				if (humans_number.textContent >= zanki2) {
-					var zanki = zanki1;
-					human.textContent = `残り:${zanki}turn`;
-					future1();
-				} else {
-					human.textContent = `残り:${zanki}turn`;
-					future1();
-				}
-				human.textContent = `残り:${zanki}turn`;
-			};
-		};
-	};
-	document.getElementById("zanki")
-		.textContent = zanki;
-};
+.herd span {
+	color: red
+}
 
-//押し間違えによるgemeover
-function future1() {
-	var number = number_number.textContent;
-	bgm1.play();
-	document.getElementById("listed")
-		.textContent = lists.textContent;
-	var levelCount = "0";
-	var level = number_number.textContent;
-	var s = level * 10 + Math.floor(timer_sec.textContent * 0.0004) + humans_number.textContent * 10;
-	levelCount = Lank(s, levelCount);
-	if (humans_number.textContent > 1) {
-		if (confirm(`GAMEOVER\n答えを間違えました。\n残り回数の数は${humans_number.textContent}です。\n残り回数を消耗して一つ前に戻しますか？、またははじめから再挑戦しますか？\n戻る=OK 再挑戦する=キャンセル`)) {
-			humans_number.textContent--;
-			color()
-			korokke.textContent = Suuzicopy.textContent;
-		} else {
-			if (number > Number(localStorage.test)) {
-				alert(`記録は LEVEL: ${number_number.textContent}\n最高記録更新！！ ${localStorage.test} → ${number}\nLank: ${levelCount}\nこの問題の答えは  ${listed.textContent}でした。`)
-				localStorage.test = number;
-				if (localStorage.test <= 99) {
-					document.getElementById("test")
-						.textContent = `BESTLEVEL: ${localStorage.test}`
-				} else {
-					document.getElementById("test")
-						.textContent = `BESTLEVEL:+99`
-				}
-			} else {
-				alert(`記録は LEVEL: ${number_number.textContent}\nLank: ${levelCount}\nこの問題の答えは  ${listed.textContent}でした。`)
-			}
-			p2();
-		}
-	} else {
-		if (number > Number(localStorage.test)) {
-			alert(`GAMEOVER\n答えを間違えました。\n記録は LEVEL:${number_number.textContent} \n最高記録更新！！ ${localStorage.test} → ${number}\n Lank:${levelCount}\nこの問題の答えは  ${listed.textContent}です\nもう残機がありません、はじめから再挑戦しますか?`);
-			p2();
-			localStorage.test = number;
-			if (localStorage.test <= 99) {
-				document.getElementById("test")
-					.textContent = `BESTLEVEL: ${localStorage.test}`
-			} else {
-				document.getElementById("test")
-					.textContent = `BESTLEVEL:+99`
-			}
-		} else {
-			alert(`GAMEOVER\n答えを間違えました。\n記録は LEVEL:${number_number.textContent} Lank:${levelCount}\nこの問題の答えは  ${listed.textContent}です\nもう残機がありません、はじめから再挑戦しますか?`);
-			p2();
-		};
-	}
-};
+.game span {
+	color: red
+}
 
-//時間切れによるgemeover
-function future2() {
-	var number = number_number.textContent
-	document.getElementById("listed")
-		.textContent = lists.textContent
-	bgm1.play();
-	//音の設定1（参照先buzzer.mp3(bgm1)
-	var levelCount = "0";
-	var level = number_number.textContent;
-	var s = level * 10 + Math.floor(timer_sec.textContent * 0.0004) + humans_number.textContent * 10;
-	levelCount = Lank(s, levelCount);
-	if (number > Number(localStorage.test)) {
-		alert(`GAMEOVER 時間切れです\n記録は LEVEL: ${number_number.textContent} Lank: ${levelCount}\n最高記録更新！！ ${localStorage.test} → ${number}\nこの問題の答えは  ${listed.textContent}です\n初めから再挑戦しますか`);
-		localStorage.test = number;
-		if (localStorage.test <= 99) {
-			document.getElementById("test")
-				.textContent = `BESTLEVEL: ${localStorage.test}`
-		} else {
-			document.getElementById("test")
-				.textContent = `BESTLEVEL:+99`;
-		}
-	} else {
-		alert(`GAMEOVER 時間切れ\n記録 LEVEL: ${number_number.textContent} Lank: ${levelCount}\nこの問題の答え  ${listed.textContent}\n再挑戦しますか`);
-	};
-	p2();
-};
+#cleartime1,#cleartime2{
+	opacity: 0;
+	font-size: 30px;
+	-webkit-transition: all 2.0s ease;
+	-moz-transition: all 2.0s ease;
+	-o-transition: all 2.0s ease;
+	transition: all 2.0s ease;
+}
 
-//ランク計算用
-function Lank(s, levelCount) {
-	if (s < 0) {
-		levelCount = "ERROR";
-	} else if (s >= 0 && s <= 150) {
-		levelCount = "E";
-	} else if (s > 150 && s <= 200) {
-		levelCount = "D";
-	} else if (s > 200 && s <= 250) {
-		levelCount = "C";
-	} else if (s > 250 && s <= 275) {
-		levelCount = "B";
-	} else if (s > 275 && s <= 300) {
-		levelCount = "A";
-	} else if (s > 300 && s <= 350) {
-		levelCount = "S";
-	} else if (s > 350 && s <= 450) {
-		levelCount = "S+";
-		localStorage.Play = 1;
-	} else if (s > 450) {
-		levelCount = "Master   you are Master to This Game!!";
-		localStorage.Play = 1;
-	};
-	return levelCount;
-};
+/*スクロールバーが気持ち悪かったので変えました てへ*/
 
-function color() {
-	humans_max.style.color = 'rgb(95, 207, 128)';
-	humans_maxs.style.color = 'rgb(95, 207, 128)';
-	if (humans_number.textContent >= Number(humans_max.textContent)) {
-		humans_number.style.color = 'rgb(95, 207, 128)';
-	} else if (humans_number.textContent <= Number(humans_max.textContent) - 1 && humans_number.textContent >= 2) {
-		humans_number.style.color = 'hsl(51, 94%, 52%)';
-	} else if (humans_number.textContent <= 1) {
-		humans_number.style.color = 'red';
-	}
+::-webkit-scrollbar {
+	width: 7px;
+	height: 0px
+}
+
+::-webkit-scrollbar-thumb {
+	background: #fff;
+	border-radius: 5px
+}
+
+::-webkit-scrollbar-track {
+	background: #333
+}
+
+#p1,
+#reset {
+	color: #000
+}
+
+/*表示色*/
+
+.blue {
+	text-shadow: 4px 4px 4px blue, -4px 4px 4px blue, 4px -4px 4px blue, -4px -4px 4px blue, 4px 0px 4px blue, 0px 4px 4px blue, -4px 0px 4px blue, 0px -4px 4px blue
+}
+
+.aqua {
+	text-shadow: 4px 4px 4px aqua, -4px 4px 4px aqua, 4px -4px 4px aqua, -4px -4px 4px aqua, 4px 0px 4px aqua, 0px 4px 4px aqua, -4px 0px 4px aqua, 0px -4px 4px aqua
+}
+
+.lime {
+	text-shadow: 4px 4px 4px lime, -4px 4px 4px lime, 4px -4px 4px lime, -4px -4px 4px lime, 4px 0px 4px lime, 0px 4px 4px lime, -4px 0px 4px lime, 0px -4px 4px lime
+}
+
+.yellow {
+	text-shadow: 4px 4px 4px hsl(51, 94%, 52%), -4px 4px 4px hsl(51, 94%, 52%), 4px -4px 4px hsl(51, 94%, 52%), -4px -4px 4px hsl(51, 94%, 52%), 4px 0px 4px hsl(51, 94%, 52%), 0px 4px 4px hsl(51, 94%, 52%), -4px 0px 4px hsl(51, 94%, 52%), 0px -4px 4px hsl(51, 94%, 52%)
+}
+
+.red {
+	text-shadow: 4px 4px 4px red, -4px 4px 4px red, 4px -4px 4px red, -4px -4px 4px red, 4px 0px 4px red, 0px 4px 4px red, -4px 0px 4px red, 0px -4px 4px red
+}
+
+.god {
+	color: #DA8E00;
+	background: -webkit-linear-gradient(-45deg, #F7DE05, #DA8E00, #EDAC06, #F7DE05, #ECB802, #DAAF08, #B67B03, #DA8E00, #EDAC06, #F7DE05, #ECB802, #EDAC06);
+	-webkit-background-clip: text;
+}
+
+.colorful {
+	color: #ACB6E5;
+	background: -webkit-linear-gradient(0deg, #40E0D0, #FF8C00, #FF0080);
+	text-shadow: rgba(255, 0, 0, 0) 0 -0px;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent
+}
+
+.white {
+	color: #FFF;
+	background-color: 'transparent';
+}
+
+/*.bugはバグ防止用*/
+
+.bug {
+	color: #333333;
+	font-size: 0px;
+	display: none
+}
+
+/*下記はほとんど文字色変換のため*/
+
+.Title {
+	top: 30px;
+	right: 100px;
+	position: relative
+}
+
+.number {
+	top: 800px;
+	left: 290px;
+	position: absolute
+}
+
+/*小ネタ関連・デバック・サブメニュー*/
+
+#area1 {
+	left: 400px;
+	position: relative
+}
+
+#test {
+	top: 30px;
+	left: 80px;
+	position: fixed
+}
+
+#lost {
+	font-size: 13px;
+	top: 60px;
+	left: 180px;
+	width: 65px;
+	height: 28px;
+	position: fixed;
+	background: rgba(0, 0, 0, 0)
+}
+
+#lost:active {
+	box-shadow: none;
+	position: fixed;
+	left: 183px;
+	top: 63px;
+	-webkit-transition: all 0.1s ease;
+	-moz-transition: all 0.1s ease;
+	-o-transition: all 0.1s ease;
+	transition: all 0.1s ease;
+}
+
+#mozi {
+	color: #FFF;
+	top: 185px;
+	left: 15px;
+	position: fixed
+}
+
+#Score {
+	top: 65px;
+	left: 20px;
+	font-size: 20px;
+	position: fixed
+}
+
+#debugmode {
+	color: #FFF;
+	top: 165px;
+	left: 15px;
+	position: fixed
+}
+
+#timedebug {
+	background-color: #FFF;
+	color: #FFF;
+	top: 20px;
+	right: 2px;
+	position: fixed
+}
+
+#example1 {
+	color: #FFF;
+	top: 40px;
+	right: 2px;
+	position: fixed;
+	width: 50px
+}
+
+#humansdebug {
+	background-color: #FFF;
+	color: #FFF;
+	top: 60px;
+	right: 2px;
+	position: fixed
+}
+
+#example2 {
+	color: #FFF;
+	top: 80px;
+	right: 2px;
+	position: fixed;
+	width: 50px
+}
+
+#tekiyou {
+	color: #FFF;
+	top: 100px;
+	right: 2px;
+	position: fixed
+}
+
+.herd {
+	top: 93px;
+	left: 30px;
+	position: fixed;
+	user-select: none;
+	cursor: pointer;
+}
+
+.setting {
+	top: 20px;
+	left: 150px;
+	position: fixed
+}
+
+/* ローディング画面 */
+
+#loading {
+	width: 100%;
+	height: 100%;
+	transition: all 2.5s;
+	background-color: #000;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999
+}
+
+.loaded {
+	opacity: 0;
+	visibility: hidden
+}
+
+.load {
+	bottom: 15px;
+	right: 15px;
+	position: fixed
+}
+
+.fit-picture {
+	top: 25px;
+	right: calc(50% - 250px);
+	position: fixed
+}
+
+.hidden {
+	display: none
+}
+
+.mokuteki {
+	list-style-type: none
+}
+
+table b,
+th {
+	font-size: 15px
+}
+
+table b {
+	cursor: pointer
+}
+
+.mokuteki b:hover {
+	text-decoration: underline
+}
+
+#page_top {
+	width: 55px;
+	height: 55px;
+	position: fixed;
+	right: 10px;
+	top: 10;
+	background: #999;
+	border-radius: 50%;
+	border: 2px solid #FFF
+}
+
+#page_top a {
+	position: relative;
+	display: block;
+	position: fixed;
+	right: 10;
+	width: 55px;
+	height: 55px;
+	text-decoration: none
+}
+
+#page_top a::before {
+	font-family: 'Font Awesome 5 Free';
+	font-weight: 900;
+	content: '\f102';
+	font-size: 30px;
+	color: #333;
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	top: 0px;
+	bottom: 10px;
+	right: 5px;
+	left: 0;
+	margin: auto;
+	text-align: center
 }
