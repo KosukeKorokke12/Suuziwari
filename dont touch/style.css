@@ -16,7 +16,8 @@
 }
 
 div:not(.kihonn),
-#remainingtime,
+#remainingtime1,
+#remainingtime2,
 #time {
 	font-weight: bold;
 }
@@ -99,10 +100,6 @@ html {
 		position: fixed
 	}
 	/*スタート・リセットボタン*/
-	.buttons1,
-	.buttons2 {
-		cursor: pointer
-	}
 	.buttons1 {
 		bottom: 60px;
 		position: relative;
@@ -128,13 +125,13 @@ html {
 	.button1 {
 		width: 50px;
 		height: 40px;
-		cursor: pointer;
+		;
 		border: 3px solid #FFF
 	}
 	.button2 {
 		width: 33px;
 		height: 50px;
-		cursor: pointer;
+		;
 		border: 3px solid #FFF
 	}
 	#InstallBtn{
@@ -166,17 +163,15 @@ html {
 		bottom: 40px;
 		position: relative;
 	}
-	.kihonn {
-		font-size: 10px
-	}
-	#remainingtime,
+	.kihonn {font-size: 10px}
+	#remainingtime1,
+	#remainingtime2,
 	#time {
 		bottom: 30px;
 		position: relative;
 		font-size: 20px
-	}.cp_hr01 {display:none;
-	}.cp_hr02 {display:none;
 	}
+	.cp_hr01,.cp_hr02 {display:none}
 
 }
 
@@ -261,13 +256,13 @@ html {
 	#volume[type="range"]::before{
 		content: '-';
 		font-size:15px;
-		top: 75px;
+		top: 78px;
 		position: fixed;
 	}
 	#volume[type="range"]::after{
 		content: '+';
 		font-size:15px;
-		top: 75px;
+		top: 78px;
 		left: 150px;
 		position: fixed;
 	}
@@ -284,15 +279,11 @@ html {
 		position: fixed
 	}
 	#volumetext {
-		top: 130px;
+		top: 133px;
 		left: 175px;
 		position: fixed
 	}
 	/*スタート・リセットボタン*/
-	.buttons1,
-	.buttons2 {
-		cursor: pointer
-	}
 	.buttons1 {
 		width: 110px;
 		height: 80px;
@@ -316,13 +307,13 @@ html {
 		height: 60px;
 		bottom: 5px;
 		position: relative;
-		cursor: pointer;
+		;
 		border: 3px solid #FFF
 	}
 	.button2 {
 		width: 53px;
 		height: 70px;
-		cursor: pointer;
+		;
 		border: 3px solid #FFF
 	}
 	.button1,
@@ -360,7 +351,8 @@ html {
 		position: relative;
 		font-size: 30px
 	}
-	#remainingtime,
+	#remainingtime1,
+	#remainingtime2,
 	#time {
 		font-size: 30px
 	}.cp_hr01 {
@@ -394,7 +386,7 @@ html {
 	}
 }
 
-i:not(#volumepng) {
+i{
 	color:#FFF;
 }
 
@@ -446,6 +438,7 @@ button {
 	background-color: rgba(0, 0, 0, 0);
 	border-radius: 10px 10px 10px 10px;
 	border: 2px solid #FFF;
+	cursor: pointer
 }
 
 h1 {
@@ -459,6 +452,15 @@ h1 {
 
 .game span {
 	color: red
+}
+
+#cleartime1,#cleartime2{
+	opacity: 0;
+	font-size: 30px;
+	-webkit-transition: all 2.0s ease;
+	-moz-transition: all 2.0s ease;
+	-o-transition: all 2.0s ease;
+	transition: all 2.0s ease;
 }
 
 /*スクロールバーが気持ち悪かったので変えました てへ*/
