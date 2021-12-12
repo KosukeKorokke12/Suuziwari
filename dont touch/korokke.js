@@ -8,26 +8,47 @@ if (userAgent.indexOf('msie') != -1 ||
 	userAgent.indexOf('trident') != -1) {
 	window.location.href = base_href + "IE互換用/数字割りゲーム.IE.html"
 	document.getElementById("use")
-		.innerHTML = '使っているブラウザ：Internet Explorer<br>動作を保証しません IE互換のhtmlを開いてください';
+		.innerHTML = '使っているブラウザ：<i class="fab fa-internet-explorer"></i>Internet Explorer<br>動作を保証しません IE互換のhtmlを開いてください';
 } else if (userAgent.indexOf('edge') != -1 || userAgent.indexOf('edg') != -1) {
 	document.getElementById("use")
-		.innerHTML = '使っているブラウザ：Edge<br>動作確認しているブラウザです';
+		.innerHTML = '使っているブラウザ：<i class="fab fa-edge"></i>Edge<br>動作確認しているブラウザです';
 } else if (userAgent.indexOf('opr') != -1) {
 	document.getElementById("use")
-		.innerHTML = '使っているブラウザ：Opera<br>動作確認はしていませんが 使用上動くはずのブラウザです';
+		.innerHTML = '使っているブラウザ：<i class="fab fa-opera"></i>Opera<br>動作確認はしていませんが 使用上動くはずのブラウザです';
 } else if (userAgent.indexOf('chrome') != -1) {
 	document.getElementById("use")
-		.innerHTML = '使っているブラウザ：Chrome or Vivaldi<br>動作確認しているブラウザです';
+		.innerHTML = '使っているブラウザ：<i class="fab fa-chrome"></i>Chrome or Vivaldi<br>動作確認しているブラウザです';
 } else if (userAgent.indexOf('safari') != -1) {
 	document.getElementById("use")
-		.innerHTML = '使っているブラウザ：Safari<br>動作確認はしていませんが 使用上動くはずのブラウザです';
+		.innerHTML = '使っているブラウザ：<i class="fab fa-safari"></i>Safari<br>動作確認はしていませんが 使用上動くはずのブラウザです';
 } else if (userAgent.indexOf('firefox') != -1) {
 	document.getElementById("use")
-		.innerHTML = '使っているブラウザ：FireFox<br>動作確認しているブラウザです'
+		.innerHTML = '使っているブラウザ：<i class="fab fa-firefox-browser"></i>FireFox<br>動作確認しているブラウザです'
 } else {
 	document.getElementById("use")
-		.innerHTML = '使っているブラウザ：動作未確認のブラウザ<br>動作は保証されません';
+		.innerHTML = '使っているブラウザ：<i class="fab fa-js-square"></i>動作未確認のブラウザ<br>動作は保証されません';
 }
+
+registerInstallAppEvent(document.getElementById("InstallBtn"));
+function registerInstallAppEvent(elem){
+  window.addEventListener('beforeinstallprompt', function(event){
+	console.log("beforeinstallprompt: ", event);
+	event.preventDefault();
+	elem.promptEvent = event;
+	elem.style.display = "block";
+	return false;
+  });
+  function installApp() {
+	if(elem.promptEvent){
+	  elem.promptEvent.prompt();
+	  elem.promptEvent.userChoice.then(function(choice){
+		elem.style.display = "none";
+		elem.promptEvent = null;
+	  });
+	}
+  }
+  elem.addEventListener("click", installApp);
+}/*インストール用のボタン*/
 
 $('.table b')
 	.on('click', function() {
@@ -161,7 +182,7 @@ function c(value) {
 		bgm4.muted = true;
 		document.getElementById("volumetext")
 			.textContent = "ミュート";
-		volumepng.className = 'fa fa-volume-off';
+		volumepng.className = 'fas fa-volume-mute';
 	} else {
 		bgm1.muted = false;
 		bgm2.muted = false;
@@ -174,9 +195,9 @@ function c(value) {
 		document.getElementById("volumetext")
 			.textContent = `${value}%`;
 		if (value < 50) {
-			volumepng.className = 'fa fa-volume-down';
+			volumepng.className = 'fas fa-volume-down';
 		} else {
-			volumepng.className = 'fa fa-volume-up';
+			volumepng.className = 'fas fa-volume-up';
 		}
 	}
 }
@@ -279,7 +300,7 @@ try {
 	c(localStorage.Volume)
 	document.getElementById("volumetext")
 		.textContent = "50%";
-	volumepng.className = 'fa fa-volume-up';
+	volumepng.className = 'fas fa-volume-up';
 }
 
 //デバックモードによる時間変更・残基変更
@@ -386,7 +407,7 @@ window.addEventListener("keydown", (e) => {
 				.textContent = "ミュート";
 			document.getElementById("volume")
 				.value = 0;
-			volumepng.className = 'fa fa-volume-off';
+			volumepng.className = 'fas fa-volume-mute';
 		} else {
 			bgm1.muted = false;
 			bgm2.muted = false;
@@ -396,7 +417,7 @@ window.addEventListener("keydown", (e) => {
 				.textContent = "50%";
 			document.getElementById("volume")
 				.value = 50;
-			volumepng.className = 'fa fa-volume-up';
+			volumepng.className = 'fas fa-volume-up';
 		}
 		localStorage.Volume = document.getElementById("volume")
 			.value;
@@ -414,11 +435,11 @@ window.addEventListener("keydown", (e) => {
 			.value > 100) {
 			document.getElementById("volume")
 				.value = 100;
-			volumepng.className = 'fa fa-volume-up';
+			volumepng.className = 'fas fa-volume-up';
 		} else if (document.getElementById("volume").value > 50) {
-			volumepng.className = 'fa fa-volume-up';
+			volumepng.className = 'fas fa-volume-up';
 		} else {
-			volumepng.className = 'fa fa-volume-down';
+			volumepng.className = 'fas fa-volume-down';
 		}
 		document.getElementById("volumetext")
 			.textContent = `${volume.value}%`;
@@ -446,7 +467,7 @@ window.addEventListener("keydown", (e) => {
 				.textContent = "ミュート";
 			document.getElementById("volume")
 				.value = 0
-			volumepng.className = 'fa fa-volume-off';
+			volumepng.className = 'fas fa-volume-mute';
 		} else {
 			document.getElementById("volumetext")
 				.textContent = `${volume.value}%`;
@@ -455,9 +476,9 @@ window.addEventListener("keydown", (e) => {
 			bgm3.volume = Math.ceil(volume.value) / 100;
 			bgm4.volume = Math.ceil(volume.value) / 100;
 			if (document.getElementById("volume").value > 50) {
-				volumepng.className = 'fa fa-volume-up';
+				volumepng.className = 'fas fa-volume-up';
 			} else {
-				volumepng.className = 'fa fa-volume-down';
+				volumepng.className = 'fas fa-volume-down';
 			}
 		}
 		localStorage.Volume = document.getElementById("volume")
