@@ -121,9 +121,10 @@ window.onload = function() {
 		.textContent = 0;
 	document.getElementById("clearmode")
 		.textContent = "notclear"; //クリア判定
-	document.getElementById("cleartime")
-		.textContent = "+0.00"; //追加時間設定
-	cleartime.style.opacity = 0;
+	document.getElementById("cleartime1")
+		.textContent = " +0.00"; //追加時間設定
+	cleartime1.style.opacity = 0;
+	cleartime2.style.opacity = 0;
 	document.getElementById("humans_number")
 		.textContent = 4; //残機設定
 	document.getElementById("humans_max")
@@ -722,6 +723,14 @@ function timmer(time) {
 		time--;
 		document.getElementById("timer_sec")
 			.textContent = time;
+			$("#remainingtime2").removeClass("god");
+			$("#remainingtime2").removeClass("red");
+			$("#remainingtime2").removeClass("yellow");
+			$("#remainingtime2").removeClass("lime");
+			$("#remainingtime2").removeClass("aqua");
+			$("#remainingtime2").removeClass("blue");
+			$("#remainingtime2").removeClass("white");
+			$("#remainingtime2").removeClass("colorful");
 			if(time > 2400){
 				if (localStorage.zisseki2 == 0) {
 					localStorage.zisseki2 = 1;
@@ -734,7 +743,9 @@ function timmer(time) {
 				}
 				korokke.className = 'colorful';
 				timer_obj.className = 'colorful';
-				remainingtime.className = 'colorful';
+				remainingtime1.className = 'colorful';
+				$("#remainingtime2").addClass("colorful");
+
 			}else if (time > 1200 && time <= 2400) {
 				if (localStorage.zisseki2 == 0) {
 					localStorage.zisseki2 = 1;
@@ -747,31 +758,38 @@ function timmer(time) {
 				}
 				timer_obj.className = 'god';
 				korokke.className = 'god';
-				remainingtime.className = 'god';
+				remainingtime1.className = 'god';
+				$("#remainingtime2").addClass("god");
 			} else if (time > 159 && time <= 1200) {
 					timer_obj.className = 'white';
 					korokke.className = 'white';
-					remainingtime.className = 'white';
+					remainingtime1.className = 'white';
+					$("#remainingtime2").addClass("white");
 				} else if (time <= 159 && time > 129) {
 						korokke.className = 'blue';
 						timer_obj.className = 'blue';
-						remainingtime.className = 'blue';
+						remainingtime1.className = 'blue';
+						$("#remainingtime2").addClass("blue");
 					} else if (time <= 129 && time > 99) {
 							korokke.className = 'aqua';
 							timer_obj.className = 'aqua';
-							remainingtime.className = 'aqua';
+							remainingtime1.className = 'aqua';
+							$("#remainingtime2").addClass("aqua");
 						} else if (time <= 99 && time > 69) {
 								korokke.className = 'lime';
 								timer_obj.className = 'lime';
-								remainingtime.className = 'lime';
+								remainingtime1.className = 'lime';
+								$("#remainingtime2").addClass("lime");
 							} else if (time <= 69 && time > 39) {
 									korokke.className = 'yellow';
 									timer_obj.className = 'yellow';
-									remainingtime.className = 'yellow';
+									remainingtime1.className = 'yellow';
+									$("#remainingtime2").addClass("yellow");
 								} else if (time <= 39) {
 										korokke.className = 'red';
 										timer_obj.className = 'red';
-										remainingtime.className = 'red';
+										remainingtime1.className = 'red';
+										$("#remainingtime2").addClass("red");
 		}; //時間ごとに文字の色を変える設定
 		if (debugmode.textContent == "debugmode") {
 			var level = number_number.textContent
@@ -789,22 +807,17 @@ function timmer(time) {
 				.textContent = time;
 			document.getElementById("clearmode")
 				.textContent = "notclear";
-			cleartime.style.opacity = 1;
-			cleartime.textContent = "+" + Math.floor(number_number.textContent * timeup / 100 * Math.pow(10, 2)) / Math.pow(10
+			cleartime1.style.opacity = 1;
+			cleartime2.style.opacity = 1;
+			cleartime1.textContent = " +" + Math.floor(number_number.textContent * timeup / 100 * Math.pow(10, 2)) / Math.pow(10
 				, 2); //描画用の設定
 			if (typeof toumei !== 'undefined') {
 				clearInterval(toumei)
 			}
 			setTimeout(function() {
-				setTimeout(function() {
-					clearInterval(toumei);
-					cleartime.textContent = "+0.00";
-					cleartime.style.opacity = 0;
-				}, 1000);
-				var toumei = setInterval(function() {
-					cleartime.style.opacity = cleartime.style.opacity - 0.005;
-				}, 1);
-			}, 500)
+					cleartime1.style.opacity = 0;
+					cleartime2.style.opacity = 0;
+			}, 1000)
 			//タイマー時間追加機能{level(関数number_number)*1.2を小数点第2位で切り捨てした数字を追加}
 		}
 	}, 20);
