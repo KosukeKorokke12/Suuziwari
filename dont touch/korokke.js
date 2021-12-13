@@ -8,25 +8,25 @@ if (userAgent.indexOf('msie') != -1 ||
 	userAgent.indexOf('trident') != -1) {
 	window.location.href = base_href + "IE互換用/数字割りゲーム.IE.html"
 	document.getElementById("use")
-		.innerHTML = '使っているブラウザ：<i class="fab fa-internet-explorer"></i>Internet Explorer<br>動作を保証しません IE互換のhtmlを開いてください';
+		.innerHTML = '使っているブラウザ：<i class="fab fa-internet-explorer faa-wrench animated-hover"></i>Internet Explorer<br>動作を保証しません IE互換のhtmlを開いてください';
 } else if (userAgent.indexOf('edge') != -1 || userAgent.indexOf('edg') != -1) {
 	document.getElementById("use")
-		.innerHTML = '使っているブラウザ：<i class="fab fa-edge"></i>Edge<br>動作確認しているブラウザです';
+		.innerHTML = '使っているブラウザ：<i class="fab fa-edge faa-wrench animated-hover"></i>Edge<br>動作確認しているブラウザです';
 } else if (userAgent.indexOf('opr') != -1) {
 	document.getElementById("use")
-		.innerHTML = '使っているブラウザ：<i class="fab fa-opera"></i>Opera<br>動作確認はしていませんが 使用上動くはずのブラウザです';
+		.innerHTML = '使っているブラウザ：<i class="fab fa-opera faa-wrench animated-hover"></i>Opera<br>動作確認はしていませんが 使用上動くはずのブラウザです';
 } else if (userAgent.indexOf('chrome') != -1) {
 	document.getElementById("use")
-		.innerHTML = '使っているブラウザ：<i class="fab fa-chrome"></i>Chrome or Vivaldi<br>動作確認しているブラウザです';
+		.innerHTML = '使っているブラウザ：<i class="fab fa-chrome faa-wrench animated-hover"></i>Chrome or Vivaldi<br>動作確認しているブラウザです';
 } else if (userAgent.indexOf('safari') != -1) {
 	document.getElementById("use")
-		.innerHTML = '使っているブラウザ：<i class="fab fa-safari"></i>Safari<br>動作確認はしていませんが 使用上動くはずのブラウザです';
+		.innerHTML = '使っているブラウザ：<i class="fab fa-safari faa-wrench animated-hover"></i>Safari<br>動作確認はしていませんが 使用上動くはずのブラウザです';
 } else if (userAgent.indexOf('firefox') != -1) {
 	document.getElementById("use")
-		.innerHTML = '使っているブラウザ：<i class="fab fa-firefox-browser"></i>FireFox<br>動作確認しているブラウザです'
+		.innerHTML = '使っているブラウザ：<i class="fab fa-firefox-browser faa-wrench animated-hover"></i>FireFox<br>動作確認しているブラウザです'
 } else {
 	document.getElementById("use")
-		.innerHTML = '使っているブラウザ：<i class="fab fa-js-square"></i>動作未確認のブラウザ<br>動作は保証されません';
+		.innerHTML = '使っているブラウザ：<i class="fab fa-js-square faa-wrench animated-hover"></i>動作未確認のブラウザ<br>動作は保証されません';
 }
 
 registerInstallAppEvent(document.getElementById("InstallBtn"));
