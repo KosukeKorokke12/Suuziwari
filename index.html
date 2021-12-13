@@ -25,6 +25,7 @@
 	<link href="dont touch/ress.min.css" media="print" onload="this.media='all'" rel="stylesheet">
 	<link href="dont touch/style.css" media="print" onload="this.media='all'" rel="stylesheet">
 	<link href="dont touch/Font Awesome.css" media="print" onload="this.media='all'" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.10/font-awesome-animation.css" media="print" onload="this.media='all'" rel="stylesheet">
 	<script defer language="JavaScript" src="dont%20touch/jquery-3.6.0.min.js"></script>
 	<script defer language="JavaScript" src="dont%20touch/korokke.js"></script>
 </head>
@@ -189,9 +190,9 @@
 					<td class="table">
 						<b>＊操作方法（<span>重要</span>）</b><br>
 						<div class="hidden">
-							マウス：ボタンを押して操作する。<br>
-							タッチパネル：ボタンをタッチして操作する。<br>
-							キーボード：Wキーで2、Dキーで3、Aキーで5、Sキーで7、Dキーで11、SPACEキーでスタートとリセットという操作です。<br>
+							<i class="fas fa-mouse"></i>マウス：ボタンを押して操作する。<br>
+							<i class="fas fa-tv">?</i>タッチパネル：ボタンをタッチして操作する。<br>
+							<i class="far fa-keyboard"></i>キーボード：Wキーで2、Dキーで3、Aキーで5、Sキーで7、Dキーで11、SPACEキーでスタートとリセットという操作です。<br>
 							（キーボードはほかにも操作方法はありますがテスト用なのでとても難しいため、上記の方法を使うことをお勧めします）
 						</div>
 					</td>
@@ -208,7 +209,7 @@
 				</tr>
 				<tr>
 					<td class="table">
-						<b>＊残り時間に関して</b><br>
+						<b>＊<i class="fas fa-stopwatch"></i>残り時間に関して</b><br>
 						<div class="hidden">
 							スタートした際標準で20秒あり、残り時間がなくなるとGAMEOVERとなります。<br>
 							この残り時間は問題を正解した際に(LEVEL*1.1)秒増えます。<br>
@@ -228,7 +229,7 @@
 							それについては右記で表にしてまとめておりますのでそちらをご覧ください。<br>
 							回答に関してですが、都合上「乗」を表現することができないため<br>
 							2<sup>3</sup>は(2^3)のように表現します。<br>
-							<s>(本当は、ただ面倒くさかっただけです。)</s><br>
+							<s>(本当は、ただ修正が面倒くさかっただけです。)</s><br>
 							<br>
 							BESTLEVELですがLEVELの自己ベストを保存してくれます
 						</div>
@@ -242,7 +243,7 @@
 				<div class="box">
 					<label class="herd"><input id="herd" name="HERD" type="checkbox" value="ok">&nbsp;<b>challenge to 「<span>hard mode</span>」!</b></label>
 					<hr class="cp_hr02">
-				</div><input id="volume" max="100" min="0" name="volume" step="1" type="range" value="50"> <i aria-hidden="true" class="fas fa-volume-up" id="volumepng"></i>
+				</div><input id="volume" max="100" min="0" name="volume" step="1" type="range" value="50"> <i aria-hidden="true" class="fas fa-volume-up faa-wrench animated-hover" id="volumepng"></i>
 				<p id="volumetext">50%</p><br>
 				<p id="Score">Score:0</p>
 			</div><!-- ローディング画面 -->
@@ -257,10 +258,10 @@
 				<font id="mozi">Lank:E</font><br>
 				<font id="debugmode">??</font> <font id="timedebug">時間</font> <input id="example1" type="number" value="20"><br>
 				<font id="humansdebug">残機</font> <input id="example2" type="number" value="3"><br>
-				<button id="tekiyou" onclick="debug()"><font>適用</font></button>
+				<button id="tekiyou" onclick="debug();"><font>適用</font></button>
 			</div>
-			<div id="page_top">
-				<a href="#"></a>
+			<div id="page_top" class="faa-parent animated-hover">
+				<a href="#" class="faa-bounce"></a>
 			</div>
 			<footer>
 				<h1><b>数字割りゲーム varβ1.2</b></h1><br>
@@ -268,12 +269,12 @@
 				<p class="name">make&nbsp;By&nbsp;Korokke347<br>
 				テストプレイに協力してくれた人(略称・ニックネーム)<br>
 				Newton、Grilledmelon、MoveCooler、Apple...etc</p>
-				<h5>動作確認済み: <i class="fab fa-chrome"></i>Chrome var 94.0.4606.104,Vivaldi var 4.3.2439.63,<br>
-				<i class="fab fa-edge"></i>(chromiumベースの)MicrosoftEdge var 93.0.961.52,<i class="fab fa-firefox-browser"></i>firefox @ var 93.0<br>
-				動作不可: ~<i class="fab fa-internet-explorer"></i>IE11<br>
-				動作環境：<i class="fab fa-windows"></i>Windows10 Home 64bit 20H2 & Windows10 Pro 64bit 20H2<br>
-				Windows11 Home 64bit 21H2 & <i class="fab fa-chrome"></i>ChromeOS 94.0.4606.104(Official Build)(64bit)</h5>
-				<h5 id="use"><i class="fab fa-js-square"></i>Javasciptを正常に読み込めていません</h5><br>
+				<h5>動作確認済み: <i class="fab fa-chrome faa-wrench animated-hover"></i>Chrome var 94.0.4606.104,Vivaldi var 4.3.2439.63,<br>
+				<i class="fab fa-edge faa-wrench animated-hover"></i>(chromiumベースの)MicrosoftEdge var 93.0.961.52,<i class="fab fa-firefox-browser faa-wrench animated-hover"></i>firefox @ var 93.0<br>
+				動作不可: ~<i class="fab fa-internet-explorer faa-wrench animated-hover"></i>IE11<br>
+				動作環境：<i class="fab fa-windows faa-wrench animated-hover"></i>Windows10 Home 64bit 20H2 & Windows10 Pro 64bit 20H2<br>
+				Windows11 Home 64bit 21H2 & <i class="fab fa-chrome faa-wrench animated-hover"></i>ChromeOS 94.0.4606.104(Official Build)(64bit)</h5>
+				<h5 id="use"><i class="fab fa-js-square faa-wrench animated-hover"></i>Javasciptを正常に読み込めていません</h5><br>
 				<a accesskey="1" onclick="var w = ( screen.width-1000 ) / 2; var h = ( screen.height-400 ) / 2; window.open('dont%20touch/tyuui.html','subwin',`width=1000px,height=400px,left=${w},top=${h}`); return false;"><u>注意点・作者から</u></a>&nbsp;&nbsp; <a accesskey="2" onclick="var w = ( screen.width-700 ) / 2; var h = ( screen.height-1000 ) / 2; window.open('https://forms.gle/RRvsLLiLPkrz4fme8/','subwin',`width=700px,height=1000px,left=${w},top=${h}`); return false;"><u>フィードバック（Googleform）</u></a><br>
 				<a accesskey="3" href="https://fonts.google.com/specimen/Kosugi+Maru/" target="_blank">使用したWebフォントのリンク先</a>&nbsp;&nbsp; <a accesskey="4" href="https://bit.ly/2YBMM4V/" target="_blank">お借りした音楽1</a><br>
 				<a accesskey="5" href="https://bit.ly/3FxZF0o/" target="_blank">お借りした音楽2</a>&nbsp;&nbsp; <a accesskey="6" href="https://otologic.jp/free/bgm/recent.html#volume/" target="_blank">お借りした音楽3(BGM)</a><br>
