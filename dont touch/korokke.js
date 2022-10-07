@@ -2,7 +2,6 @@
 //数字割りゲーム var1.0
 
 //ブラウザ判定
-var base_href = $('base').attr('href');
 var userAgent = window.navigator.userAgent.toLowerCase(); //データ取得
 if (userAgent.indexOf('msie') != -1 ||
 	userAgent.indexOf('trident') != -1) {
@@ -94,7 +93,6 @@ if (location.protocol != "file:") {
 };
 
 
-zisseki() //実績関連
 window.onload = function() {
 	document.body.oncontextmenu = function() {
 		return false;
@@ -104,8 +102,6 @@ window.onload = function() {
 	var time = timer_sec.textContent //上記と同様
 	document.getElementById("area1")
 		.style.opacity = '0';
-	document.getElementById("debugmodes1")
-		.style.visibility = 'hidden' //デバックモード時に表示する文字
 	document.getElementById("p1")
 		.style.display = "block"; //スタートボタン設定
 	debugmodetext.style.display = "none";
@@ -113,8 +109,6 @@ window.onload = function() {
 		.style.display = "block"
 	document.getElementById("reset")
 		.style.display = "none"; //リセット設定
-	document.getElementById("debugmode")
-		.textContent = "nomalmode";
 	document.getElementById("list")
 		.style.visibility = 'hidden'
 	document.getElementById("started")
@@ -130,21 +124,6 @@ window.onload = function() {
 	document.getElementById("humans_max")
 		.textContent = 4;
 	color(); //残基による文字色適用
-	if (localStorage.zisseki1 == 1) {
-		zisseki1.textContent = "クリア"
-	} else {
-		zisseki1.textContent = "未達成"
-	}
-	if (localStorage.zisseki2 == 1) {
-		zisseki2.textContent = "クリア"
-	} else {
-		zisseki2.textContent = "未達成"
-	}
-	if (localStorage.zisseki3 == 1) {
-		zisseki3.textContent = "クリア"
-	} else {
-		zisseki3.textContent = "未達成"
-	}
 	if (localStorage.test <= 99) {
 		document.getElementById("test")
 			.textContent = `BESTLEVEL: ${localStorage.test}`
@@ -220,30 +199,12 @@ function s() {
 	document.getElementById("test")
 		.textContent = `BESTLEVEL: ${localStorage.test}`;
 }
-//テスト中の実績機能
-function f() {
-	localStorage.setItem("zisseki1", "0")
-	localStorage.setItem("zisseki2", "0")
-	localStorage.setItem("zisseki3", "0")
-	zisseki1.textContent = "未達成"
-	zisseki2.textContent = "未達成"
-	zisseki3.textContent = "未達成"
-}
 
 //「bestlevel」、テスト中の動作
 if (typeof localStorage.test === 'undefined') {
 	localStorage.setItem("test", 1)
 }
 //実績、テスト中の動作
-if (typeof localStorage.zisseki1 === 'undefined') {
-	localStorage.setItem("zisseki1", 0)
-}
-if (typeof localStorage.zisseki2 === 'undefined') {
-	localStorage.setItem("zisseki2", 0)
-}
-if (typeof localStorage.zisseki3 === 'undefined') {
-	localStorage.setItem("zisseki3", 0)
-}
 if (typeof localStorage.HERD === 'undefined') {
 	localStorage.setItem("HERD", 0)
 }
@@ -302,14 +263,6 @@ try {
 	document.getElementById("volumetext")
 		.textContent = "50%";
 	volumepng.className = 'fas fa-volume-up';
-}
-
-//デバックモードによる時間変更・残基変更
-function debug() {
-	document.getElementById("timer_sec")
-		.textContent = +example1.value * 100
-	document.getElementById("humans_number")
-		.textContent = +example2.value
 }
 
 //リセットボタン機構
@@ -487,58 +440,6 @@ window.addEventListener("keydown", (e) => {
 		event.preventDefault();
 	};
 	//以下デバックモードON,OFF表示設定
-	if (event.ctrlKey && event.altKey && e.code == 'KeyB') {
-		if (debugmode.textContent == "nomalmode") {
-			var pw1;
-			var pw2;
-			pw1 = prompt("1つ目のパスワードを入力して下さい。", "");
-			if (pw1 != null) {
-				pw2 = prompt("入力完了\n2つ目のパスワードを入力して下さい。", "");
-			}
-			document.body.oncontextmenu = function() {
-				return true;
-			}
-		} else {
-			var pw1 = String.fromCharCode(75, 111, 114, 111, 107, 107, 101, 51, 52, 55);
-			var pw2 = String.fromCharCode(107, 97, 50, 51, 49, 54, 54);
-			document.body.oncontextmenu = function() {
-				return false;
-			}
-		}
-		if (pw1 == String.fromCharCode(75, 111, 114, 111, 107, 107, 101, 51, 52, 55) && pw2 == String.fromCharCode(107, 97, 50, 51, 49, 54, 54)) {
-			e.preventDefault();
-			if (debugmode.textContent == "nomalmode") {
-				document.getElementById("debugmode")
-					.textContent = "debugmode"
-			} else {
-				document.getElementById("debugmode")
-					.textContent = "nomalmode"
-			} //デバックモードの文字表示
-
-			if (document.getElementById("debugmodes1")
-				.style.visibility == 'visible') {
-				document.getElementById("debugmodes1")
-					.style.visibility = 'hidden';
-			} else {
-				document.getElementById("debugmodes1")
-					.style.visibility = 'visible';
-			}; //上記と同様
-			const debugmodetext = document.getElementById("debugmodetext");
-			if (debugmodetext.style.display == "block") {
-				// noneで非表示
-				debugmodetext.style.display = "none";
-			} else {
-				// blockで表示
-				debugmodetext.style.display = "block";
-			};
-		} else {
-			if (pw1 !== null && pw2 !== null) {
-				alert("1 or 2 password is incorrect")
-			} else {
-				alert("1 or 2 password is not null")
-			}
-		};
-	};
 	if (e.code === 'Space') {
 		event.preventDefault();
 		event.returnValue = false;
@@ -569,29 +470,9 @@ window.addEventListener("keyup", (e) => {
 	}
 })
 
-function zisseki() {
-	if (localStorage.zisseki1 == 1) {
-		zisseki1.textContent = "クリア"
-	} else {
-		zisseki1.textContent = "未達成"
-	}
-	if (localStorage.zisseki2 == 1) {
-		zisseki2.textContent = "クリア"
-	} else {
-		zisseki2.textContent = "未達成"
-	}
-	if (localStorage.zisseki3 == 1) {
-		zisseki3.textContent = "クリア"
-	} else {
-		zisseki3.textContent = "未達成"
-	}
-}
-zisseki() //実績関連
-
 //開始ボタン設定
 function start(time) {
 	scrollTo(0, 10);
-	zisseki()
 	if (herd.checked) {
 		humans_number.style.color = 'red';
 		document.getElementById("timer_sec")
@@ -610,15 +491,6 @@ function start(time) {
 			.textContent = humans_number.textContent;
 	}
 	color()
-	if (localStorage.zisseki1 == 0) {
-		localStorage.zisseki1 = 1;
-		zisseki();
-		if (Notification.permission === 'granted') {
-			navigator.serviceWorker.ready.then(registration => {
-				registration.active.postMessage('初めてのプレイ');
-			});
-		}
-	}
 	started.textContent = 1;
 	const p1 = document.getElementById("p1");
 	if (p1.style.display == "block") {
@@ -640,7 +512,6 @@ function start(time) {
 	document.getElementById("korokke")
 		.textContent = kihonn(1);
 	scrollTo(0, 0);
-};
 
 //数字決め機構
 function kihonn(number) {
@@ -732,30 +603,12 @@ function timmer(time) {
 			$("#remainingtime2").removeClass("white");
 			$("#remainingtime2").removeClass("colorful");
 			if(time > 2400){
-				if (localStorage.zisseki2 == 0) {
-					localStorage.zisseki2 = 1;
-					zisseki();
-					if (Notification.permission === 'granted') {
-						navigator.serviceWorker.ready.then(registration => {
-							registration.active.postMessage('時間の亡者');
-						});
-					}
-				}
 				korokke.className = 'colorful';
 				timer_obj.className = 'colorful';
 				remainingtime1.className = 'colorful';
 				$("#remainingtime2").addClass("colorful");
 
 			}else if (time > 1200 && time <= 2400) {
-				if (localStorage.zisseki2 == 0) {
-					localStorage.zisseki2 = 1;
-					zisseki();
-					if (Notification.permission === 'granted') {
-						navigator.serviceWorker.ready.then(registration => {
-							registration.active.postMessage('時間の亡者');
-						});
-					}
-				}
 				timer_obj.className = 'god';
 				korokke.className = 'god';
 				remainingtime1.className = 'god';
@@ -882,14 +735,6 @@ function a(mozi) {
 			//音の設定2(参照先answer.mp3(bgm2))
 			document.getElementById("clearmode")
 				.textContent = "clear";
-			if (number == 10 && humans_number.textContent >= 4 && localStorage.zisseki3 == 0) {
-				localStorage.zisseki3 = 1;
-				zisseki();
-				if (Notification.permission === 'granted') {
-					navigator.serviceWorker.ready.then(registration => {
-						registration.active.postMessage('初心者脱却');
-					});
-				}
 			}
 			if (number % 15 == 0) {
 				humans_max.textContent = Number(humans_max.textContent) + 1;
