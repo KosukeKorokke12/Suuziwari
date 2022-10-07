@@ -372,18 +372,6 @@ html {
 		border-style: dashed;
 		border-color: #FFF;
 	}
-	#debugmodes2{
-		zoom: 100%;
-		position: fixed;
-		top: 10px;
-		right: 10px;
-		width: 330px;
-		height: 180px;
-		background: #000;
-		border-radius: 38% 57% 43% 62% / 66% 34% 65% 35%;
-		border: 3px solid #FFF;
-		box-shadow: 10px 15px 10px #000
-	}
 }
 
 i{
